@@ -5,7 +5,7 @@ import { prisma } from '@/lib/db';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -13,7 +13,8 @@ export async function GET(
       return NextResponse.json({ error: 'Authentication required' }, { status: 401 });
     }
 
-    const sessionId = params.id;
+    const resolvedParams = await params;
+    const sessionId = resolvedParams.id;
 
     // Get notification preferences for this session
     const preferences = await prisma.notificationPreference.findFirst({
@@ -43,7 +44,7 @@ export async function GET(
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -52,7 +53,8 @@ export async function POST(
     }
 
     const { preferences } = await request.json();
-    const sessionId = params.id;
+    const resolvedParams = await params;
+    const sessionId = resolvedParams.id;
 
     // Validate the parking session exists and belongs to user
     const parkingSession = await prisma.parkingSession.findUnique({

@@ -58,3 +58,28 @@ export function truncateText(text: string, maxLength: number): string {
   if (text.length <= maxLength) return text;
   return text.slice(0, maxLength) + '...';
 }
+
+export function formatCurrency(amount: number): string {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(amount);
+}
+
+export function formatDuration(hours: number): string {
+  if (hours < 1) {
+    const minutes = Math.round(hours * 60);
+    return `${minutes} min${minutes !== 1 ? 's' : ''}`;
+  }
+
+  const wholeHours = Math.floor(hours);
+  const minutes = Math.round((hours - wholeHours) * 60);
+
+  if (minutes === 0) {
+    return `${wholeHours} hr${wholeHours !== 1 ? 's' : ''}`;
+  }
+
+  return `${wholeHours}h ${minutes}m`;
+}

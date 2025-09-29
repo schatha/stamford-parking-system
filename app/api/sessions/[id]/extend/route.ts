@@ -6,7 +6,7 @@ import { calculateParkingCost, getRateForLocationType } from '@/lib/utils/calcul
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -15,7 +15,8 @@ export async function POST(
     }
 
     const { additionalHours } = await request.json();
-    const sessionId = params.id;
+    const resolvedParams = await params;
+    const sessionId = resolvedParams.id;
 
     // Validate input
     if (!additionalHours || additionalHours <= 0) {
