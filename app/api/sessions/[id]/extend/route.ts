@@ -19,7 +19,9 @@ export async function POST(
     const sessionId = resolvedParams.id;
 
     // Validate input
+    console.log('Extension request:', { sessionId, additionalHours });
     if (!additionalHours || additionalHours <= 0) {
+      console.log('Invalid additional hours:', additionalHours);
       return NextResponse.json(
         { error: 'Additional hours must be greater than 0' },
         { status: 400 }
@@ -38,16 +40,29 @@ export async function POST(
     });
 
     if (!parkingSession) {
+      console.log('Session not found:', sessionId);
       return NextResponse.json({ error: 'Session not found' }, { status: 404 });
     }
 
+    console.log('Session found:', {
+      id: parkingSession.id,
+      status: parkingSession.status,
+      userId: parkingSession.userId,
+      currentUserId: session.user.id,
+      durationHours: parkingSession.durationHours,
+      maxDurationHours: parkingSession.zone.maxDurationHours,
+      scheduledEndTime: parkingSession.scheduledEndTime
+    });
+
     // Verify ownership
     if (parkingSession.userId !== session.user.id) {
+      console.log('Access denied: userId mismatch');
       return NextResponse.json({ error: 'Access denied' }, { status: 403 });
     }
 
     // Check if session can be extended
     if (parkingSession.status !== 'ACTIVE') {
+      console.log('Session not active:', parkingSession.status);
       return NextResponse.json(
         { error: 'Only active sessions can be extended' },
         { status: 400 }
@@ -56,9 +71,19 @@ export async function POST(
 
     // Check if session has expired
     const now = new Date();
-    if (now > parkingSession.scheduledEndTime) {
+    const thirtyMinutesAgo = new Date(now.getTime() - 30 * 60 * 1000); // 30 minutes grace period
+    console.log('Time check:', {
+      now: now.toISOString(),
+      scheduledEndTime: parkingSession.scheduledEndTime.toISOString(),
+      isExpired: now > parkingSession.scheduledEndTime,
+      gracePeriodExpired: parkingSession.scheduledEndTime < thirtyMinutesAgo
+    });
+
+    // Allow extending sessions that expired within the last 30 minutes (grace period)
+    if (parkingSession.scheduledEndTime < thirtyMinutesAgo) {
+      console.log('Session has expired beyond grace period, cannot extend');
       return NextResponse.json(
-        { error: 'Cannot extend expired session' },
+        { error: 'Cannot extend session - expired more than 30 minutes ago' },
         { status: 400 }
       );
     }
@@ -79,27 +104,45 @@ export async function POST(
     const rate = getRateForLocationType(parkingSession.zone.locationType);
     const extensionCost = calculateParkingCost(rate, additionalHours);
 
-    // Create payment intent for the extension
-    const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+    // Create payment intent for the extension (demo mode compatible)
+    let paymentIntent = null;
+    const mockPaymentSuccess = true; // Demo mode - skip real payments
 
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: Math.round(extensionCost.totalCost * 100), // Convert to cents
-      currency: 'usd',
-      metadata: {
-        type: 'session_extension',
-        sessionId: parkingSession.id,
-        additionalHours: additionalHours.toString(),
-      },
-    });
-
-    // For demo purposes, we'll simulate automatic payment success
-    // In production, this would wait for payment confirmation
-    const mockPaymentSuccess = true;
+    if (process.env.STRIPE_SECRET_KEY && !mockPaymentSuccess) {
+      // Production mode: create real Stripe payment intent
+      const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+      paymentIntent = await stripe.paymentIntents.create({
+        amount: Math.round(extensionCost.totalCost * 100), // Convert to cents
+        currency: 'usd',
+        metadata: {
+          type: 'session_extension',
+          sessionId: parkingSession.id,
+          additionalHours: additionalHours.toString(),
+        },
+      });
+    } else {
+      // Demo mode: create mock payment intent
+      paymentIntent = {
+        id: `demo_pi_${Date.now()}`,
+        status: 'succeeded',
+        amount: Math.round(extensionCost.totalCost * 100),
+        currency: 'usd',
+      };
+      console.log('Demo mode: skipping real Stripe payment, using mock payment intent');
+    }
 
     if (mockPaymentSuccess) {
       // Calculate new end time
-      const newEndTime = new Date(parkingSession.scheduledEndTime);
+      // If session has expired, extend from current time; otherwise extend from scheduled end time
+      const baseTime = now > parkingSession.scheduledEndTime ? now : parkingSession.scheduledEndTime;
+      const newEndTime = new Date(baseTime);
       newEndTime.setTime(newEndTime.getTime() + additionalHours * 60 * 60 * 1000);
+
+      console.log('Extension calculation:', {
+        baseTime: baseTime.toISOString(),
+        additionalHours,
+        newEndTime: newEndTime.toISOString()
+      });
 
       // Update the parking session
       const updatedSession = await prisma.parkingSession.update({

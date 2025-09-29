@@ -63,6 +63,7 @@ export default function DashboardPage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ additionalHours }),
+        credentials: 'include',
       });
 
       if (!response.ok) {

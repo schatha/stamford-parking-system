@@ -99,7 +99,9 @@ export default function ActiveSessionPage() {
         setShowExtensionModal(false);
       } else {
         const data = await response.json();
-        throw new Error(data.error || 'Failed to extend session');
+        const errorMessage = data.error || 'Failed to extend session';
+        console.error('Extension failed:', errorMessage);
+        throw new Error(errorMessage);
       }
     } catch (error) {
       console.error('Failed to extend session:', error);
