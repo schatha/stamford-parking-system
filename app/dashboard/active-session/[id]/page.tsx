@@ -58,7 +58,9 @@ export default function ActiveSessionPage() {
 
   const loadSession = async () => {
     try {
-      const response = await fetch(`/api/sessions/${sessionId}`);
+      const response = await fetch(`/api/sessions/${sessionId}`, {
+        credentials: 'include',
+      });
       if (response.ok) {
         const data = await response.json();
         setParkingSession(data.data);
@@ -89,6 +91,7 @@ export default function ActiveSessionPage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ additionalHours }),
+        credentials: 'include',
       });
 
       if (response.ok) {
