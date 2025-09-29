@@ -15,7 +15,7 @@ export default function ConfirmationPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const params = useParams();
-  const sessionId = params.sessionId as string;
+  const sessionId = params.id as string;
 
   const [parkingSession, setParkingSession] = useState<ParkingSessionWithDetails | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -51,7 +51,10 @@ export default function ConfirmationPage() {
 
   const handleDownloadReceipt = async () => {
     try {
-      const response = await fetch(`/api/sessions/${sessionId}/receipt`);
+      // TODO: Implement receipt API
+      alert('Receipt download coming soon!');
+      return;
+      // const response = await fetch(`/api/sessions/${sessionId}/receipt`);
       if (response.ok) {
         const blob = await response.blob();
         const url = window.URL.createObjectURL(blob);
@@ -271,7 +274,7 @@ export default function ConfirmationPage() {
                   <span className="text-xs">Add to Calendar</span>
                 </Button>
 
-                <Link href={`/park/extend/${sessionId}`}>
+                <Link href={`/dashboard/active-session/${sessionId}`}>
                   <Button
                     variant="outline"
                     size="sm"

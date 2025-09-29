@@ -3,7 +3,7 @@
 import { useState, Fragment } from 'react';
 import { useSession, signOut } from 'next-auth/react';
 import { Menu, Transition } from '@headlessui/react';
-import { ChevronDownIcon, UserIcon, CogIcon, LogoutIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon, UserIcon, CogIcon, ArrowRightOnRectangleIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 
 function classNames(...classes: string[]) {
@@ -123,7 +123,7 @@ export function UserMenu() {
                     'group flex w-full items-center px-4 py-2 text-sm'
                   )}
                 >
-                  <LogoutIcon
+                  <ArrowRightOnRectangleIcon
                     className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
                     aria-hidden="true"
                   />

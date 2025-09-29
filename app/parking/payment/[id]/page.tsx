@@ -17,7 +17,7 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 
 interface PaymentPageProps {
   params: {
-    sessionId: string;
+    id: string;
   };
 }
 
@@ -39,11 +39,11 @@ export default function PaymentPage({ params }: PaymentPageProps) {
     }
 
     loadSession();
-  }, [session, status, router, params.sessionId]);
+  }, [session, status, router, params.id]);
 
   const loadSession = async () => {
     try {
-      const response = await fetch(`/api/sessions/${params.sessionId}`);
+      const response = await fetch(`/api/sessions/${params.id}`);
       const data = await response.json();
 
       if (!response.ok) {
@@ -55,7 +55,7 @@ export default function PaymentPage({ params }: PaymentPageProps) {
       setParkingSession(sessionData);
 
       if (sessionData.status === 'ACTIVE') {
-        router.push(`/parking/session/${sessionData.id}`);
+        router.push(`/park/confirmation/${sessionData.id}`);
         return;
       }
 
@@ -99,7 +99,7 @@ export default function PaymentPage({ params }: PaymentPageProps) {
   };
 
   const handlePaymentSuccess = () => {
-    router.push(`/parking/session/${params.sessionId}?success=payment`);
+    router.push(`/park/confirmation/${params.id}?success=payment`);
   };
 
   const handlePaymentError = (error: string) => {
