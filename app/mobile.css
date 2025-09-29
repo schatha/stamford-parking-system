@@ -1,0 +1,327 @@
+/* Mobile-specific optimizations for parking payment app */
+
+/* Touch-friendly tap targets (minimum 44px) */
+.tap-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Mobile viewport optimizations */
+@media screen and (max-width: 428px) {
+  /* Ensure full width usage on small screens */
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* Stack grid items on mobile */
+  .mobile-stack > * {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Larger touch targets for mobile */
+  button,
+  .button,
+  a[role="button"],
+  input[type="button"],
+  input[type="submit"] {
+    min-height: 44px;
+    padding: 12px 16px;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  /* Form inputs optimized for mobile */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="tel"],
+  select,
+  textarea {
+    min-height: 44px;
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 12px 16px;
+  }
+
+  /* Mobile-friendly cards */
+  .mobile-card {
+    margin: 8px 0;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Sticky header on mobile */
+  .mobile-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Mobile navigation */
+  .mobile-nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 0;
+    background: white;
+    border-top: 1px solid #e5e7eb;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+  }
+
+  .mobile-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 16px;
+    min-height: 44px;
+    text-decoration: none;
+    color: #6b7280;
+    font-size: 12px;
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+
+  .mobile-nav-item.active {
+    color: #3b82f6;
+    background-color: #eff6ff;
+  }
+
+  .mobile-nav-item:hover {
+    color: #3b82f6;
+    background-color: #f3f4f6;
+  }
+
+  /* Mobile-specific spacing */
+  .mobile-spacing {
+    padding-bottom: 80px; /* Account for mobile nav */
+  }
+
+  /* Mobile-optimized modals */
+  .mobile-modal {
+    position: fixed;
+    inset: 0;
+    background: white;
+    z-index: 50;
+    overflow-y: auto;
+  }
+
+  .mobile-modal-header {
+    position: sticky;
+    top: 0;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 60px;
+  }
+
+  /* Mobile-friendly tables */
+  .mobile-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .mobile-table-card {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    border-bottom: 1px solid #e5e7eb;
+    gap: 8px;
+  }
+
+  /* Text size adjustments for mobile */
+  .mobile-title {
+    font-size: 1.5rem;
+    line-height: 1.4;
+  }
+
+  .mobile-subtitle {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .mobile-body {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  /* Mobile-optimized form layout */
+  .mobile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 16px;
+  }
+
+  .mobile-form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* Swipe gestures support */
+  .swipeable {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+  }
+
+  /* Mobile-safe fixed positioning */
+  .mobile-fixed-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 16px;
+    background: white;
+    border-top: 1px solid #e5e7eb;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* iPhone SE (375px) specific optimizations */
+@media screen and (max-width: 375px) {
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .mobile-card {
+    margin: 6px 0;
+    padding: 12px;
+  }
+
+  /* Smaller text on very small screens */
+  .xs-mobile-title {
+    font-size: 1.25rem;
+  }
+
+  .xs-mobile-body {
+    font-size: 0.8125rem;
+  }
+}
+
+/* Larger mobile devices (428px+) optimizations */
+@media screen and (min-width: 428px) and (max-width: 768px) {
+  .large-mobile-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .large-mobile-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+  }
+}
+
+/* Landscape orientation optimizations */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .mobile-nav {
+    display: none; /* Hide bottom nav in landscape */
+  }
+
+  .mobile-spacing {
+    padding-bottom: 16px;
+  }
+
+  .landscape-header {
+    min-height: 44px;
+    padding: 8px 16px;
+  }
+}
+
+/* iOS Safari specific fixes */
+@supports (-webkit-appearance: none) {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="tel"] {
+    -webkit-appearance: none;
+    border-radius: 8px;
+  }
+
+  /* Fix for iOS viewport units */
+  .ios-full-height {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+}
+
+/* Android Chrome specific fixes */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .android-input-fix {
+    font-size: 16px !important; /* Prevents zoom */
+  }
+}
+
+/* Touch-specific optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* Increase spacing for touch devices */
+  .touch-spacing {
+    gap: 16px;
+  }
+
+  /* Larger touch targets */
+  .touch-target {
+    min-height: 48px;
+    min-width: 48px;
+    padding: 12px;
+  }
+
+  /* Remove hover effects on touch devices */
+  .no-touch-hover:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Mobile-friendly loading states */
+.mobile-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  padding: 32px;
+  text-align: center;
+}
+
+/* Mobile-optimized animations */
+@media (prefers-reduced-motion: no-preference) {
+  .mobile-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .mobile-fade-in {
+    animation: fadeIn 0.2s ease-out;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

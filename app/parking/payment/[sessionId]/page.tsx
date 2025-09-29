@@ -1,0 +1,268 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { Elements } from '@stripe/react-js';
+import { loadStripe } from '@stripe/stripe-js';
+import { ArrowLeft, Shield } from 'lucide-react';
+import Link from 'next/link';
+import { Card, CardHeader, CardContent } from '@/components/ui/Card';
+import Button from '@/components/ui/Button';
+import PaymentForm from '@/components/payments/PaymentForm';
+import { ParkingSessionWithDetails } from '@/types';
+import { formatCurrency, formatLicensePlate, formatZoneDisplay } from '@/lib/utils/formatting';
+
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+
+interface PaymentPageProps {
+  params: {
+    sessionId: string;
+  };
+}
+
+export default function PaymentPage({ params }: PaymentPageProps) {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+  const [parkingSession, setParkingSession] = useState<ParkingSessionWithDetails | null>(null);
+  const [clientSecret, setClientSecret] = useState<string>('');
+  const [transactionId, setTransactionId] = useState<string>('');
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string>('');
+
+  useEffect(() => {
+    if (status === 'loading') return;
+
+    if (!session) {
+      router.push('/auth/signin');
+      return;
+    }
+
+    loadSession();
+  }, [session, status, router, params.sessionId]);
+
+  const loadSession = async () => {
+    try {
+      const response = await fetch(`/api/sessions/${params.sessionId}`);
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.error || 'Failed to load session');
+        return;
+      }
+
+      const sessionData = data.data;
+      setParkingSession(sessionData);
+
+      if (sessionData.status === 'ACTIVE') {
+        router.push(`/parking/session/${sessionData.id}`);
+        return;
+      }
+
+      if (sessionData.status !== 'PENDING') {
+        setError('This session is not available for payment');
+        return;
+      }
+
+      await createPaymentIntent(sessionData.id);
+    } catch (error) {
+      console.error('Failed to load session:', error);
+      setError('An error occurred while loading the session');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const createPaymentIntent = async (sessionId: string) => {
+    try {
+      const response = await fetch('/api/payments/create-intent', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ sessionId }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.error || 'Failed to initialize payment');
+        return;
+      }
+
+      setClientSecret(data.data.clientSecret);
+      setTransactionId(data.data.transactionId);
+    } catch (error) {
+      console.error('Failed to create payment intent:', error);
+      setError('Failed to initialize payment');
+    }
+  };
+
+  const handlePaymentSuccess = () => {
+    router.push(`/parking/session/${params.sessionId}?success=payment`);
+  };
+
+  const handlePaymentError = (error: string) => {
+    setError(error);
+  };
+
+  if (status === 'loading' || isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading payment...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-100">
+        <div className="bg-white shadow-sm">
+          <div className="container mx-auto px-4 py-4">
+            <div className="flex items-center">
+              <Link href="/dashboard" className="mr-4">
+                <Button variant="outline" size="sm">
+                  <ArrowLeft className="h-4 w-4 mr-1" />
+                  Back
+                </Button>
+              </Link>
+              <h1 className="text-2xl font-bold text-gray-900">Payment Error</h1>
+            </div>
+          </div>
+        </div>
+
+        <div className="container mx-auto px-4 py-8">
+          <Card>
+            <CardContent className="text-center p-8">
+              <div className="text-red-500 mb-4">
+                <Shield className="h-12 w-12 mx-auto" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Payment Error</h3>
+              <p className="text-gray-600 mb-4">{error}</p>
+              <Link href="/dashboard">
+                <Button>Return to Dashboard</Button>
+              </Link>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    );
+  }
+
+  if (!parkingSession || !clientSecret) {
+    return (
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-gray-400 mb-4">
+            <Shield className="h-12 w-12 mx-auto" />
+          </div>
+          <p className="text-gray-600">Payment not available</p>
+        </div>
+      </div>
+    );
+  }
+
+  const appearance = {
+    theme: 'stripe' as const,
+  };
+
+  const options = {
+    clientSecret,
+    appearance,
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-100">
+      <div className="bg-white shadow-sm">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center">
+            <Link href="/parking/start" className="mr-4">
+              <Button variant="outline" size="sm">
+                <ArrowLeft className="h-4 w-4 mr-1" />
+                Back
+              </Button>
+            </Link>
+            <h1 className="text-2xl font-bold text-gray-900">Complete Payment</h1>
+          </div>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 py-8">
+        <div className="max-w-2xl mx-auto space-y-6">
+          <Card>
+            <CardHeader>
+              <h2 className="text-lg font-semibold">Parking Session Summary</h2>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Vehicle:</span>
+                  <span className="font-medium">
+                    {formatLicensePlate(parkingSession.vehicle.licensePlate, parkingSession.vehicle.state)}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Zone:</span>
+                  <span className="font-medium">
+                    {formatZoneDisplay(parkingSession.zone.zoneNumber, parkingSession.zone.zoneName)}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Location:</span>
+                  <span className="font-medium">{parkingSession.zone.address}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Duration:</span>
+                  <span className="font-medium">{parkingSession.durationHours} hours</span>
+                </div>
+                <div className="border-t pt-3">
+                  <div className="flex justify-between text-sm">
+                    <span>Base cost:</span>
+                    <span>{formatCurrency(parkingSession.baseCost)}</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span>Tax:</span>
+                    <span>{formatCurrency(parkingSession.taxAmount)}</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span>Processing fee:</span>
+                    <span>{formatCurrency(parkingSession.processingFee)}</span>
+                  </div>
+                  <div className="flex justify-between font-semibold text-lg pt-2 border-t">
+                    <span>Total:</span>
+                    <span>{formatCurrency(parkingSession.totalCost)}</span>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <h2 className="text-lg font-semibold flex items-center">
+                <Shield className="h-5 w-5 mr-2" />
+                Secure Payment
+              </h2>
+            </CardHeader>
+            <CardContent>
+              <Elements options={options} stripe={stripePromise}>
+                <PaymentForm
+                  onSuccess={handlePaymentSuccess}
+                  onError={handlePaymentError}
+                  amount={parkingSession.totalCost}
+                />
+              </Elements>
+              <div className="mt-4 text-center text-sm text-gray-500">
+                <p>Your payment is secured by Stripe</p>
+                <p>We do not store your payment information</p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </div>
+  );
+}
