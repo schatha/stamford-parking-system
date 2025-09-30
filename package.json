@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "prisma generate && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "postinstall": "prisma generate",
     "test:mobile": "node scripts/mobile-test.js",
     "test:mobile:headless": "HEADLESS=true node scripts/mobile-test.js",
     "test:mobile:dev": "TEST_URL=http://localhost:3000 node scripts/mobile-test.js",
