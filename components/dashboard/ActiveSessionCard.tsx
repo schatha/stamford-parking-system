@@ -7,6 +7,7 @@ import Button from '@/components/ui/Button';
 import { CountdownTimer } from '@/components/ui/CountdownTimer';
 import { ParkingSessionWithDetails } from '@/types';
 import { formatCurrency, formatLicensePlate } from '@/lib/utils/formatting';
+import { getRateForLocationType } from '@/lib/utils/calculations';
 
 interface ActiveSessionCardProps {
   session: ParkingSessionWithDetails;
@@ -46,6 +47,8 @@ export function ActiveSessionCard({
     switch (session.status) {
       case 'ACTIVE':
         return 'border-l-green-500 bg-green-50';
+      case 'EXTENDED':
+        return 'border-l-purple-500 bg-purple-50';
       case 'PENDING':
         return 'border-l-yellow-500 bg-yellow-50';
       case 'EXPIRED':
@@ -55,10 +58,11 @@ export function ActiveSessionCard({
     }
   };
 
+  const rate = getRateForLocationType(session.zone.locationType);
   const extendOptions = [
-    { hours: 0.5, label: '30 min', cost: session.zone.ratePerHour * 0.5 },
-    { hours: 1, label: '1 hour', cost: session.zone.ratePerHour },
-    { hours: 2, label: '2 hours', cost: session.zone.ratePerHour * 2 },
+    { hours: 0.5, label: '30 min', cost: rate * 0.5 },
+    { hours: 1, label: '1 hour', cost: rate },
+    { hours: 2, label: '2 hours', cost: rate * 2 },
   ];
 
   return (

@@ -16,7 +16,10 @@ import { calculateParkingCost, getRateForLocationType } from '@/lib/utils/calcul
 import { formatCurrency, formatLicensePlate } from '@/lib/utils/formatting';
 import { CostCalculator } from './CostCalculator';
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+// Demo mode compatible - only load Stripe if key is available
+const stripePromise = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+  ? loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
+  : Promise.resolve(null);
 
 interface PaymentFormProps {
   zone: ParkingZone;
@@ -255,6 +258,22 @@ function PaymentFormInner({
                     }
                   }}
                 />
+              </div>
+            </div>
+
+            {/* Payment Method Options */}
+            <div className="mt-4">
+              <div className="flex items-center justify-center space-x-4 text-sm text-gray-500">
+                <span>Secure payment with</span>
+                <div className="flex items-center space-x-2">
+                  <div className="w-10 h-6 bg-black rounded flex items-center justify-center text-white text-xs font-bold">
+                    Apple Pay
+                  </div>
+                  <div className="w-10 h-6 bg-blue-500 rounded flex items-center justify-center text-white text-xs font-bold">
+                    G Pay
+                  </div>
+                  <div className="text-xs text-gray-400">and all major cards</div>
+                </div>
               </div>
             </div>
 

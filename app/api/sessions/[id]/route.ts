@@ -50,3 +50,85 @@ export async function GET(
     );
   }
 }
+
+export async function POST(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const session = await getServerSession(authOptions);
+    if (!session?.user?.id) {
+      return NextResponse.json({ error: 'Authentication required' }, { status: 401 });
+    }
+
+    const resolvedParams = await params;
+    const sessionId = resolvedParams.id;
+    const { paymentIntentId } = await request.json();
+
+    if (!paymentIntentId) {
+      return NextResponse.json(
+        { error: 'Payment intent ID is required' },
+        { status: 400 }
+      );
+    }
+
+    const parkingSession = await prisma.parkingSession.findUnique({
+      where: { id: sessionId },
+      include: {
+        user: true,
+        vehicle: true,
+        zone: true,
+        transactions: true,
+      },
+    });
+
+    if (!parkingSession) {
+      return NextResponse.json({ error: 'Session not found' }, { status: 404 });
+    }
+
+    // Verify ownership
+    if (parkingSession.userId !== session.user.id) {
+      return NextResponse.json({ error: 'Access denied' }, { status: 403 });
+    }
+
+    // Update session to active status
+    const updatedSession = await prisma.parkingSession.update({
+      where: { id: sessionId },
+      data: {
+        status: 'ACTIVE',
+        startTime: new Date(),
+        stripePaymentIntentId: paymentIntentId,
+        updatedAt: new Date(),
+      },
+      include: {
+        user: true,
+        vehicle: true,
+        zone: true,
+        transactions: true,
+      },
+    });
+
+    // Create transaction record
+    await prisma.transaction.create({
+      data: {
+        userId: session.user.id,
+        sessionId: parkingSession.id,
+        stripeTransactionId: paymentIntentId,
+        amount: parkingSession.totalCost,
+        status: 'COMPLETED',
+      },
+    });
+
+    return NextResponse.json({
+      success: true,
+      data: updatedSession,
+    });
+
+  } catch (error) {
+    console.error('POST /api/sessions/[id] error:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
+  }
+}

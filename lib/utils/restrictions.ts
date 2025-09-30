@@ -38,8 +38,8 @@ export function checkZoneRestrictions(
     if (conflictResult.hasConflict) {
       result.canPark = false;
       result.restrictions.push({
-        type: restriction.restrictionType,
-        description: restriction.description,
+        type: restriction.restrictionType || 'TIME_RESTRICTION',
+        description: restriction.description || `Parking restricted ${restriction.startTime}-${restriction.endTime}`,
         activeUntil: conflictResult.restrictionEnd
       });
     }
@@ -54,7 +54,7 @@ export function checkZoneRestrictions(
     if (warningResult.hasWarning) {
       result.warnings = result.warnings || [];
       result.warnings.push({
-        type: restriction.restrictionType,
+        type: restriction.restrictionType || 'TIME_RESTRICTION',
         message: warningResult.message,
         warningTime: warningResult.warningTime
       });
@@ -118,7 +118,7 @@ function checkUpcomingRestrictions(
   if (timeUntilRestriction > 0 && timeUntilRestriction <= thirtyMinutesInMs) {
     return {
       hasWarning: true,
-      message: `${restriction.description} begins at ${restriction.startTime}`,
+      message: `${restriction.description || 'Parking restriction'} begins at ${restriction.startTime}`,
       warningTime: restrictionStart
     };
   }

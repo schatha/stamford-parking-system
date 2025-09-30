@@ -60,30 +60,30 @@ export async function POST(
       return NextResponse.json({ error: 'Access denied' }, { status: 403 });
     }
 
-    // Check if session can be extended
-    if (parkingSession.status !== 'ACTIVE') {
-      console.log('Session not active:', parkingSession.status);
+    // Check if session can be extended (allow both ACTIVE and EXTENDED sessions)
+    if (parkingSession.status !== 'ACTIVE' && parkingSession.status !== 'EXTENDED') {
+      console.log('Session cannot be extended, status:', parkingSession.status);
       return NextResponse.json(
-        { error: 'Only active sessions can be extended' },
+        { error: 'Only active or extended sessions can be extended' },
         { status: 400 }
       );
     }
 
-    // Check if session has expired
+    // Check if session has expired (demo mode - allow extension up to 24 hours after expiry)
     const now = new Date();
-    const thirtyMinutesAgo = new Date(now.getTime() - 30 * 60 * 1000); // 30 minutes grace period
+    const twentyFourHoursAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000); // 24 hour grace period for demo
     console.log('Time check:', {
       now: now.toISOString(),
       scheduledEndTime: parkingSession.scheduledEndTime.toISOString(),
       isExpired: now > parkingSession.scheduledEndTime,
-      gracePeriodExpired: parkingSession.scheduledEndTime < thirtyMinutesAgo
+      gracePeriodExpired: parkingSession.scheduledEndTime < twentyFourHoursAgo
     });
 
-    // Allow extending sessions that expired within the last 30 minutes (grace period)
-    if (parkingSession.scheduledEndTime < thirtyMinutesAgo) {
-      console.log('Session has expired beyond grace period, cannot extend');
+    // Allow extending sessions in demo mode - very lenient grace period
+    if (parkingSession.scheduledEndTime < twentyFourHoursAgo) {
+      console.log('Session has expired beyond demo grace period, cannot extend');
       return NextResponse.json(
-        { error: 'Cannot extend session - expired more than 30 minutes ago' },
+        { error: 'Cannot extend session - please start a new parking session' },
         { status: 400 }
       );
     }

@@ -40,13 +40,13 @@ async function main() {
 
   console.log('✅ Created demo user:', demoUser.email);
 
-  // Create parking zones (10 zones with mix of types)
+  // Create parking zones (10 zones with mix of types) - RFP COMPLIANT RATES
   const zones = [
     {
       zoneNumber: 'A1',
       zoneName: 'Downtown Main Street',
       locationType: 'STREET' as const,
-      ratePerHour: 2.00,
+      ratePerHour: 1.25, // RFP: On-street parking $1.25/hour
       maxDurationHours: 4,
       address: '123 Main Street, Stamford, CT',
       restrictionsJson: {
@@ -63,7 +63,7 @@ async function main() {
       zoneNumber: 'B2',
       zoneName: 'City Hall Parking Lot',
       locationType: 'LOT' as const,
-      ratePerHour: 1.50,
+      ratePerHour: 1.00, // RFP: Lot parking $1.00/hour
       maxDurationHours: 8,
       address: '888 Washington Blvd, Stamford, CT',
       restrictionsJson: null,
@@ -72,7 +72,7 @@ async function main() {
       zoneNumber: 'C3',
       zoneName: 'Harbor Point Garage',
       locationType: 'GARAGE' as const,
-      ratePerHour: 3.00,
+      ratePerHour: 1.00, // RFP: Garage parking $1.00/hour
       maxDurationHours: 12,
       address: '123 Harbor Point Road, Stamford, CT',
       restrictionsJson: {
@@ -84,7 +84,7 @@ async function main() {
       zoneNumber: 'D4',
       zoneName: 'Train Station North',
       locationType: 'METER' as const,
-      ratePerHour: 2.50,
+      ratePerHour: 1.25, // RFP: Meter parking $1.25/hour
       maxDurationHours: 2,
       address: '1 Station Place, Stamford, CT',
       restrictionsJson: {
@@ -101,7 +101,7 @@ async function main() {
       zoneNumber: 'E5',
       zoneName: 'Bedford Street',
       locationType: 'STREET' as const,
-      ratePerHour: 1.75,
+      ratePerHour: 1.25, // RFP: On-street parking $1.25/hour
       maxDurationHours: 3,
       address: '456 Bedford Street, Stamford, CT',
       restrictionsJson: null,
@@ -110,7 +110,7 @@ async function main() {
       zoneNumber: 'F6',
       zoneName: 'Stamford Town Center Garage',
       locationType: 'GARAGE' as const,
-      ratePerHour: 2.75,
+      ratePerHour: 1.00, // RFP: Garage parking $1.00/hour
       maxDurationHours: 10,
       address: '100 Greyrock Place, Stamford, CT',
       restrictionsJson: {
@@ -122,7 +122,7 @@ async function main() {
       zoneNumber: 'G7',
       zoneName: 'Atlantic Street Lot',
       locationType: 'LOT' as const,
-      ratePerHour: 1.25,
+      ratePerHour: 1.00, // RFP: Lot parking $1.00/hour
       maxDurationHours: 6,
       address: '200 Atlantic Street, Stamford, CT',
       restrictionsJson: {
@@ -140,7 +140,7 @@ async function main() {
       zoneNumber: 'H8',
       zoneName: 'Summer Street Meters',
       locationType: 'METER' as const,
-      ratePerHour: 2.25,
+      ratePerHour: 1.25, // RFP: Meter parking $1.25/hour
       maxDurationHours: 2,
       address: '345 Summer Street, Stamford, CT',
       restrictionsJson: {
@@ -157,7 +157,7 @@ async function main() {
       zoneNumber: 'I9',
       zoneName: 'Forest Street',
       locationType: 'STREET' as const,
-      ratePerHour: 1.50,
+      ratePerHour: 1.25, // RFP: On-street parking $1.25/hour
       maxDurationHours: 4,
       address: '567 Forest Street, Stamford, CT',
       restrictionsJson: {
@@ -175,7 +175,7 @@ async function main() {
       zoneNumber: 'J10',
       zoneName: 'Government Center Garage',
       locationType: 'GARAGE' as const,
-      ratePerHour: 2.50,
+      ratePerHour: 1.00, // RFP: Garage parking $1.00/hour
       maxDurationHours: 12,
       address: '888 Washington Blvd, Stamford, CT',
       restrictionsJson: {
@@ -244,7 +244,7 @@ async function main() {
     const user = vehicle.userId === demoUser.id ? demoUser : adminUser;
 
     const baseCost = zone.ratePerHour * durationHours;
-    const taxAmount = baseCost * 0.0625; // 6.25% CT sales tax
+    const taxAmount = baseCost * 0.0635; // 6.35% CT sales tax (RFP requirement)
     const processingFee = 0.50;
     const totalCost = baseCost + taxAmount + processingFee;
 
@@ -290,7 +290,7 @@ async function main() {
   const activeZone1 = createdZones[0]; // Downtown Main Street
 
   const activeBaseCost1 = activeZone1.ratePerHour * activeDuration1;
-  const activeTaxAmount1 = activeBaseCost1 * 0.0625;
+  const activeTaxAmount1 = activeBaseCost1 * 0.0635; // 6.35% CT sales tax (RFP requirement)
   const activeProcessingFee1 = 0.50;
   const activeTotalCost1 = activeBaseCost1 + activeTaxAmount1 + activeProcessingFee1;
 
@@ -331,7 +331,7 @@ async function main() {
   const activeZone2 = createdZones[2]; // Harbor Point Garage
 
   const activeBaseCost2 = activeZone2.ratePerHour * activeDuration2;
-  const activeTaxAmount2 = activeBaseCost2 * 0.0625;
+  const activeTaxAmount2 = activeBaseCost2 * 0.0635; // 6.35% CT sales tax (RFP requirement)
   const activeProcessingFee2 = 0.50;
   const activeTotalCost2 = activeBaseCost2 + activeTaxAmount2 + activeProcessingFee2;
 

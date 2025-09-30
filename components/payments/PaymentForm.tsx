@@ -5,7 +5,7 @@ import {
   useStripe,
   useElements,
   PaymentElement,
-} from '@stripe/react-js';
+} from '@stripe/react-stripe-js';
 import Button from '@/components/ui/Button';
 import { formatCurrency } from '@/lib/utils/formatting';
 

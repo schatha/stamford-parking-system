@@ -51,7 +51,7 @@ export function ZoneSelector({ onZoneSelect }: ZoneSelectorProps) {
     setError('');
 
     try {
-      const response = await fetch(`/api/zones/search?q=${encodeURIComponent(zoneNumber.trim())}`);
+      const response = await fetch(`/api/zones?q=${encodeURIComponent(zoneNumber.trim())}`);
       if (response.ok) {
         const data = await response.json();
         setSearchResults(data.data || []);

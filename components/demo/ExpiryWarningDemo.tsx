@@ -16,6 +16,8 @@ export function ExpiryWarningDemo({ onClose }: ExpiryWarningDemoProps) {
   const [showNotification, setShowNotification] = useState(false);
   const [notificationDismissed, setNotificationDismissed] = useState(false);
   const [demoStep, setDemoStep] = useState(1);
+  const [demoMode, setDemoMode] = useState<'automatic' | 'controlled'>('controlled');
+  const [selectedTimeRemaining, setSelectedTimeRemaining] = useState(15); // minutes
 
   // Mock session data for demo
   const mockSession = {
@@ -30,7 +32,7 @@ export function ExpiryWarningDemo({ onClose }: ExpiryWarningDemoProps) {
       state: 'CT',
       nickname: 'My Honda'
     },
-    scheduledEndTime: new Date(Date.now() + 14 * 60 * 1000), // 14 minutes from now
+    scheduledEndTime: new Date(Date.now() + selectedTimeRemaining * 60 * 1000), // controlled time
     totalCost: 3.50
   };
 
@@ -68,10 +70,10 @@ export function ExpiryWarningDemo({ onClose }: ExpiryWarningDemoProps) {
   };
 
   const resetDemo = () => {
-    mockSession.scheduledEndTime = new Date(Date.now() + 14 * 60 * 1000);
     setNotificationDismissed(false);
     setShowNotification(false);
     setDemoStep(1);
+    setSelectedTimeRemaining(15);
   };
 
   return (
@@ -99,22 +101,68 @@ export function ExpiryWarningDemo({ onClose }: ExpiryWarningDemoProps) {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-blue-800">
-                <strong>Demo Step {demoStep}:</strong>{' '}
-                {demoStep === 1 ? 'Session expiring soon - warning appears' : 'Session extended - warning cleared'}
-              </p>
-            </div>
-            <div className="flex space-x-2">
-              <Button size="sm" onClick={resetDemo} variant="outline">
-                Reset Demo
-              </Button>
-              {demoStep === 1 && (
-                <Button size="sm" onClick={handleExtendDemo}>
-                  Simulate Extension
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-blue-800">
+                  <strong>Demo Step {demoStep}:</strong>{' '}
+                  {demoStep === 1 ? 'Session expiring soon - warning appears' : 'Session extended - warning cleared'}
+                </p>
+              </div>
+              <div className="flex space-x-2">
+                <Button size="sm" onClick={resetDemo} variant="outline">
+                  Reset Demo
                 </Button>
-              )}
+                {demoStep === 1 && (
+                  <Button size="sm" onClick={handleExtendDemo}>
+                    Simulate Extension
+                  </Button>
+                )}
+              </div>
+            </div>
+
+            {/* Demo Controls */}
+            <div className="border-t border-blue-200 pt-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-blue-800 mb-2">
+                    Time Remaining (minutes)
+                  </label>
+                  <select
+                    value={selectedTimeRemaining}
+                    onChange={(e) => setSelectedTimeRemaining(parseInt(e.target.value))}
+                    className="w-full px-3 py-1 border border-blue-300 rounded text-sm"
+                  >
+                    <option value={20}>20 minutes (no warning)</option>
+                    <option value={15}>15 minutes (warning appears)</option>
+                    <option value={10}>10 minutes (urgent warning)</option>
+                    <option value={5}>5 minutes (critical warning)</option>
+                    <option value={2}>2 minutes (final warning)</option>
+                    <option value={1}>1 minute (expired soon)</option>
+                  </select>
+                </div>
+
+                <div className="flex items-end">
+                  <Button
+                    size="sm"
+                    onClick={() => {
+                      setNotificationDismissed(false);
+                      setShowNotification(false);
+                      setDemoStep(1);
+                    }}
+                    className="w-full"
+                  >
+                    Update Demo
+                  </Button>
+                </div>
+
+                <div className="flex items-center justify-center">
+                  <div className="text-sm text-blue-700">
+                    <strong>Current Time:</strong><br />
+                    {currentTime.toLocaleTimeString()}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </CardContent>

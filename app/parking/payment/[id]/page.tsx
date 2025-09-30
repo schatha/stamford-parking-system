@@ -1,27 +1,34 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { Elements } from '@stripe/react-js';
+import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { ArrowLeft, Shield } from 'lucide-react';
 import Link from 'next/link';
 import { Card, CardHeader, CardContent } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import PaymentForm from '@/components/payments/PaymentForm';
+import DemoPaymentForm from '@/components/payments/DemoPaymentForm';
 import { ParkingSessionWithDetails } from '@/types';
 import { formatCurrency, formatLicensePlate, formatZoneDisplay } from '@/lib/utils/formatting';
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+// Check if we're in demo mode (no Stripe keys configured)
+const isDemoMode = !process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
+
+const stripePromise = !isDemoMode
+  ? loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
+  : Promise.resolve(null);
 
 interface PaymentPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default function PaymentPage({ params }: PaymentPageProps) {
+  const resolvedParams = use(params);
   const { data: session, status } = useSession();
   const router = useRouter();
   const [parkingSession, setParkingSession] = useState<ParkingSessionWithDetails | null>(null);
@@ -39,11 +46,11 @@ export default function PaymentPage({ params }: PaymentPageProps) {
     }
 
     loadSession();
-  }, [session, status, router, params.id]);
+  }, [session, status, router, resolvedParams.id]);
 
   const loadSession = async () => {
     try {
-      const response = await fetch(`/api/sessions/${params.id}`);
+      const response = await fetch(`/api/sessions/${resolvedParams.id}`);
       const data = await response.json();
 
       if (!response.ok) {
@@ -99,7 +106,7 @@ export default function PaymentPage({ params }: PaymentPageProps) {
   };
 
   const handlePaymentSuccess = () => {
-    router.push(`/park/confirmation/${params.id}?success=payment`);
+    router.push(`/park/confirmation/${resolvedParams.id}?success=payment`);
   };
 
   const handlePaymentError = (error: string) => {
@@ -248,16 +255,24 @@ export default function PaymentPage({ params }: PaymentPageProps) {
               </h2>
             </CardHeader>
             <CardContent>
-              <Elements options={options} stripe={stripePromise}>
-                <PaymentForm
+              {isDemoMode ? (
+                <DemoPaymentForm
                   onSuccess={handlePaymentSuccess}
                   onError={handlePaymentError}
                   amount={parkingSession.totalCost}
                 />
-              </Elements>
+              ) : (
+                <Elements options={options} stripe={stripePromise}>
+                  <PaymentForm
+                    onSuccess={handlePaymentSuccess}
+                    onError={handlePaymentError}
+                    amount={parkingSession.totalCost}
+                  />
+                </Elements>
+              )}
               <div className="mt-4 text-center text-sm text-gray-500">
-                <p>Your payment is secured by Stripe</p>
-                <p>We do not store your payment information</p>
+                <p>{isDemoMode ? 'Demo payment mode active' : 'Your payment is secured by Stripe'}</p>
+                <p>{isDemoMode ? 'No real charges will be made' : 'We do not store your payment information'}</p>
               </div>
             </CardContent>
           </Card>

@@ -45,7 +45,7 @@ export default function DashboardPage() {
       if (sessionsRes.ok) {
         const sessionsData = await sessionsRes.json();
         const sessions = sessionsData.data || [];
-        setActiveSessions(sessions.filter((s: any) => s.status === 'ACTIVE' || s.status === 'PENDING'));
+        setActiveSessions(sessions.filter((s: any) => s.status === 'ACTIVE' || s.status === 'PENDING' || s.status === 'EXTENDED'));
         setRecentSessions(sessions.filter((s: any) => s.status === 'COMPLETED' || s.status === 'EXPIRED').slice(0, 5));
       }
     } catch (error) {
@@ -67,14 +67,15 @@ export default function DashboardPage() {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to extend session');
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to extend session');
       }
 
       // Reload data to show updated session
       await loadData();
     } catch (error) {
       console.error('Failed to extend session:', error);
-      // You might want to show a toast notification here
+      alert(`Extension failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   };
 
@@ -132,10 +133,10 @@ export default function DashboardPage() {
           <div className="mb-8">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-semibold text-gray-900">Active Parking Sessions</h2>
-              {activeSessions.filter(s => s.status === 'ACTIVE').length > 0 && (
+              {activeSessions.filter(s => s.status === 'ACTIVE' || s.status === 'EXTENDED').length > 0 && (
                 <div className="flex items-center text-sm text-gray-600">
                   <AlertTriangle className="h-4 w-4 mr-1 text-yellow-500" />
-                  <span>{activeSessions.filter(s => s.status === 'ACTIVE').length} active</span>
+                  <span>{activeSessions.filter(s => s.status === 'ACTIVE' || s.status === 'EXTENDED').length} active</span>
                 </div>
               )}
             </div>
@@ -279,6 +280,7 @@ export default function DashboardPage() {
                           </p>
                           <span className={`inline-block px-2 py-1 rounded text-xs font-medium ${
                             session.status === 'ACTIVE' ? 'bg-green-100 text-green-800' :
+                            session.status === 'EXTENDED' ? 'bg-purple-100 text-purple-800' :
                             session.status === 'COMPLETED' ? 'bg-blue-100 text-blue-800' :
                             session.status === 'EXPIRED' ? 'bg-red-100 text-red-800' :
                             'bg-gray-100 text-gray-800'
