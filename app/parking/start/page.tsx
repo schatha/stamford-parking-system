@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, Suspense } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
@@ -11,7 +11,7 @@ import { Vehicle, ParkingZone } from '@/types';
 import { formatCurrency, formatLicensePlate, formatZoneDisplay } from '@/lib/utils/formatting';
 import { calculateParkingCost } from '@/lib/utils/calculations';
 
-export default function StartParkingPage() {
+function StartParkingForm() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -339,5 +339,16 @@ export default function StartParkingPage() {
         </div>
       </div>
     </div>
+  );
+}
+export default function StartParkingPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+      </div>
+    }>
+      <StartParkingForm />
+    </Suspense>
   );
 }

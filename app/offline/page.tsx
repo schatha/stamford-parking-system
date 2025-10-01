@@ -1,3 +1,5 @@
+'use client';
+
 import { Card, CardContent } from '@/components/ui/Card';
 import { WifiOff, RefreshCw, Home, Car } from 'lucide-react';
 import Link from 'next/link';
