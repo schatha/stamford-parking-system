@@ -32,6 +32,16 @@ export default function ConfirmationPage() {
     loadSession();
   }, [session, status, router, sessionId]);
 
+  // Handle browser back button to redirect to dashboard
+  useEffect(() => {
+    const handlePopState = () => {
+      router.push('/dashboard');
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [router]);
+
   const loadSession = async () => {
     try {
       const response = await fetch(`/api/sessions/${sessionId}`);
@@ -182,9 +192,9 @@ export default function ConfirmationPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-3">
                   <div className="flex items-center">
-                    <Car className="h-5 w-5 text-gray-700 mr-3" />
+                    <Car className="h-5 w-5 !text-black mr-3" />
                     <div>
-                      <p className="font-medium text-gray-900">
+                      <p className="font-medium !text-black">
                         {formatLicensePlate(parkingSession.vehicle.licensePlate, parkingSession.vehicle.state)}
                       </p>
                       {parkingSession.vehicle.nickname && (
@@ -194,20 +204,20 @@ export default function ConfirmationPage() {
                   </div>
 
                   <div className="flex items-center">
-                    <MapPin className="h-5 w-5 text-gray-700 mr-3" />
+                    <MapPin className="h-5 w-5 !text-black mr-3" />
                     <div>
                       <p className="font-medium text-gray-900">
                         Zone {parkingSession.zone.zoneNumber}
                       </p>
                       <p className="text-sm text-gray-800">{parkingSession.zone.zoneName}</p>
-                      <p className="text-xs text-gray-700">{parkingSession.zone.address}</p>
+                      <p className="text-xs text-gray-800">{parkingSession.zone.address}</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="space-y-3">
                   <div className="flex items-center">
-                    <Clock className="h-5 w-5 text-gray-700 mr-3" />
+                    <Clock className="h-5 w-5 !text-black mr-3" />
                     <div>
                       <p className="font-medium text-gray-900">
                         {parkingSession.durationHours === 0.5 ? '30 minutes' :
@@ -224,7 +234,7 @@ export default function ConfirmationPage() {
                   </div>
 
                   <div className="flex items-center">
-                    <CreditCard className="h-5 w-5 text-gray-700 mr-3" />
+                    <CreditCard className="h-5 w-5 !text-black mr-3" />
                     <div>
                       <p className="font-medium text-gray-900">
                         {formatCurrency(parkingSession.totalCost)}
@@ -322,7 +332,7 @@ export default function ConfirmationPage() {
                   </div>
                 </div>
 
-                <div className="pt-2 text-xs text-gray-700">
+                <div className="pt-2 text-xs text-gray-800">
                   <p>
                     <strong>Transaction Date:</strong>{' '}
                     {new Date(parkingSession.createdAt).toLocaleString()}
