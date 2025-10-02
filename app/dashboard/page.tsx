@@ -199,7 +199,7 @@ export default function DashboardPage() {
             {vehicles.length === 0 ? (
               <Card>
                 <CardContent className="text-center p-8">
-                  <Car className="h-12 w-12 text-gray-600 mx-auto mb-4" />
+                  <Car className="h-12 w-12 !text-black mx-auto mb-4" />
                   <p className="text-gray-800 mb-4">No vehicles registered yet</p>
                   <Link href="/dashboard/vehicles/add">
                     <Button>Add Your First Vehicle</Button>
@@ -213,7 +213,7 @@ export default function DashboardPage() {
                     <CardContent className="p-4">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="font-medium">
+                          <p className="font-medium !text-black">
                             {formatLicensePlate(vehicle.licensePlate, vehicle.state)}
                           </p>
                           {vehicle.nickname && (
@@ -253,7 +253,7 @@ export default function DashboardPage() {
             {recentSessions.length === 0 ? (
               <Card>
                 <CardContent className="text-center p-8">
-                  <Clock className="h-12 w-12 text-gray-600 mx-auto mb-4" />
+                  <Clock className="h-12 w-12 !text-black mx-auto mb-4" />
                   <p className="text-gray-800">No parking sessions yet</p>
                 </CardContent>
               </Card>
@@ -264,13 +264,13 @@ export default function DashboardPage() {
                     <CardContent className="p-4">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="font-medium">
+                          <p className="font-medium !text-black">
                             {formatLicensePlate(session.vehicle.licensePlate, session.vehicle.state)}
                           </p>
                           <p className="text-sm text-gray-800">
                             {session.zone.zoneName}
                           </p>
-                          <p className="text-sm text-gray-700">
+                          <p className="text-sm text-gray-800">
                             {formatDate(session.startTime)}
                           </p>
                         </div>
@@ -307,7 +307,7 @@ export default function DashboardPage() {
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
                       View Your Parking Analytics
                     </h3>
-                    <p className="text-gray-700 text-sm">
+                    <p className="text-gray-800 text-sm">
                       See detailed insights about your parking patterns, spending, and savings
                     </p>
                   </div>
