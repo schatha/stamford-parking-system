@@ -18,6 +18,7 @@ export function ExpiryWarningDemo({ onClose }: ExpiryWarningDemoProps) {
   const [demoStep, setDemoStep] = useState(1);
   const [demoMode, setDemoMode] = useState<'automatic' | 'controlled'>('controlled');
   const [selectedTimeRemaining, setSelectedTimeRemaining] = useState(15); // minutes
+  const [sessionEndTime, setSessionEndTime] = useState(new Date(Date.now() + 15 * 60 * 1000));
 
   // Mock session data for demo
   const mockSession = {
@@ -32,9 +33,14 @@ export function ExpiryWarningDemo({ onClose }: ExpiryWarningDemoProps) {
       state: 'CT',
       nickname: 'My Honda'
     },
-    scheduledEndTime: new Date(Date.now() + selectedTimeRemaining * 60 * 1000), // controlled time
+    scheduledEndTime: sessionEndTime,
     totalCost: 3.50
   };
+
+  // Update session end time when selectedTimeRemaining changes
+  useEffect(() => {
+    setSessionEndTime(new Date(Date.now() + selectedTimeRemaining * 60 * 1000));
+  }, [selectedTimeRemaining]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -63,7 +69,7 @@ export function ExpiryWarningDemo({ onClose }: ExpiryWarningDemoProps) {
 
   const handleExtendDemo = () => {
     // Simulate extending the session by 30 minutes
-    mockSession.scheduledEndTime = new Date(mockSession.scheduledEndTime.getTime() + 30 * 60 * 1000);
+    setSelectedTimeRemaining(prev => prev + 30);
     setNotificationDismissed(false);
     setShowNotification(false);
     setDemoStep(2);

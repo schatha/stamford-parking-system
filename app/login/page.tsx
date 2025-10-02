@@ -205,19 +205,11 @@ function LoginForm() {
 export default function LoginPage() {
   return (
     <Suspense fallback={
-<<<<<<< HEAD
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center p-4">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-        </div>
-      </div>
-=======
       <AuthCard title="Welcome back" subtitle="Loading...">
         <div className="flex items-center justify-center py-8">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
         </div>
       </AuthCard>
->>>>>>> cf1ff6d (Fix text contrast issues across entire application)
     }>
       <LoginForm />
     </Suspense>
