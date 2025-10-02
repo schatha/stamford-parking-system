@@ -81,7 +81,7 @@ export default function SignInPage() {
           <h2 className="mt-6 text-3xl font-bold text-gray-900">
             Sign in to your account
           </h2>
-          <p className="mt-2 text-sm text-gray-600">
+          <p className="mt-2 text-sm text-gray-800">
             Access the Stamford Parking System
           </p>
         </div>
@@ -128,7 +128,7 @@ export default function SignInPage() {
             </form>
 
             <div className="mt-6 text-center">
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-800">
                 Don't have an account?{' '}
                 <Link href="/auth/signup" className="text-blue-600 hover:text-blue-500">
                   Sign up here

@@ -157,7 +157,7 @@ export default function ActiveSessionPage() {
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading session details...</p>
+          <p className="text-gray-800">Loading session details...</p>
         </div>
       </div>
     );
@@ -182,7 +182,7 @@ export default function ActiveSessionPage() {
 
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-md mx-auto text-center">
-            <p className="text-gray-600 mb-6">{error}</p>
+            <p className="text-gray-800 mb-6">{error}</p>
             <Link href="/dashboard">
               <Button>Back to Dashboard</Button>
             </Link>
@@ -210,7 +210,7 @@ export default function ActiveSessionPage() {
               </Link>
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">Session Details</h1>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-800">
                   Manage your active parking session
                 </p>
               </div>
@@ -296,39 +296,39 @@ export default function ActiveSessionPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-4">
                     <div className="flex items-center">
-                      <Car className="h-5 w-5 text-gray-600 mr-3" />
+                      <Car className="h-5 w-5 text-gray-800 mr-3" />
                       <div>
                         <p className="font-medium text-gray-900">
                           {formatLicensePlate(parkingSession.vehicle.licensePlate, parkingSession.vehicle.state)}
                         </p>
                         {parkingSession.vehicle.nickname && (
-                          <p className="text-sm text-gray-600">{parkingSession.vehicle.nickname}</p>
+                          <p className="text-sm text-gray-800">{parkingSession.vehicle.nickname}</p>
                         )}
                       </div>
                     </div>
 
                     <div className="flex items-center">
-                      <MapPin className="h-5 w-5 text-gray-600 mr-3" />
+                      <MapPin className="h-5 w-5 text-gray-800 mr-3" />
                       <div>
                         <p className="font-medium text-gray-900">
                           Zone {parkingSession.zone.zoneNumber}
                         </p>
-                        <p className="text-sm text-gray-600">{parkingSession.zone.zoneName}</p>
-                        <p className="text-xs text-gray-500">{parkingSession.zone.address}</p>
+                        <p className="text-sm text-gray-800">{parkingSession.zone.zoneName}</p>
+                        <p className="text-xs text-gray-700">{parkingSession.zone.address}</p>
                       </div>
                     </div>
                   </div>
 
                   <div className="space-y-4">
                     <div className="flex items-center">
-                      <Clock className="h-5 w-5 text-gray-600 mr-3" />
+                      <Clock className="h-5 w-5 text-gray-800 mr-3" />
                       <div>
                         <p className="font-medium text-gray-900">
                           {parkingSession.durationHours === 0.5 ? '30 minutes' :
                            parkingSession.durationHours === 1 ? '1 hour' :
                            `${parkingSession.durationHours} hours`}
                         </p>
-                        <p className="text-sm text-gray-600">
+                        <p className="text-sm text-gray-800">
                           Started {new Date(parkingSession.startTime).toLocaleString([], {
                             month: 'short',
                             day: 'numeric',
@@ -340,12 +340,12 @@ export default function ActiveSessionPage() {
                     </div>
 
                     <div className="flex items-center">
-                      <CreditCard className="h-5 w-5 text-gray-600 mr-3" />
+                      <CreditCard className="h-5 w-5 text-gray-800 mr-3" />
                       <div>
                         <p className="font-medium text-gray-900">
                           {formatCurrency(parkingSession.totalCost)}
                         </p>
-                        <p className="text-sm text-gray-600">Payment confirmed</p>
+                        <p className="text-sm text-gray-800">Payment confirmed</p>
                       </div>
                     </div>
                   </div>
@@ -353,7 +353,7 @@ export default function ActiveSessionPage() {
 
                 {/* Session ID */}
                 <div className="pt-4 border-t border-gray-200">
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-gray-800">
                     <strong>Session ID:</strong> <span className="font-mono">{parkingSession.id}</span>
                   </p>
                 </div>
@@ -444,15 +444,15 @@ export default function ActiveSessionPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-3">
                   <div className="flex justify-between text-sm">
-                    <span className="text-gray-600">Base Cost:</span>
+                    <span className="text-gray-800">Base Cost:</span>
                     <span>{formatCurrency(parkingSession.baseCost)}</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-gray-600">CT Sales Tax (6.35%):</span>
+                    <span className="text-gray-800">CT Sales Tax (6.35%):</span>
                     <span>{formatCurrency(parkingSession.taxAmount)}</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-gray-600">Processing Fee:</span>
+                    <span className="text-gray-800">Processing Fee:</span>
                     <span>{formatCurrency(parkingSession.processingFee)}</span>
                   </div>
                   <div className="border-t pt-2">
@@ -463,7 +463,7 @@ export default function ActiveSessionPage() {
                   </div>
                 </div>
 
-                <div className="text-sm text-gray-600">
+                <div className="text-sm text-gray-800">
                   <p className="mb-2"><strong>Payment Method:</strong> Credit Card</p>
                   <p className="mb-2">
                     <strong>Transaction Date:</strong>{' '}
@@ -491,7 +491,7 @@ export default function ActiveSessionPage() {
                   <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3"></div>
                   <div>
                     <p className="font-medium">Session Started</p>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-gray-800">
                       {new Date(parkingSession.startTime).toLocaleString()}
                     </p>
                   </div>
@@ -502,7 +502,7 @@ export default function ActiveSessionPage() {
                     <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3"></div>
                     <div>
                       <p className="font-medium">Currently Active</p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-800">
                         Session in progress
                       </p>
                     </div>
@@ -513,7 +513,7 @@ export default function ActiveSessionPage() {
                   <div className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3"></div>
                   <div>
                     <p className="font-medium">Scheduled End</p>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-gray-800">
                       {new Date(parkingSession.scheduledEndTime).toLocaleString()}
                     </p>
                   </div>

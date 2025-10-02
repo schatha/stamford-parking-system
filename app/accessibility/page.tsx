@@ -150,7 +150,7 @@ export default function AccessibilityPage() {
                 <PageHeading level={1} className="text-gray-900 mb-2">
                   ♿ Accessibility Features Demo
                 </PageHeading>
-                <p className="text-gray-600">
+                <p className="text-gray-800">
                   WCAG 2.1 AA compliant parking payment system
                 </p>
               </div>
@@ -183,7 +183,7 @@ export default function AccessibilityPage() {
               <Card>
                 <CardHeader>
                   <PageHeading level={2}>🎛️ Accessibility Controls</PageHeading>
-                  <p className="text-gray-600">
+                  <p className="text-gray-800">
                     Test different accessibility features and preferences
                   </p>
                 </CardHeader>
@@ -204,7 +204,7 @@ export default function AccessibilityPage() {
                           {highContrast ? <Eye className="h-4 w-4 mr-2" /> : <EyeOff className="h-4 w-4 mr-2" />}
                           High Contrast Mode
                         </span>
-                        <span className={`text-sm ${highContrast ? 'text-green-600' : 'text-gray-500'}`}>
+                        <span className={`text-sm ${highContrast ? 'text-green-600' : 'text-gray-700'}`}>
                           {highContrast ? 'ON' : 'OFF'}
                         </span>
                       </Button>
@@ -220,7 +220,7 @@ export default function AccessibilityPage() {
                           <Type className="h-4 w-4 mr-2" />
                           Large Text
                         </span>
-                        <span className={`text-sm ${largeText ? 'text-green-600' : 'text-gray-500'}`}>
+                        <span className={`text-sm ${largeText ? 'text-green-600' : 'text-gray-700'}`}>
                           {largeText ? 'ON' : 'OFF'}
                         </span>
                       </Button>
@@ -236,7 +236,7 @@ export default function AccessibilityPage() {
                           <MousePointer className="h-4 w-4 mr-2" />
                           Reduced Motion
                         </span>
-                        <span className={`text-sm ${reducedMotion ? 'text-green-600' : 'text-gray-500'}`}>
+                        <span className={`text-sm ${reducedMotion ? 'text-green-600' : 'text-gray-700'}`}>
                           {reducedMotion ? 'ON' : 'OFF'}
                         </span>
                       </Button>
@@ -304,7 +304,7 @@ export default function AccessibilityPage() {
               <Card>
                 <CardHeader>
                   <PageHeading level={2}>📝 Accessible Form Demo</PageHeading>
-                  <p className="text-gray-600">
+                  <p className="text-gray-800">
                     Fully accessible form with proper labels, validation, and announcements
                   </p>
                 </CardHeader>
@@ -414,7 +414,7 @@ export default function AccessibilityPage() {
           <Card className="mt-8">
             <CardHeader>
               <PageHeading level={2}>⌨️ Keyboard Navigation Guide</PageHeading>
-              <p className="text-gray-600">
+              <p className="text-gray-800">
                 This application is fully navigable using keyboard shortcuts
               </p>
             </CardHeader>
@@ -474,7 +474,7 @@ export default function AccessibilityPage() {
         {/* Footer */}
         <ContentInfoLandmark ariaLabel="Page footer" className="bg-white border-t mt-12">
           <div className="container mx-auto px-4 py-6">
-            <div className="text-center text-sm text-gray-600">
+            <div className="text-center text-sm text-gray-800">
               <p>
                 This accessibility demo meets WCAG 2.1 AA standards.
                 For assistance, contact{' '}

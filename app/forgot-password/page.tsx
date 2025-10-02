@@ -55,10 +55,10 @@ export default function ForgotPasswordPage() {
           </div>
 
           <div className="space-y-2">
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-800">
               We've sent password reset instructions to <strong>{email}</strong>
             </p>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-700">
               Check your email and follow the link to reset your password.
             </p>
           </div>

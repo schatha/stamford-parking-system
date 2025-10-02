@@ -87,11 +87,11 @@ export function SessionExtensionModal({
               <h3 className="text-lg font-medium text-gray-900 mb-2">
                 Maximum Duration Reached
               </h3>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-800 mb-4">
                 This parking zone has a maximum duration of {session.zone.maxDurationHours} hours.
                 Your current session has already reached this limit.
               </p>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-gray-700">
                 You'll need to move your vehicle and start a new session if you need more time.
               </p>
             </div>
@@ -170,11 +170,11 @@ export function SessionExtensionModal({
                         {formatDuration(hours)}
                       </h4>
                       <p className={`text-sm font-medium ${
-                        isSelected ? 'text-blue-700' : 'text-gray-600'
+                        isSelected ? 'text-blue-700' : 'text-gray-800'
                       }`}>
                         {formatCurrency(cost.totalCost)}
                       </p>
-                      <p className="text-xs text-gray-500 mt-1">
+                      <p className="text-xs text-gray-700 mt-1">
                         Until {newEndTime.toLocaleString([], {
                           hour: '2-digit',
                           minute: '2-digit'

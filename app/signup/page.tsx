@@ -209,7 +209,7 @@ export default function SignupPage() {
         {/* Password strength indicator */}
         {formData.password && (
           <div className="space-y-2">
-            <div className="text-sm font-medium text-gray-700">Password requirements:</div>
+            <div className="text-sm font-medium text-gray-900">Password requirements:</div>
             <div className="space-y-1">
               {[
                 { check: formData.password.length >= 8, text: 'At least 8 characters' },
@@ -220,7 +220,7 @@ export default function SignupPage() {
               ].map((requirement, index) => (
                 <div key={index} className="flex items-center space-x-2">
                   <div className={`w-3 h-3 rounded-full ${requirement.check ? 'bg-green-500' : 'bg-gray-300'}`} />
-                  <span className={`text-xs ${requirement.check ? 'text-green-600' : 'text-gray-500'}`}>
+                  <span className={`text-xs ${requirement.check ? 'text-green-700' : 'text-gray-700'}`}>
                     {requirement.text}
                   </span>
                 </div>
@@ -256,7 +256,7 @@ export default function SignupPage() {
             />
           </div>
           <div className="ml-3 text-sm">
-            <label htmlFor="terms" className="text-gray-700">
+            <label htmlFor="terms" className="text-gray-900">
               I agree to the{' '}
               <Link href="/terms" className="font-medium text-blue-600 hover:text-blue-500">
                 Terms of Service
@@ -285,14 +285,14 @@ export default function SignupPage() {
               <div className="w-full border-t border-gray-300" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-gray-500">Already have an account?</span>
+              <span className="px-2 bg-white text-gray-800">Already have an account?</span>
             </div>
           </div>
 
           <div className="mt-6">
             <Link
               href="/login"
-              className="w-full flex justify-center py-3 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+              className="w-full flex justify-center py-3 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
             >
               Sign in to existing account
             </Link>

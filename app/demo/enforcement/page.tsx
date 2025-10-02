@@ -227,7 +227,7 @@ export default function EnforcementDemo() {
       case 'EXPIRED':
         return <XCircle className="h-5 w-5 text-red-600" />;
       default:
-        return <Clock className="h-5 w-5 text-gray-600" />;
+        return <Clock className="h-5 w-5 text-gray-800" />;
     }
   };
 
@@ -273,7 +273,7 @@ export default function EnforcementDemo() {
                 <h1 className="text-2xl font-bold text-gray-900">
                   🚨 Live Enforcement Dashboard
                 </h1>
-                <p className="text-gray-600">
+                <p className="text-gray-800">
                   Real-time parking enforcement data demo
                 </p>
               </div>
@@ -285,7 +285,7 @@ export default function EnforcementDemo() {
                   {isConnected ? 'Connected' : 'Connecting...'}
                 </span>
               </div>
-              <div className="text-sm text-gray-500">
+              <div className="text-sm text-gray-700">
                 Last update: {lastUpdate.toLocaleTimeString()}
               </div>
               <Link href="/docs/api">
@@ -323,7 +323,7 @@ export default function EnforcementDemo() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Active Sessions</p>
+                  <p className="text-sm font-medium text-gray-800">Active Sessions</p>
                   <p className="text-2xl font-bold text-green-600">
                     {stats.activeSessions}
                   </p>
@@ -339,7 +339,7 @@ export default function EnforcementDemo() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Expired Sessions</p>
+                  <p className="text-sm font-medium text-gray-800">Expired Sessions</p>
                   <p className="text-2xl font-bold text-red-600">
                     {stats.expiredSessions}
                   </p>
@@ -355,7 +355,7 @@ export default function EnforcementDemo() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">High Risk Violations</p>
+                  <p className="text-sm font-medium text-gray-800">High Risk Violations</p>
                   <p className="text-2xl font-bold text-orange-600">
                     {stats.violations}
                   </p>
@@ -371,7 +371,7 @@ export default function EnforcementDemo() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Revenue Today</p>
+                  <p className="text-sm font-medium text-gray-800">Revenue Today</p>
                   <p className="text-2xl font-bold text-blue-600">
                     {formatCurrency(stats.revenue)}
                   </p>
@@ -391,12 +391,12 @@ export default function EnforcementDemo() {
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
-                    <Car className="h-5 w-5 text-gray-600" />
+                    <Car className="h-5 w-5 text-gray-800" />
                     <h3 className="text-lg font-medium">Live Parking Sessions</h3>
                   </div>
                   <div className="flex items-center space-x-2">
                     <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                    <span className="text-sm text-gray-500">Live</span>
+                    <span className="text-sm text-gray-700">Live</span>
                   </div>
                 </div>
               </CardHeader>
@@ -419,7 +419,7 @@ export default function EnforcementDemo() {
                               <span className="font-medium text-gray-900">
                                 {session.licensePlate} ({session.state})
                               </span>
-                              <div className="text-sm text-gray-600">
+                              <div className="text-sm text-gray-800">
                                 {session.zoneName} • Zone {session.zoneNumber}
                               </div>
                             </div>
@@ -427,7 +427,7 @@ export default function EnforcementDemo() {
 
                           <div className="grid grid-cols-2 gap-4 text-sm">
                             <div>
-                              <span className="text-gray-500">Time Remaining:</span>
+                              <span className="text-gray-700">Time Remaining:</span>
                               <span className={`ml-2 font-medium ${
                                 session.timeRemaining <= 0 ? 'text-red-600' :
                                 session.timeRemaining <= 15 ? 'text-yellow-600' :
@@ -440,7 +440,7 @@ export default function EnforcementDemo() {
                               </span>
                             </div>
                             <div>
-                              <span className="text-gray-500">Paid:</span>
+                              <span className="text-gray-700">Paid:</span>
                               <span className="ml-2 font-medium text-gray-900">
                                 {formatCurrency(session.paidAmount)}
                               </span>
@@ -448,7 +448,7 @@ export default function EnforcementDemo() {
                           </div>
 
                           {session.userPhone && (
-                            <div className="mt-2 text-sm text-gray-600">
+                            <div className="mt-2 text-sm text-gray-800">
                               Contact: {session.userPhone}
                             </div>
                           )}
@@ -471,7 +471,7 @@ export default function EnforcementDemo() {
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
-                    <AlertTriangle className="h-5 w-5 text-gray-600" />
+                    <AlertTriangle className="h-5 w-5 text-gray-800" />
                     <h3 className="text-lg font-medium">Live Alerts</h3>
                   </div>
                   <span className="text-sm bg-red-100 text-red-800 px-2 py-1 rounded">
@@ -492,19 +492,19 @@ export default function EnforcementDemo() {
                         <div className={`px-2 py-1 text-xs font-medium rounded ${getPriorityColor(notification.priority)}`}>
                           {notification.priority}
                         </div>
-                        <span className="text-xs text-gray-500">
+                        <span className="text-xs text-gray-700">
                           {notification.timestamp.toLocaleTimeString()}
                         </span>
                       </div>
 
                       <p className={`text-sm mb-2 ${
-                        notification.acknowledged ? 'text-gray-600' : 'text-gray-900'
+                        notification.acknowledged ? 'text-gray-800' : 'text-gray-900'
                       }`}>
                         {notification.message}
                       </p>
 
                       <div className="flex items-center justify-between">
-                        <span className="text-xs text-gray-500">
+                        <span className="text-xs text-gray-700">
                           Zone {notification.zone}
                         </span>
                         {!notification.acknowledged && (
@@ -523,7 +523,7 @@ export default function EnforcementDemo() {
                 </div>
 
                 <div className="mt-4 pt-4 border-t border-gray-200">
-                  <div className="flex items-center justify-center space-x-2 text-sm text-gray-500">
+                  <div className="flex items-center justify-center space-x-2 text-sm text-gray-700">
                     <RefreshCw className="h-4 w-4" />
                     <span>Auto-refreshing every 3 seconds</span>
                   </div>

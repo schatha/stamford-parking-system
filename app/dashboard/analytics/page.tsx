@@ -126,7 +126,7 @@ export default function ParkingAnalyticsPage() {
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading analytics...</p>
+          <p className="text-gray-800">Loading analytics...</p>
         </div>
       </div>
     );
@@ -154,11 +154,11 @@ export default function ParkingAnalyticsPage() {
         <div className="container mx-auto px-4 py-8">
           <Card className="max-w-md mx-auto">
             <CardContent className="text-center p-8">
-              <BarChart className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+              <BarChart className="h-16 w-16 text-gray-600 mx-auto mb-4" />
               <h3 className="text-lg font-medium text-gray-900 mb-2">
                 No Parking History
               </h3>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-800 mb-6">
                 Start parking to see detailed analytics and insights about your parking patterns.
               </p>
               <Link href="/park">
@@ -195,7 +195,7 @@ export default function ParkingAnalyticsPage() {
                 <h1 className="text-2xl font-bold text-gray-900">
                   Parking Analytics
                 </h1>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-800">
                   Your parking patterns and spending insights
                 </p>
               </div>
@@ -231,7 +231,7 @@ export default function ParkingAnalyticsPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Total Spent</p>
+                  <p className="text-sm font-medium text-gray-800">Total Spent</p>
                   <p className="text-2xl font-bold text-gray-900">
                     {formatCurrency(analytics.totalSpent)}
                   </p>
@@ -247,7 +247,7 @@ export default function ParkingAnalyticsPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Total Sessions</p>
+                  <p className="text-sm font-medium text-gray-800">Total Sessions</p>
                   <p className="text-2xl font-bold text-gray-900">
                     {analytics.totalSessions}
                   </p>
@@ -263,7 +263,7 @@ export default function ParkingAnalyticsPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Total Hours</p>
+                  <p className="text-sm font-medium text-gray-800">Total Hours</p>
                   <p className="text-2xl font-bold text-gray-900">
                     {analytics.totalHours.toFixed(1)}
                   </p>
@@ -279,7 +279,7 @@ export default function ParkingAnalyticsPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Avg per Session</p>
+                  <p className="text-sm font-medium text-gray-800">Avg per Session</p>
                   <p className="text-2xl font-bold text-gray-900">
                     {formatCurrency(analytics.averageCostPerSession)}
                   </p>
@@ -333,7 +333,7 @@ export default function ParkingAnalyticsPage() {
           <Card>
             <CardHeader>
               <h3 className="text-lg font-medium">Monthly Spending Trend</h3>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-800">
                 Your parking costs over time
               </p>
             </CardHeader>
@@ -365,7 +365,7 @@ export default function ParkingAnalyticsPage() {
           <Card>
             <CardHeader>
               <h3 className="text-lg font-medium">Favorite Parking Zones</h3>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-800">
                 Where you park most often
               </p>
             </CardHeader>
@@ -383,7 +383,7 @@ export default function ParkingAnalyticsPage() {
                           {zone.zoneNumber}
                         </span>
                       </div>
-                      <p className="text-sm text-gray-600 ml-5">
+                      <p className="text-sm text-gray-800 ml-5">
                         {zone.zoneName}
                       </p>
                     </div>
@@ -391,7 +391,7 @@ export default function ParkingAnalyticsPage() {
                       <p className="font-medium text-gray-900">
                         {zone.sessionsCount} sessions
                       </p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-800">
                         {formatCurrency(zone.totalSpent)}
                       </p>
                     </div>
@@ -407,7 +407,7 @@ export default function ParkingAnalyticsPage() {
           <Card>
             <CardHeader>
               <h3 className="text-lg font-medium">Weekly Parking Pattern</h3>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-800">
                 Which days you park most
               </p>
             </CardHeader>
@@ -434,7 +434,7 @@ export default function ParkingAnalyticsPage() {
           <Card>
             <CardHeader>
               <h3 className="text-lg font-medium">Parking Times</h3>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-800">
                 When you typically start parking
               </p>
             </CardHeader>

@@ -266,7 +266,7 @@ export default function APIDocumentationPage() {
               <h1 className="text-3xl font-bold text-gray-900">
                 Enforcement API Documentation
               </h1>
-              <p className="text-gray-600">
+              <p className="text-gray-800">
                 Real-time parking enforcement integration endpoints
               </p>
             </div>
@@ -315,7 +315,7 @@ export default function APIDocumentationPage() {
           <Card>
             <CardHeader>
               <div className="flex items-center space-x-2">
-                <Key className="h-5 w-5 text-gray-600" />
+                <Key className="h-5 w-5 text-gray-800" />
                 <h2 className="text-xl font-semibold">Authentication</h2>
               </div>
             </CardHeader>
@@ -323,7 +323,7 @@ export default function APIDocumentationPage() {
               <div className="space-y-4">
                 <div className="bg-gray-50 rounded-lg p-4">
                   <p className="font-medium mb-2">API Key Authentication</p>
-                  <p className="text-sm text-gray-600 mb-3">
+                  <p className="text-sm text-gray-800 mb-3">
                     Include your API key in the Authorization header:
                   </p>
                   <div className="bg-gray-900 rounded-md p-3">
@@ -349,7 +349,7 @@ export default function APIDocumentationPage() {
           <Card>
             <CardHeader>
               <div className="flex items-center space-x-2">
-                <Shield className="h-5 w-5 text-gray-600" />
+                <Shield className="h-5 w-5 text-gray-800" />
                 <h2 className="text-xl font-semibold">Rate Limits & Guidelines</h2>
               </div>
             </CardHeader>
@@ -357,7 +357,7 @@ export default function APIDocumentationPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <h3 className="font-medium mb-3">Rate Limits</h3>
-                  <ul className="space-y-2 text-sm text-gray-600">
+                  <ul className="space-y-2 text-sm text-gray-800">
                     <li>• <strong>GET requests:</strong> 1000 per hour</li>
                     <li>• <strong>POST requests:</strong> 200 per hour</li>
                     <li>• <strong>Real-time endpoints:</strong> 5000 per hour</li>
@@ -366,7 +366,7 @@ export default function APIDocumentationPage() {
                 </div>
                 <div>
                   <h3 className="font-medium mb-3">Best Practices</h3>
-                  <ul className="space-y-2 text-sm text-gray-600">
+                  <ul className="space-y-2 text-sm text-gray-800">
                     <li>• Use webhooks for real-time updates</li>
                     <li>• Cache zone data locally</li>
                     <li>• Batch validation requests when possible</li>
@@ -404,7 +404,7 @@ export default function APIDocumentationPage() {
                   <h3 className="text-lg font-semibold text-gray-900">
                     {endpoint.title}
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-gray-800">
                     {endpoint.description}
                   </p>
                 </div>
@@ -419,16 +419,16 @@ export default function APIDocumentationPage() {
                       <table className="min-w-full divide-y divide-gray-200">
                         <thead className="bg-gray-50">
                           <tr>
-                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                               Name
                             </th>
-                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                               Type
                             </th>
-                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                               Required
                             </th>
-                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                               Description
                             </th>
                           </tr>
@@ -441,7 +441,7 @@ export default function APIDocumentationPage() {
                                   {param.name}
                                 </code>
                               </td>
-                              <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-600">
+                              <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-800">
                                 {param.type}
                               </td>
                               <td className="px-4 py-4 whitespace-nowrap">
@@ -453,7 +453,7 @@ export default function APIDocumentationPage() {
                                   {param.required ? 'Required' : 'Optional'}
                                 </span>
                               </td>
-                              <td className="px-4 py-4 text-sm text-gray-600">
+                              <td className="px-4 py-4 text-sm text-gray-800">
                                 {param.description}
                               </td>
                             </tr>
@@ -521,12 +521,12 @@ export default function APIDocumentationPage() {
           <Card className="border-gray-200">
             <CardContent className="p-6 text-center">
               <div className="flex items-center justify-center space-x-2 mb-4">
-                <Terminal className="h-6 w-6 text-gray-600" />
+                <Terminal className="h-6 w-6 text-gray-800" />
                 <h3 className="text-lg font-semibold text-gray-900">
                   Need Help?
                 </h3>
               </div>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-800 mb-4">
                 For technical support, implementation assistance, or to request additional endpoints:
               </p>
               <div className="space-y-2 text-sm">

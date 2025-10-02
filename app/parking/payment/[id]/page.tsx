@@ -15,7 +15,8 @@ import { ParkingSessionWithDetails } from '@/types';
 import { formatCurrency, formatLicensePlate, formatZoneDisplay } from '@/lib/utils/formatting';
 
 // Check if we're in demo mode (no Stripe keys configured)
-const isDemoMode = !process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
+// Force demo mode for now since Stripe keys are not configured
+const isDemoMode = true;
 
 const stripePromise = !isDemoMode
   ? loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
@@ -118,7 +119,7 @@ export default function PaymentPage({ params }: PaymentPageProps) {
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading payment...</p>
+          <p className="text-gray-800">Loading payment...</p>
         </div>
       </div>
     );
@@ -148,7 +149,7 @@ export default function PaymentPage({ params }: PaymentPageProps) {
                 <Shield className="h-12 w-12 mx-auto" />
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Payment Error</h3>
-              <p className="text-gray-600 mb-4">{error}</p>
+              <p className="text-gray-800 mb-4">{error}</p>
               <Link href="/dashboard">
                 <Button>Return to Dashboard</Button>
               </Link>
@@ -159,14 +160,14 @@ export default function PaymentPage({ params }: PaymentPageProps) {
     );
   }
 
-  if (!parkingSession || !clientSecret) {
+  if (!parkingSession || (!clientSecret && !isDemoMode)) {
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="text-center">
           <div className="text-gray-400 mb-4">
             <Shield className="h-12 w-12 mx-auto" />
           </div>
-          <p className="text-gray-600">Payment not available</p>
+          <p className="text-gray-800">Payment not available</p>
         </div>
       </div>
     );
@@ -201,46 +202,46 @@ export default function PaymentPage({ params }: PaymentPageProps) {
         <div className="max-w-2xl mx-auto space-y-6">
           <Card>
             <CardHeader>
-              <h2 className="text-lg font-semibold">Parking Session Summary</h2>
+              <h2 className="text-lg font-bold !text-black">Parking Session Summary</h2>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Vehicle:</span>
-                  <span className="font-medium">
+                  <span className="!text-black font-bold">Vehicle:</span>
+                  <span className="font-bold !text-black">
                     {formatLicensePlate(parkingSession.vehicle.licensePlate, parkingSession.vehicle.state)}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Zone:</span>
-                  <span className="font-medium">
+                  <span className="!text-black font-bold">Zone:</span>
+                  <span className="font-bold !text-black">
                     {formatZoneDisplay(parkingSession.zone.zoneNumber, parkingSession.zone.zoneName)}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Location:</span>
-                  <span className="font-medium">{parkingSession.zone.address}</span>
+                  <span className="!text-black font-bold">Location:</span>
+                  <span className="font-bold !text-black">{parkingSession.zone.address}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Duration:</span>
-                  <span className="font-medium">{parkingSession.durationHours} hours</span>
+                  <span className="!text-black font-bold">Duration:</span>
+                  <span className="font-bold !text-black">{parkingSession.durationHours} hours</span>
                 </div>
                 <div className="border-t pt-3">
                   <div className="flex justify-between text-sm">
-                    <span>Base cost:</span>
-                    <span>{formatCurrency(parkingSession.baseCost)}</span>
+                    <span className="!text-black font-bold">Base cost:</span>
+                    <span className="font-bold !text-black">{formatCurrency(parkingSession.baseCost)}</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span>Tax:</span>
-                    <span>{formatCurrency(parkingSession.taxAmount)}</span>
+                    <span className="!text-black font-bold">Tax:</span>
+                    <span className="font-bold !text-black">{formatCurrency(parkingSession.taxAmount)}</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span>Processing fee:</span>
-                    <span>{formatCurrency(parkingSession.processingFee)}</span>
+                    <span className="!text-black font-bold">Processing fee:</span>
+                    <span className="font-bold !text-black">{formatCurrency(parkingSession.processingFee)}</span>
                   </div>
-                  <div className="flex justify-between font-semibold text-lg pt-2 border-t">
-                    <span>Total:</span>
-                    <span>{formatCurrency(parkingSession.totalCost)}</span>
+                  <div className="flex justify-between font-bold text-lg pt-2 border-t">
+                    <span className="!text-black font-bold">Total:</span>
+                    <span className="!text-black font-bold">{formatCurrency(parkingSession.totalCost)}</span>
                   </div>
                 </div>
               </div>
@@ -249,9 +250,9 @@ export default function PaymentPage({ params }: PaymentPageProps) {
 
           <Card>
             <CardHeader>
-              <h2 className="text-lg font-semibold flex items-center">
+              <h2 className="text-lg font-bold !text-black flex items-center">
                 <Shield className="h-5 w-5 mr-2" />
-                Secure Payment
+                <span className="!text-black">Secure Payment</span>
               </h2>
             </CardHeader>
             <CardContent>
@@ -262,17 +263,23 @@ export default function PaymentPage({ params }: PaymentPageProps) {
                   amount={parkingSession.totalCost}
                 />
               ) : (
-                <Elements options={options} stripe={stripePromise}>
-                  <PaymentForm
-                    onSuccess={handlePaymentSuccess}
-                    onError={handlePaymentError}
-                    amount={parkingSession.totalCost}
-                  />
-                </Elements>
+                clientSecret ? (
+                  <Elements options={options} stripe={stripePromise}>
+                    <PaymentForm
+                      onSuccess={handlePaymentSuccess}
+                      onError={handlePaymentError}
+                      amount={parkingSession.totalCost}
+                    />
+                  </Elements>
+                ) : (
+                  <div className="text-center p-4">
+                    <p className="text-gray-800">Initializing payment...</p>
+                  </div>
+                )
               )}
-              <div className="mt-4 text-center text-sm text-gray-500">
-                <p>{isDemoMode ? 'Demo payment mode active' : 'Your payment is secured by Stripe'}</p>
-                <p>{isDemoMode ? 'No real charges will be made' : 'We do not store your payment information'}</p>
+              <div className="mt-4 text-center text-sm !text-black font-bold">
+                <p className="!text-black">{isDemoMode ? 'Demo payment mode active' : 'Your payment is secured by Stripe'}</p>
+                <p className="!text-black">{isDemoMode ? 'No real charges will be made' : 'We do not store your payment information'}</p>
               </div>
             </CardContent>
           </Card>

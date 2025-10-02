@@ -69,7 +69,7 @@ export default function ParkingZonesPage() {
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading parking zones...</p>
+          <p className="text-gray-800">Loading parking zones...</p>
         </div>
       </div>
     );
@@ -94,7 +94,7 @@ export default function ParkingZonesPage() {
       <div className="container mx-auto px-4 py-8">
         <div className="mb-6">
           <div className="relative max-w-md">
-            <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+            <Search className="absolute left-3 top-3 h-5 w-5 text-gray-600" />
             <input
               type="text"
               value={searchTerm}
@@ -108,8 +108,8 @@ export default function ParkingZonesPage() {
         {filteredZones.length === 0 ? (
           <Card>
             <CardContent className="text-center p-8">
-              <MapPin className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-600">
+              <MapPin className="h-12 w-12 text-gray-600 mx-auto mb-4" />
+              <p className="text-gray-800">
                 {searchTerm ? 'No zones found matching your search.' : 'No parking zones available.'}
               </p>
               {searchTerm && (
@@ -139,12 +139,12 @@ export default function ParkingZonesPage() {
                         </span>
                       </div>
 
-                      <div className="flex items-center text-gray-600 mb-2">
+                      <div className="flex items-center text-gray-800 mb-2">
                         <MapPin className="h-4 w-4 mr-1" />
                         <span className="text-sm">{zone.address}</span>
                       </div>
 
-                      <div className="flex items-center space-x-4 text-sm text-gray-600">
+                      <div className="flex items-center space-x-4 text-sm text-gray-800">
                         <div className="flex items-center">
                           <DollarSign className="h-4 w-4 mr-1" />
                           <span>{formatCurrency(zone.ratePerHour)}/hour</span>
@@ -157,7 +157,7 @@ export default function ParkingZonesPage() {
 
                       {zone.restrictionsJson && (
                         <div className="mt-2">
-                          <p className="text-xs text-gray-500">
+                          <p className="text-xs text-gray-700">
                             * Additional restrictions may apply
                           </p>
                         </div>

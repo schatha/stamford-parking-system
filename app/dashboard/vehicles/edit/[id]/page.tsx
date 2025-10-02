@@ -123,7 +123,7 @@ export default function EditVehiclePage() {
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading vehicle...</p>
+          <p className="text-gray-800">Loading vehicle...</p>
         </div>
       </div>
     );
@@ -133,7 +133,7 @@ export default function EditVehiclePage() {
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="text-center">
-          <p className="text-gray-600">Vehicle not found</p>
+          <p className="text-gray-800">Vehicle not found</p>
           <Link href="/dashboard/vehicles">
             <Button className="mt-4">Back to Vehicles</Button>
           </Link>

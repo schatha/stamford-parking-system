@@ -268,7 +268,7 @@ export function MobileTestRunner() {
       case 'running':
         return <Clock className="h-4 w-4 text-blue-500 animate-spin" />;
       default:
-        return <Clock className="h-4 w-4 text-gray-400" />;
+        return <Clock className="h-4 w-4 text-gray-600" />;
     }
   };
 
@@ -295,7 +295,7 @@ export function MobileTestRunner() {
         <h1 className="text-2xl font-bold text-gray-900 mb-2">
           Mobile Testing Suite
         </h1>
-        <p className="text-gray-600">
+        <p className="text-gray-800">
           Comprehensive testing for mobile Chrome and Safari compatibility
         </p>
       </div>
@@ -306,7 +306,7 @@ export function MobileTestRunner() {
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-lg font-semibold">Test Controls</h2>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-800">
                 {isRunning ? `Running: ${currentTest}` : 'Ready to run tests'}
               </p>
             </div>
@@ -370,7 +370,7 @@ export function MobileTestRunner() {
               {getDeviceIcon(deviceTest.device)}
               <div className="ml-3">
                 <h3 className="text-lg font-semibold">{deviceTest.device}</h3>
-                <p className="text-sm text-gray-600">{deviceTest.viewport}</p>
+                <p className="text-sm text-gray-800">{deviceTest.viewport}</p>
               </div>
             </div>
 
@@ -382,7 +382,7 @@ export function MobileTestRunner() {
                     <span className="ml-3 font-medium">{test.name}</span>
                   </div>
                   <div className="text-right">
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm text-gray-800">
                       {test.duration}ms
                     </div>
                     {test.details && test.status === 'failed' && (
@@ -412,11 +412,11 @@ export function MobileTestRunner() {
       {deviceTests.length === 0 && !isRunning && (
         <Card>
           <CardContent className="p-12 text-center">
-            <Smartphone className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-gray-600 mb-2">
+            <Smartphone className="h-12 w-12 text-gray-600 mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">
               No Tests Run Yet
             </h3>
-            <p className="text-gray-500">
+            <p className="text-gray-700">
               Click "Run All Tests" to begin mobile compatibility testing
             </p>
           </CardContent>

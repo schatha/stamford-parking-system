@@ -27,17 +27,17 @@ export default function HomePage() {
 
   if (status === 'loading') {
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading...</p>
+          <p className="text-gray-800">Loading...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-50">
       <div className="bg-white shadow-sm">
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
@@ -70,7 +70,7 @@ export default function HomePage() {
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Municipal Parking Made Simple
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-800 max-w-2xl mx-auto">
             Pay for parking, extend your time, and manage your vehicles all from your mobile device.
             Quick, secure, and convenient.
           </p>
@@ -80,8 +80,8 @@ export default function HomePage() {
           <Card>
             <CardContent className="text-center p-8">
               <CreditCard className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Quick Payment</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold mb-2 !text-black">Quick Payment</h3>
+              <p className="!text-black font-medium">
                 Pay for parking in seconds with secure online payments. No more hunting for coins.
               </p>
             </CardContent>
@@ -90,8 +90,8 @@ export default function HomePage() {
           <Card>
             <CardContent className="text-center p-8">
               <Clock className="h-12 w-12 text-green-600 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Extend Anytime</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold mb-2 !text-black">Extend Anytime</h3>
+              <p className="!text-black font-medium">
                 Running late? Extend your parking session remotely without returning to your car.
               </p>
             </CardContent>
@@ -100,8 +100,8 @@ export default function HomePage() {
           <Card>
             <CardContent className="text-center p-8">
               <Car className="h-12 w-12 text-purple-600 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Vehicle Management</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold mb-2 !text-black">Vehicle Management</h3>
+              <p className="!text-black font-medium">
                 Store multiple vehicles and view your complete parking history in one place.
               </p>
             </CardContent>
@@ -112,7 +112,7 @@ export default function HomePage() {
           <h3 className="text-2xl font-bold text-gray-900 mb-4">
             Ready to get started?
           </h3>
-          <p className="text-gray-600 mb-8">
+          <p className="text-gray-800 mb-8">
             Create your account today and never worry about parking payments again.
           </p>
           <div className="space-x-4">
@@ -137,11 +137,11 @@ export default function HomePage() {
       <div className="bg-white border-t">
         <div className="container mx-auto px-4 py-8">
           <div className="flex items-center justify-between">
-            <p className="text-gray-600">
+            <p className="text-gray-800">
               © 2024 City of Stamford. All rights reserved.
             </p>
             <div className="flex items-center space-x-4">
-              <Link href="/admin" className="text-gray-600 hover:text-gray-900 flex items-center">
+              <Link href="/admin" className="text-gray-800 hover:text-gray-900 flex items-center">
                 <Shield className="h-4 w-4 mr-1" />
                 Admin Access
               </Link>

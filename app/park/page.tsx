@@ -24,7 +24,7 @@ interface ParkingFormData {
   vehicle?: Vehicle;
 }
 
-function ParkForm() {
+function ParkPageContent() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -119,7 +119,7 @@ function ParkForm() {
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading parking interface...</p>
+          <p className="text-gray-800">Loading parking interface...</p>
         </div>
       </div>
     );
@@ -146,11 +146,11 @@ function ParkForm() {
           <div className="max-w-md mx-auto">
             <Card>
               <CardContent className="text-center p-8">
-                <Car className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+                <Car className="h-16 w-16 text-gray-600 mx-auto mb-4" />
                 <h3 className="text-lg font-medium text-gray-900 mb-2">
                   No Vehicles Registered
                 </h3>
-                <p className="text-gray-600 mb-6">
+                <p className="text-gray-800 mb-6">
                   You need to add a vehicle before you can start parking.
                 </p>
                 <Link href="/dashboard/vehicles/add">
@@ -179,11 +179,11 @@ function ParkForm() {
               </Link>
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">{getStepTitle()}</h1>
-                <p className="text-sm text-gray-600">Step {currentStep} of 4</p>
+                <p className="text-sm text-gray-800 font-medium">Step {currentStep} of 4</p>
               </div>
             </div>
             <div className="text-right">
-              <p className="text-sm text-gray-600">Welcome, {session?.user?.name}</p>
+              <p className="text-sm text-gray-800 font-medium">Welcome, {session?.user?.name}</p>
             </div>
           </div>
         </div>
@@ -198,7 +198,7 @@ function ParkForm() {
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
                   step <= currentStep
                     ? 'bg-blue-600 text-white'
-                    : 'bg-gray-200 text-gray-600'
+                    : 'bg-gray-200 text-gray-800'
                 }`}>
                   {step}
                 </div>
@@ -293,10 +293,10 @@ function ParkForm() {
                   {formData.zone && (
                     <div>
                       <h4 className="font-medium text-gray-900">Zone</h4>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-800 font-medium">
                         {formData.zone.zoneName}
                       </p>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-gray-700">
                         {formData.zone.address}
                       </p>
                     </div>
@@ -306,11 +306,11 @@ function ParkForm() {
                   {formData.vehicle && (
                     <div>
                       <h4 className="font-medium text-gray-900">Vehicle</h4>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-800 font-medium">
                         {formatLicensePlate(formData.vehicle.licensePlate, formData.vehicle.state)}
                       </p>
                       {formData.vehicle.nickname && (
-                        <p className="text-xs text-gray-500">
+                        <p className="text-xs text-gray-700">
                           {formData.vehicle.nickname}
                         </p>
                       )}
@@ -321,7 +321,7 @@ function ParkForm() {
                   {formData.durationHours > 0 && (
                     <div>
                       <h4 className="font-medium text-gray-900">Duration</h4>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-800 font-medium">
                         {formData.durationHours === 0.5 ? '30 minutes' :
                          formData.durationHours === 1 ? '1 hour' :
                          `${formData.durationHours} hours`}
@@ -352,11 +352,12 @@ export default function ParkPage() {
     <Suspense fallback={
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-800">Loading parking interface...</p>
         </div>
       </div>
     }>
-      <ParkForm />
+      <ParkPageContent />
     </Suspense>
   );
 }

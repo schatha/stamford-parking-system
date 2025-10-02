@@ -90,17 +90,17 @@ export default function DashboardPage() {
 
   if (status === 'loading' || isLoading) {
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading dashboard...</p>
+          <p className="text-gray-800">Loading dashboard...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-50">
       <div className="bg-white shadow-sm">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
@@ -111,7 +111,7 @@ export default function DashboardPage() {
               </h1>
             </div>
             <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-600">
+              <span className="text-sm text-gray-800 font-medium">
                 Welcome, {session?.user?.name}
               </span>
               <Button
@@ -134,7 +134,7 @@ export default function DashboardPage() {
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-semibold text-gray-900">Active Parking Sessions</h2>
               {activeSessions.filter(s => s.status === 'ACTIVE' || s.status === 'EXTENDED').length > 0 && (
-                <div className="flex items-center text-sm text-gray-600">
+                <div className="flex items-center text-sm text-gray-800 font-medium">
                   <AlertTriangle className="h-4 w-4 mr-1 text-yellow-500" />
                   <span>{activeSessions.filter(s => s.status === 'ACTIVE' || s.status === 'EXTENDED').length} active</span>
                 </div>
@@ -155,19 +155,19 @@ export default function DashboardPage() {
 
         {/* Demo Section */}
         <div className="mb-8">
-          <Card className="bg-gradient-to-r from-purple-50 to-blue-50 border-purple-200">
+          <Card className="bg-blue-50 border-blue-200">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-lg font-semibold text-purple-900 mb-2">
-                    🚀 Try Our Expiry Warning Demo
+                  <h3 className="text-lg font-semibold text-blue-900 mb-2">
+                    Try Our Expiry Warning Demo
                   </h3>
-                  <p className="text-purple-700 text-sm">
+                  <p className="text-blue-700 text-sm">
                     Experience our intelligent notification system that prevents parking violations
                   </p>
                 </div>
                 <Link href="/demo/expiry-warning">
-                  <Button size="sm" className="bg-purple-600 hover:bg-purple-700">
+                  <Button size="sm">
                     View Demo
                   </Button>
                 </Link>
@@ -199,8 +199,8 @@ export default function DashboardPage() {
             {vehicles.length === 0 ? (
               <Card>
                 <CardContent className="text-center p-8">
-                  <Car className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-600 mb-4">No vehicles registered yet</p>
+                  <Car className="h-12 w-12 text-gray-600 mx-auto mb-4" />
+                  <p className="text-gray-800 mb-4">No vehicles registered yet</p>
                   <Link href="/dashboard/vehicles/add">
                     <Button>Add Your First Vehicle</Button>
                   </Link>
@@ -217,7 +217,7 @@ export default function DashboardPage() {
                             {formatLicensePlate(vehicle.licensePlate, vehicle.state)}
                           </p>
                           {vehicle.nickname && (
-                            <p className="text-sm text-gray-600">{vehicle.nickname}</p>
+                            <p className="text-sm text-gray-800">{vehicle.nickname}</p>
                           )}
                         </div>
                         <div className="flex space-x-2">
@@ -253,8 +253,8 @@ export default function DashboardPage() {
             {recentSessions.length === 0 ? (
               <Card>
                 <CardContent className="text-center p-8">
-                  <Clock className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-600">No parking sessions yet</p>
+                  <Clock className="h-12 w-12 text-gray-600 mx-auto mb-4" />
+                  <p className="text-gray-800">No parking sessions yet</p>
                 </CardContent>
               </Card>
             ) : (
@@ -267,10 +267,10 @@ export default function DashboardPage() {
                           <p className="font-medium">
                             {formatLicensePlate(session.vehicle.licensePlate, session.vehicle.state)}
                           </p>
-                          <p className="text-sm text-gray-600">
+                          <p className="text-sm text-gray-800">
                             {session.zone.zoneName}
                           </p>
-                          <p className="text-sm text-gray-500">
+                          <p className="text-sm text-gray-700">
                             {formatDate(session.startTime)}
                           </p>
                         </div>
@@ -300,19 +300,19 @@ export default function DashboardPage() {
         {/* Analytics Card */}
         {recentSessions.length > 0 && (
           <div className="mt-8">
-            <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
+            <Card className="bg-gray-50 border-gray-200">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-lg font-semibold text-blue-900 mb-2">
-                      📊 View Your Parking Analytics
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      View Your Parking Analytics
                     </h3>
-                    <p className="text-blue-700 text-sm">
+                    <p className="text-gray-700 text-sm">
                       See detailed insights about your parking patterns, spending, and savings
                     </p>
                   </div>
                   <Link href="/dashboard/analytics">
-                    <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
+                    <Button size="sm">
                       View Analytics
                     </Button>
                   </Link>

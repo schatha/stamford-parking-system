@@ -26,7 +26,7 @@ const FormField = forwardRef<HTMLInputElement, FormFieldProps>(
 
     return (
       <div className="space-y-1">
-        <label htmlFor={props.id} className="block text-sm font-medium text-gray-700">
+        <label htmlFor={props.id} className="block text-sm font-medium text-gray-900">
           {label}
         </label>
         <div className="relative">
@@ -35,7 +35,7 @@ const FormField = forwardRef<HTMLInputElement, FormFieldProps>(
             type={inputType}
             className={`
               appearance-none block w-full px-3 py-3 border rounded-lg shadow-sm
-              placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500
+              placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500
               focus:border-blue-500 transition-colors duration-200
               ${error
                 ? 'border-red-300 text-red-900 focus:ring-red-500 focus:border-red-500'
@@ -53,9 +53,9 @@ const FormField = forwardRef<HTMLInputElement, FormFieldProps>(
               onClick={onTogglePassword}
             >
               {showPassword ? (
-                <EyeSlashIcon className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                <EyeSlashIcon className="h-5 w-5 text-gray-600 hover:text-gray-800" />
               ) : (
-                <EyeIcon className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                <EyeIcon className="h-5 w-5 text-gray-600 hover:text-gray-800" />
               )}
             </button>
           )}
@@ -69,7 +69,7 @@ const FormField = forwardRef<HTMLInputElement, FormFieldProps>(
           </p>
         )}
         {helperText && !error && (
-          <p className="text-sm text-gray-500">{helperText}</p>
+          <p className="text-sm text-gray-700">{helperText}</p>
         )}
       </div>
     );

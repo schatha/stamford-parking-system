@@ -344,7 +344,7 @@ export default function AdminZonesPage() {
         <div className="flex items-center justify-center h-64">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <p className="text-gray-600">Loading zones...</p>
+            <p className="text-gray-800">Loading zones...</p>
           </div>
         </div>
       </AdminLayout>
@@ -358,7 +358,7 @@ export default function AdminZonesPage() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Zone Management</h1>
-            <p className="text-gray-600 mt-2">
+            <p className="text-gray-800 mt-2">
               Manage parking zones, rates, and restrictions • {zones.length} total zones
             </p>
           </div>
@@ -389,7 +389,7 @@ export default function AdminZonesPage() {
                   </h3>
                   <button
                     onClick={() => setShowForm(false)}
-                    className="text-gray-400 hover:text-gray-600"
+                    className="text-gray-600 hover:text-gray-800"
                   >
                     <X className="h-6 w-6" />
                   </button>
@@ -587,7 +587,7 @@ export default function AdminZonesPage() {
                       <MapPin className="h-5 w-5 text-blue-600 mr-2" />
                       {zone.zoneNumber} - {zone.zoneName}
                     </h3>
-                    <p className="text-sm text-gray-600 mt-1">{zone.description}</p>
+                    <p className="text-sm text-gray-800 mt-1">{zone.description}</p>
                   </div>
                   <div className="flex space-x-2">
                     <Button
@@ -632,19 +632,19 @@ export default function AdminZonesPage() {
                   </div>
 
                   {/* Operating Hours */}
-                  <div className="text-sm text-gray-600">
+                  <div className="text-sm text-gray-800">
                     <strong>Hours:</strong> {zone.operatingHours.start} - {zone.operatingHours.end}
                   </div>
 
                   {/* Operating Days */}
-                  <div className="text-sm text-gray-600">
+                  <div className="text-sm text-gray-800">
                     <strong>Days:</strong> {zone.operatingDays.join(', ')}
                   </div>
 
                   {/* Restrictions */}
                   {zone.restrictions.length > 0 && (
                     <div>
-                      <div className="text-sm text-gray-600 mb-1">
+                      <div className="text-sm text-gray-800 mb-1">
                         <strong>Restrictions:</strong>
                       </div>
                       <div className="flex flex-wrap gap-1">
@@ -662,7 +662,7 @@ export default function AdminZonesPage() {
                   )}
 
                   {/* Last Updated */}
-                  <div className="text-xs text-gray-500 pt-2 border-t border-gray-200">
+                  <div className="text-xs text-gray-700 pt-2 border-t border-gray-200">
                     Last updated: {new Date(zone.updatedAt).toLocaleDateString()}
                   </div>
                 </div>
@@ -674,8 +674,8 @@ export default function AdminZonesPage() {
         {zones.length === 0 && (
           <Card>
             <CardContent className="text-center py-12">
-              <MapPin className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-600 mb-4">No parking zones configured</p>
+              <MapPin className="h-12 w-12 text-gray-600 mx-auto mb-4" />
+              <p className="text-gray-800 mb-4">No parking zones configured</p>
               <Button onClick={handleCreateZone}>
                 <Plus className="h-4 w-4 mr-2" />
                 Create Your First Zone
@@ -694,8 +694,8 @@ export default function AdminZonesPage() {
           </CardHeader>
           <CardContent>
             <div className="bg-gray-100 rounded-lg h-96 flex items-center justify-center">
-              <div className="text-center text-gray-500">
-                <Map className="h-12 w-12 mx-auto mb-2 text-gray-400" />
+              <div className="text-center text-gray-700">
+                <Map className="h-12 w-12 mx-auto mb-2 text-gray-600" />
                 <p>Interactive map would be displayed here</p>
                 <p className="text-sm">Integration with Google Maps or similar mapping service</p>
               </div>

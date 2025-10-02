@@ -33,10 +33,10 @@ export function UserMenu() {
             </div>
             <div className="hidden sm:block text-left">
               <p className="text-sm font-medium text-gray-700">{session.user.name}</p>
-              <p className="text-xs text-gray-500">{session.user.role}</p>
+              <p className="text-xs text-gray-700">{session.user.role}</p>
             </div>
           </div>
-          <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
+          <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-600" aria-hidden="true" />
         </Menu.Button>
       </div>
 
@@ -52,7 +52,7 @@ export function UserMenu() {
         <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="px-4 py-3">
             <p className="text-sm font-medium text-gray-900">{session.user.name}</p>
-            <p className="text-sm text-gray-500 truncate">{session.user.email}</p>
+            <p className="text-sm text-gray-700 truncate">{session.user.email}</p>
           </div>
 
           <div className="py-1">
@@ -66,7 +66,7 @@ export function UserMenu() {
                   )}
                 >
                   <UserIcon
-                    className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                    className="mr-3 h-5 w-5 text-gray-600 group-hover:text-gray-700"
                     aria-hidden="true"
                   />
                   Dashboard
@@ -85,7 +85,7 @@ export function UserMenu() {
                     )}
                   >
                     <CogIcon
-                      className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                      className="mr-3 h-5 w-5 text-gray-600 group-hover:text-gray-700"
                       aria-hidden="true"
                     />
                     Admin Panel
@@ -104,7 +104,7 @@ export function UserMenu() {
                   )}
                 >
                   <CogIcon
-                    className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                    className="mr-3 h-5 w-5 text-gray-600 group-hover:text-gray-700"
                     aria-hidden="true"
                   />
                   Settings
@@ -124,7 +124,7 @@ export function UserMenu() {
                   )}
                 >
                   <ArrowRightOnRectangleIcon
-                    className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                    className="mr-3 h-5 w-5 text-gray-600 group-hover:text-gray-700"
                     aria-hidden="true"
                   />
                   Sign out

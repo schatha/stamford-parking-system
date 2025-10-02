@@ -191,7 +191,7 @@ export default function AdminSettingsPage() {
         <div className="flex items-center justify-center h-64">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <p className="text-gray-600">Loading settings...</p>
+            <p className="text-gray-800">Loading settings...</p>
           </div>
         </div>
       </AdminLayout>
@@ -205,7 +205,7 @@ export default function AdminSettingsPage() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">System Settings</h1>
-            <p className="text-gray-600 mt-2">
+            <p className="text-gray-800 mt-2">
               Configure system parameters and integrations
             </p>
           </div>
@@ -253,7 +253,7 @@ export default function AdminSettingsPage() {
                 <Clock className="h-6 w-6 text-blue-600 mr-2" />
                 <div>
                   <h3 className="text-lg font-semibold">Parking Configuration</h3>
-                  <p className="text-sm text-gray-600">Default session and timing settings</p>
+                  <p className="text-sm text-gray-800">Default session and timing settings</p>
                 </div>
               </div>
             </CardHeader>
@@ -311,7 +311,7 @@ export default function AdminSettingsPage() {
                 <DollarSign className="h-6 w-6 text-green-600 mr-2" />
                 <div>
                   <h3 className="text-lg font-semibold">Pricing Configuration</h3>
-                  <p className="text-sm text-gray-600">Parking rates and fee structure</p>
+                  <p className="text-sm text-gray-800">Parking rates and fee structure</p>
                 </div>
               </div>
             </CardHeader>
@@ -402,7 +402,7 @@ export default function AdminSettingsPage() {
                 <Server className="h-6 w-6 text-purple-600 mr-2" />
                 <div>
                   <h3 className="text-lg font-semibold">System Configuration</h3>
-                  <p className="text-sm text-gray-600">Core system settings</p>
+                  <p className="text-sm text-gray-800">Core system settings</p>
                 </div>
               </div>
             </CardHeader>
@@ -469,7 +469,7 @@ export default function AdminSettingsPage() {
                 <Bell className="h-6 w-6 text-yellow-600 mr-2" />
                 <div>
                   <h3 className="text-lg font-semibold">Notifications</h3>
-                  <p className="text-sm text-gray-600">Communication preferences</p>
+                  <p className="text-sm text-gray-800">Communication preferences</p>
                 </div>
               </div>
             </CardHeader>
@@ -534,7 +534,7 @@ export default function AdminSettingsPage() {
                   <Key className="h-6 w-6 text-red-600 mr-2" />
                   <div>
                     <h3 className="text-lg font-semibold">Integrations</h3>
-                    <p className="text-sm text-gray-600">Third-party service configuration</p>
+                    <p className="text-sm text-gray-800">Third-party service configuration</p>
                   </div>
                 </div>
                 <Button

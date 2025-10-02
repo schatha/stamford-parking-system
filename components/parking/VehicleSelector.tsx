@@ -29,7 +29,7 @@ export function VehicleSelector({
               <Car className="h-6 w-6 text-blue-600 mr-2" />
               <div>
                 <h2 className="text-lg font-semibold">Choose Your Vehicle</h2>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-800">
                   Select which vehicle you want to park
                 </p>
               </div>
@@ -62,7 +62,7 @@ export function VehicleSelector({
                       <Car className={`h-6 w-6 ${
                         selectedVehicleId === vehicle.id
                           ? 'text-blue-600'
-                          : 'text-gray-600'
+                          : 'text-gray-800'
                       }`} />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -77,12 +77,12 @@ export function VehicleSelector({
                         <p className={`text-sm ${
                           selectedVehicleId === vehicle.id
                             ? 'text-blue-700'
-                            : 'text-gray-600'
+                            : 'text-gray-800'
                         }`}>
                           {vehicle.nickname}
                         </p>
                       )}
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-gray-700">
                         Registered {new Date(vehicle.createdAt).toLocaleDateString()}
                       </p>
                     </div>
@@ -106,11 +106,11 @@ export function VehicleSelector({
               <Link href="/dashboard/vehicles/add">
                 <Card className="border-2 border-dashed border-gray-300 hover:border-blue-400 hover:bg-blue-50 transition-colors cursor-pointer">
                   <CardContent className="text-center p-6">
-                    <Plus className="h-8 w-8 text-gray-400 mx-auto mb-2" />
+                    <Plus className="h-8 w-8 text-gray-600 mx-auto mb-2" />
                     <h3 className="font-medium text-gray-700 mb-1">
                       Add Another Vehicle
                     </h3>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-gray-700">
                       Register a new vehicle for parking
                     </p>
                   </CardContent>

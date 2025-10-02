@@ -21,13 +21,13 @@ export default function OfflinePage() {
         {/* Offline Message */}
         <Card>
           <CardContent className="text-center p-8">
-            <WifiOff className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+            <WifiOff className="h-16 w-16 text-gray-600 mx-auto mb-4" />
 
             <h2 className="text-xl font-semibold text-gray-900 mb-2">
               You're Offline
             </h2>
 
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-800 mb-6">
               It looks like you've lost your internet connection. Some features may not be available until you're back online.
             </p>
 
@@ -66,7 +66,7 @@ export default function OfflinePage() {
 
             {/* Help Text */}
             <div className="mt-6 pt-6 border-t border-gray-200">
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-gray-700">
                 The app will automatically sync your data when your connection is restored.
               </p>
             </div>
@@ -96,7 +96,7 @@ export default function OfflinePage() {
         <div className="text-center">
           <div id="connection-status" className="inline-flex items-center px-3 py-2 rounded-full text-sm">
             <div className="w-2 h-2 bg-red-500 rounded-full mr-2"></div>
-            <span className="text-gray-600">No Internet Connection</span>
+            <span className="text-gray-800">No Internet Connection</span>
           </div>
         </div>
       </div>
@@ -108,10 +108,10 @@ export default function OfflinePage() {
             function updateConnectionStatus() {
               const status = document.getElementById('connection-status');
               if (navigator.onLine) {
-                status.innerHTML = '<div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div><span class="text-gray-600">Back Online - Refreshing...</span>';
+                status.innerHTML = '<div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div><span class="text-gray-800">Back Online - Refreshing...</span>';
                 setTimeout(() => window.location.reload(), 1000);
               } else {
-                status.innerHTML = '<div class="w-2 h-2 bg-red-500 rounded-full mr-2"></div><span class="text-gray-600">No Internet Connection</span>';
+                status.innerHTML = '<div class="w-2 h-2 bg-red-500 rounded-full mr-2"></div><span class="text-gray-800">No Internet Connection</span>';
               }
             }
 

@@ -99,7 +99,7 @@ export function DurationPicker({
               <Clock className="h-6 w-6 text-blue-600 mr-2" />
               <div>
                 <h2 className="text-lg font-semibold">Select Parking Duration</h2>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-800">
                   How long do you need to park? (Max {zone.maxDurationHours}h for this zone)
                 </p>
               </div>
@@ -148,7 +148,7 @@ export function DurationPicker({
                       isSelected ? 'bg-blue-100' : 'bg-gray-100'
                     }`}>
                       <Clock className={`h-6 w-6 ${
-                        isSelected ? 'text-blue-600' : 'text-gray-600'
+                        isSelected ? 'text-blue-600' : 'text-gray-800'
                       }`} />
                     </div>
                     <h3 className={`font-semibold ${
@@ -157,11 +157,11 @@ export function DurationPicker({
                       {formatDuration(hours)}
                     </h3>
                     <p className={`text-sm font-medium ${
-                      isSelected ? 'text-blue-700' : 'text-gray-600'
+                      isSelected ? 'text-blue-700' : 'text-gray-800'
                     }`}>
                       {formatCurrency(cost.totalCost)}
                     </p>
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className="text-xs text-gray-700 mt-1">
                       Until {getEndTime(hours)}
                     </p>
                     {isSelected && (
@@ -185,10 +185,10 @@ export function DurationPicker({
             >
               <CardContent className="p-4 text-center">
                 <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-2">
-                  <span className="text-xl font-bold text-gray-600">+</span>
+                  <span className="text-xl font-bold text-gray-800">+</span>
                 </div>
                 <h3 className="font-semibold text-gray-700">Custom</h3>
-                <p className="text-sm text-gray-500">Enter hours</p>
+                <p className="text-sm text-gray-700">Enter hours</p>
               </CardContent>
             </Card>
           </div>
@@ -224,7 +224,7 @@ export function DurationPicker({
                   Cancel
                 </Button>
               </div>
-              <p className="text-xs text-gray-500 mt-2">
+              <p className="text-xs text-gray-700 mt-2">
                 Maximum {zone.maxDurationHours} hours for this zone
               </p>
             </div>

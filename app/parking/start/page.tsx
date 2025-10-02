@@ -11,7 +11,7 @@ import { Vehicle, ParkingZone } from '@/types';
 import { formatCurrency, formatLicensePlate, formatZoneDisplay } from '@/lib/utils/formatting';
 import { calculateParkingCost } from '@/lib/utils/calculations';
 
-function StartParkingForm() {
+function StartParkingContent() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -121,7 +121,7 @@ function StartParkingForm() {
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading...</p>
+          <p className="text-gray-800">Loading...</p>
         </div>
       </div>
     );
@@ -147,9 +147,9 @@ function StartParkingForm() {
         <div className="container mx-auto px-4 py-8">
           <Card>
             <CardContent className="text-center p-8">
-              <Car className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <Car className="h-12 w-12 text-gray-600 mx-auto mb-4" />
               <h3 className="text-lg font-semibold text-gray-900 mb-2">No Vehicles Found</h3>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-800 mb-4">
                 You need to add a vehicle before you can start parking.
               </p>
               <Link href="/dashboard/vehicles/add">
@@ -212,7 +212,7 @@ function StartParkingForm() {
                           {formatLicensePlate(vehicle.licensePlate, vehicle.state)}
                         </p>
                         {vehicle.nickname && (
-                          <p className="text-sm text-gray-600">{vehicle.nickname}</p>
+                          <p className="text-sm text-gray-800">{vehicle.nickname}</p>
                         )}
                       </div>
                       <div className={`w-4 h-4 rounded-full border-2 ${
@@ -252,8 +252,8 @@ function StartParkingForm() {
                       <p className="font-medium">
                         {formatZoneDisplay(selectedZone.zoneNumber, selectedZone.zoneName)}
                       </p>
-                      <p className="text-sm text-gray-600">{selectedZone.address}</p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-800">{selectedZone.address}</p>
+                      <p className="text-sm text-gray-800">
                         {formatCurrency(selectedZone.ratePerHour)}/hour • Max {selectedZone.maxDurationHours}h
                       </p>
                     </div>
@@ -341,14 +341,18 @@ function StartParkingForm() {
     </div>
   );
 }
+
 export default function StartParkingPage() {
   return (
     <Suspense fallback={
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-800">Loading parking session...</p>
+        </div>
       </div>
     }>
-      <StartParkingForm />
+      <StartParkingContent />
     </Suspense>
   );
 }

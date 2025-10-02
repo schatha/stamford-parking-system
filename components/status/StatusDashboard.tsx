@@ -65,7 +65,7 @@ export function StatusDashboard() {
       case 'unhealthy':
         return <XCircle className="h-5 w-5 text-red-500" />;
       default:
-        return <Clock className="h-5 w-5 text-gray-400" />;
+        return <Clock className="h-5 w-5 text-gray-600" />;
     }
   };
 
@@ -143,7 +143,7 @@ export function StatusDashboard() {
       <div className="max-w-6xl mx-auto p-6">
         <Card className="border-gray-200 bg-gray-50">
           <CardContent className="p-6 text-center">
-            <Clock className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <Clock className="h-12 w-12 text-gray-600 mx-auto mb-4" />
             <h2 className="text-xl font-semibold text-gray-800 mb-2">
               Loading System Status...
             </h2>
@@ -159,7 +159,7 @@ export function StatusDashboard() {
       <div className="flex items-center justify-between flex-wrap gap-4">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">System Status</h1>
-          <p className="text-gray-600">
+          <p className="text-gray-800">
             Real-time monitoring of Stamford Parking System
           </p>
         </div>
@@ -168,7 +168,7 @@ export function StatusDashboard() {
             {getStatusIcon(health.status)}
             <span className="ml-2 capitalize">{health.status}</span>
           </div>
-          <p className="text-sm text-gray-500 mt-1">
+          <p className="text-sm text-gray-700 mt-1">
             Last updated: {lastUpdate.toLocaleTimeString()}
           </p>
         </div>
@@ -181,7 +181,7 @@ export function StatusDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="font-semibold text-gray-900">Database</h3>
-                <p className="text-sm text-gray-600">PostgreSQL</p>
+                <p className="text-sm text-gray-800">PostgreSQL</p>
               </div>
               <div className="flex items-center">
                 <Database className="h-8 w-8 text-blue-500 mr-3" />
@@ -189,7 +189,7 @@ export function StatusDashboard() {
               </div>
             </div>
             {health.checks.database.responseTime && (
-              <p className="text-sm text-gray-500 mt-2">
+              <p className="text-sm text-gray-700 mt-2">
                 Response: {health.checks.database.responseTime}ms
               </p>
             )}
@@ -201,7 +201,7 @@ export function StatusDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="font-semibold text-gray-900">Payments</h3>
-                <p className="text-sm text-gray-600">Stripe</p>
+                <p className="text-sm text-gray-800">Stripe</p>
               </div>
               <div className="flex items-center">
                 <CreditCard className="h-8 w-8 text-green-500 mr-3" />
@@ -216,14 +216,14 @@ export function StatusDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="font-semibold text-gray-900">Application</h3>
-                <p className="text-sm text-gray-600">Next.js</p>
+                <p className="text-sm text-gray-800">Next.js</p>
               </div>
               <div className="flex items-center">
                 <Server className="h-8 w-8 text-purple-500 mr-3" />
                 <CheckCircle className="h-5 w-5 text-green-500" />
               </div>
             </div>
-            <p className="text-sm text-gray-500 mt-2">
+            <p className="text-sm text-gray-700 mt-2">
               Version: {health.version}
             </p>
           </CardContent>
@@ -234,14 +234,14 @@ export function StatusDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="font-semibold text-gray-900">Platform</h3>
-                <p className="text-sm text-gray-600 capitalize">{health.deployment.platform}</p>
+                <p className="text-sm text-gray-800 capitalize">{health.deployment.platform}</p>
               </div>
               <div className="flex items-center">
                 <Globe className="h-8 w-8 text-indigo-500 mr-3" />
                 <CheckCircle className="h-5 w-5 text-green-500" />
               </div>
             </div>
-            <p className="text-sm text-gray-500 mt-2">
+            <p className="text-sm text-gray-700 mt-2">
               Region: {health.deployment.region}
             </p>
           </CardContent>
@@ -255,23 +255,23 @@ export function StatusDashboard() {
             <h3 className="font-semibold text-gray-900 mb-4">System Metrics</h3>
             <div className="space-y-3">
               <div className="flex justify-between">
-                <span className="text-gray-600">Uptime</span>
+                <span className="text-gray-800">Uptime</span>
                 <span className="font-medium">{formatUptime(health.uptime)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Memory Usage</span>
+                <span className="text-gray-800">Memory Usage</span>
                 <span className="font-medium">{formatBytes(health.memory.heapUsed)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Total Memory</span>
+                <span className="text-gray-800">Total Memory</span>
                 <span className="font-medium">{formatBytes(health.memory.heapTotal)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Environment</span>
+                <span className="text-gray-800">Environment</span>
                 <span className="font-medium capitalize">{health.environment}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Platform</span>
+                <span className="text-gray-800">Platform</span>
                 <span className="font-medium capitalize">{health.deployment.platform}</span>
               </div>
             </div>
@@ -324,7 +324,7 @@ export function StatusDashboard() {
                 <div>
                   <span className="font-medium capitalize">{component}</span>
                   {component === 'database' && status.responseTime && (
-                    <p className="text-xs text-gray-500">{status.responseTime}ms</p>
+                    <p className="text-xs text-gray-700">{status.responseTime}ms</p>
                   )}
                 </div>
                 {getStatusIcon(status.status)}
@@ -335,7 +335,7 @@ export function StatusDashboard() {
       </Card>
 
       {/* Footer */}
-      <div className="text-center text-sm text-gray-500">
+      <div className="text-center text-sm text-gray-700">
         <p>
           Stamford Parking System • Status page updates every 30 seconds
         </p>
@@ -343,7 +343,7 @@ export function StatusDashboard() {
           Last system restart: {new Date(Date.now() - health.uptime * 1000).toLocaleString()}
         </p>
         <p className="mt-1">
-          <span className="text-gray-400">Deployment URL:</span> {health.deployment.url}
+          <span className="text-gray-600">Deployment URL:</span> {health.deployment.url}
         </p>
       </div>
     </div>

@@ -132,7 +132,7 @@ export default function AdminDashboard() {
         <div className="flex items-center justify-center h-64">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <p className="text-gray-600">Loading dashboard...</p>
+            <p className="text-gray-800">Loading dashboard...</p>
           </div>
         </div>
       </AdminLayout>
@@ -143,7 +143,7 @@ export default function AdminDashboard() {
     return (
       <AdminLayout>
         <div className="text-center py-12">
-          <p className="text-gray-600">Failed to load dashboard data</p>
+          <p className="text-gray-800">Failed to load dashboard data</p>
           <Button onClick={loadDashboardStats} className="mt-4">
             Try Again
           </Button>
@@ -181,10 +181,10 @@ export default function AdminDashboard() {
         <CardContent className="p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">{title}</p>
+              <p className="text-sm font-medium text-gray-800">{title}</p>
               <p className="text-2xl font-bold text-gray-900">{value}</p>
               {subtitle && (
-                <p className="text-xs text-gray-500 mt-1">{subtitle}</p>
+                <p className="text-xs text-gray-700 mt-1">{subtitle}</p>
               )}
             </div>
             <div className={`p-3 rounded-lg ${colorClasses[color]}`}>
@@ -203,7 +203,7 @@ export default function AdminDashboard() {
               }`}>
                 {trendValue}
               </span>
-              <span className="text-sm text-gray-500 ml-1">vs yesterday</span>
+              <span className="text-sm text-gray-700 ml-1">vs yesterday</span>
             </div>
           )}
         </CardContent>
@@ -218,7 +218,7 @@ export default function AdminDashboard() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
-            <p className="text-gray-600 mt-2">
+            <p className="text-gray-800 mt-2">
               Last updated: {lastUpdated.toLocaleString()}
             </p>
           </div>
@@ -346,14 +346,14 @@ export default function AdminDashboard() {
                         <p className="font-medium text-gray-900">
                           Zone {zone.zoneNumber}
                         </p>
-                        <p className="text-sm text-gray-600">{zone.zoneName}</p>
+                        <p className="text-sm text-gray-800">{zone.zoneName}</p>
                       </div>
                     </div>
                     <div className="text-right">
                       <p className="font-semibold text-green-600">
                         {formatCurrency(zone.revenueToday)}
                       </p>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-gray-700">
                         {zone.sessionsToday} sessions
                       </p>
                     </div>

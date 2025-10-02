@@ -72,7 +72,7 @@ export default function VehiclesPage() {
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading vehicles...</p>
+          <p className="text-gray-800">Loading vehicles...</p>
         </div>
       </div>
     );
@@ -114,11 +114,11 @@ export default function VehiclesPage() {
           <div className="max-w-md mx-auto">
             <Card>
               <CardContent className="text-center p-8">
-                <Car className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+                <Car className="h-16 w-16 text-gray-600 mx-auto mb-4" />
                 <h3 className="text-lg font-medium text-gray-900 mb-2">
                   No vehicles registered
                 </h3>
-                <p className="text-gray-600 mb-6">
+                <p className="text-gray-800 mb-6">
                   Add your first vehicle to start parking with ease. You can add multiple vehicles and manage them all in one place.
                 </p>
                 <Link href="/dashboard/vehicles/add">
@@ -133,7 +133,7 @@ export default function VehiclesPage() {
         ) : (
           <div className="max-w-4xl mx-auto">
             <div className="mb-6">
-              <p className="text-gray-600">
+              <p className="text-gray-800">
                 You have {vehicles.length} vehicle{vehicles.length !== 1 ? 's' : ''} registered.
                 Manage your vehicles here and quickly start parking sessions.
               </p>
@@ -155,7 +155,7 @@ export default function VehiclesPage() {
                             {formatLicensePlate(vehicle.licensePlate, vehicle.state)}
                           </h3>
                           {vehicle.nickname && (
-                            <p className="text-sm text-gray-600 font-medium">
+                            <p className="text-sm text-gray-800 font-medium">
                               {vehicle.nickname}
                             </p>
                           )}
@@ -215,7 +215,7 @@ export default function VehiclesPage() {
               <Link href="/dashboard/vehicles/add">
                 <Card className="border-2 border-dashed border-gray-300 hover:border-blue-400 hover:bg-blue-50 transition-colors cursor-pointer">
                   <CardContent className="text-center p-8">
-                    <Plus className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                    <Plus className="h-12 w-12 text-gray-600 mx-auto mb-4" />
                     <h3 className="text-lg font-medium text-gray-700 mb-2">
                       Add Another Vehicle
                     </h3>

@@ -259,7 +259,7 @@ export function EarlyTerminationModal({
             <h3 className="text-lg font-medium text-gray-900 mb-2">
               Are you sure you want to end this session?
             </h3>
-            <p className="text-gray-600 mb-4">
+            <p className="text-gray-800 mb-4">
               This action cannot be undone. Your parking session will be terminated immediately.
             </p>
 

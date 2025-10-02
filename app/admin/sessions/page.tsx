@@ -253,7 +253,7 @@ export default function AdminSessionsPage() {
       case 'COMPLETED':
         return <CheckCircle className="h-4 w-4 text-blue-500" />;
       default:
-        return <XCircle className="h-4 w-4 text-gray-500" />;
+        return <XCircle className="h-4 w-4 text-gray-700" />;
     }
   };
 
@@ -280,7 +280,7 @@ export default function AdminSessionsPage() {
         <div className="flex items-center justify-center h-64">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <p className="text-gray-600">Loading sessions...</p>
+            <p className="text-gray-800">Loading sessions...</p>
           </div>
         </div>
       </AdminLayout>
@@ -294,7 +294,7 @@ export default function AdminSessionsPage() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Active Sessions</h1>
-            <p className="text-gray-600 mt-2">
+            <p className="text-gray-800 mt-2">
               Last updated: {lastUpdated.toLocaleString()} • {filteredSessions.length} of {sessions.length} sessions
             </p>
           </div>
@@ -316,7 +316,7 @@ export default function AdminSessionsPage() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               {/* Search */}
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600" />
                 <input
                   type="text"
                   placeholder="Search license, email, or zone..."
@@ -372,25 +372,25 @@ export default function AdminSessionsPage() {
               <table className="w-full">
                 <thead className="bg-gray-50 border-b border-gray-200">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                       Vehicle
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                       User
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                       Zone
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                       Time
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                       Duration
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                       Status
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                       Cost
                     </th>
                   </tr>
@@ -400,29 +400,29 @@ export default function AdminSessionsPage() {
                     <tr key={session.id} className="hover:bg-gray-50">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
-                          <Car className="h-5 w-5 text-gray-400 mr-3" />
+                          <Car className="h-5 w-5 text-gray-600 mr-3" />
                           <div>
                             <div className="text-sm font-medium text-gray-900">
                               {formatLicensePlate(session.licensePlate, session.vehicleState)}
                             </div>
                             {session.vehicleNickname && (
-                              <div className="text-sm text-gray-500">{session.vehicleNickname}</div>
+                              <div className="text-sm text-gray-700">{session.vehicleNickname}</div>
                             )}
                           </div>
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
-                          <User className="h-5 w-5 text-gray-400 mr-3" />
+                          <User className="h-5 w-5 text-gray-600 mr-3" />
                           <div className="text-sm text-gray-900">{session.userEmail}</div>
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
-                          <MapPin className="h-5 w-5 text-gray-400 mr-3" />
+                          <MapPin className="h-5 w-5 text-gray-600 mr-3" />
                           <div>
                             <div className="text-sm font-medium text-gray-900">{session.zoneNumber}</div>
-                            <div className="text-sm text-gray-500">{session.zoneName}</div>
+                            <div className="text-sm text-gray-700">{session.zoneName}</div>
                           </div>
                         </div>
                       </td>
@@ -430,7 +430,7 @@ export default function AdminSessionsPage() {
                         <div className="text-sm text-gray-900">
                           {formatDate(session.startTime, 'time')}
                         </div>
-                        <div className="text-sm text-gray-500">
+                        <div className="text-sm text-gray-700">
                           {formatDate(session.startTime, 'date')}
                         </div>
                       </td>
@@ -439,7 +439,7 @@ export default function AdminSessionsPage() {
                           {session.elapsedMinutes}m elapsed
                         </div>
                         {session.remainingMinutes !== undefined && (
-                          <div className={`text-sm ${session.remainingMinutes < 15 ? 'text-red-500 font-medium' : 'text-gray-500'}`}>
+                          <div className={`text-sm ${session.remainingMinutes < 15 ? 'text-red-500 font-medium' : 'text-gray-700'}`}>
                             {session.remainingMinutes > 0 ? `${session.remainingMinutes}m left` : 'Expired'}
                           </div>
                         )}
@@ -454,12 +454,12 @@ export default function AdminSessionsPage() {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
-                          <DollarSign className="h-4 w-4 text-gray-400 mr-1" />
+                          <DollarSign className="h-4 w-4 text-gray-600 mr-1" />
                           <div>
                             <div className="text-sm font-medium text-gray-900">
                               {formatCurrency(session.totalCost)}
                             </div>
-                            <div className="text-xs text-gray-500">
+                            <div className="text-xs text-gray-700">
                               {formatCurrency(session.ratePerHour)}/hr
                             </div>
                           </div>
@@ -472,8 +472,8 @@ export default function AdminSessionsPage() {
 
               {filteredSessions.length === 0 && (
                 <div className="text-center py-12">
-                  <Clock className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-600">No sessions found matching your filters</p>
+                  <Clock className="h-12 w-12 text-gray-600 mx-auto mb-4" />
+                  <p className="text-gray-800">No sessions found matching your filters</p>
                 </div>
               )}
             </div>

@@ -104,7 +104,7 @@ export default function ConfirmationPage() {
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading confirmation...</p>
+          <p className="text-gray-800">Loading confirmation...</p>
         </div>
       </div>
     );
@@ -118,7 +118,7 @@ export default function ConfirmationPage() {
             <CheckCircle className="h-16 w-16 mx-auto" />
           </div>
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Session Not Found</h1>
-          <p className="text-gray-600 mb-6">{error}</p>
+          <p className="text-gray-800 mb-6">{error}</p>
           <Link href="/dashboard">
             <Button>Go to Dashboard</Button>
           </Link>
@@ -139,7 +139,7 @@ export default function ConfirmationPage() {
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
               Parking Confirmed!
             </h1>
-            <p className="text-gray-600">
+            <p className="text-gray-800">
               Your parking session is now active. Receipt has been sent to your email.
             </p>
           </div>
@@ -182,39 +182,39 @@ export default function ConfirmationPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-3">
                   <div className="flex items-center">
-                    <Car className="h-5 w-5 text-gray-600 mr-3" />
+                    <Car className="h-5 w-5 text-gray-700 mr-3" />
                     <div>
                       <p className="font-medium text-gray-900">
                         {formatLicensePlate(parkingSession.vehicle.licensePlate, parkingSession.vehicle.state)}
                       </p>
                       {parkingSession.vehicle.nickname && (
-                        <p className="text-sm text-gray-600">{parkingSession.vehicle.nickname}</p>
+                        <p className="text-sm text-gray-800">{parkingSession.vehicle.nickname}</p>
                       )}
                     </div>
                   </div>
 
                   <div className="flex items-center">
-                    <MapPin className="h-5 w-5 text-gray-600 mr-3" />
+                    <MapPin className="h-5 w-5 text-gray-700 mr-3" />
                     <div>
                       <p className="font-medium text-gray-900">
                         Zone {parkingSession.zone.zoneNumber}
                       </p>
-                      <p className="text-sm text-gray-600">{parkingSession.zone.zoneName}</p>
-                      <p className="text-xs text-gray-500">{parkingSession.zone.address}</p>
+                      <p className="text-sm text-gray-800">{parkingSession.zone.zoneName}</p>
+                      <p className="text-xs text-gray-700">{parkingSession.zone.address}</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="space-y-3">
                   <div className="flex items-center">
-                    <Clock className="h-5 w-5 text-gray-600 mr-3" />
+                    <Clock className="h-5 w-5 text-gray-700 mr-3" />
                     <div>
                       <p className="font-medium text-gray-900">
                         {parkingSession.durationHours === 0.5 ? '30 minutes' :
                          parkingSession.durationHours === 1 ? '1 hour' :
                          `${parkingSession.durationHours} hours`}
                       </p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-800">
                         Started {new Date(parkingSession.startTime).toLocaleString([], {
                           hour: '2-digit',
                           minute: '2-digit'
@@ -224,12 +224,12 @@ export default function ConfirmationPage() {
                   </div>
 
                   <div className="flex items-center">
-                    <CreditCard className="h-5 w-5 text-gray-600 mr-3" />
+                    <CreditCard className="h-5 w-5 text-gray-700 mr-3" />
                     <div>
                       <p className="font-medium text-gray-900">
                         {formatCurrency(parkingSession.totalCost)}
                       </p>
-                      <p className="text-sm text-gray-600">Payment confirmed</p>
+                      <p className="text-sm text-gray-800">Payment confirmed</p>
                     </div>
                   </div>
                 </div>
@@ -296,22 +296,22 @@ export default function ConfirmationPage() {
             <CardContent>
               <div className="space-y-3">
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Session ID:</span>
+                  <span className="text-gray-800">Session ID:</span>
                   <span className="font-mono">{parkingSession.id}</span>
                 </div>
 
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Base Cost:</span>
+                  <span className="text-gray-800">Base Cost:</span>
                   <span>{formatCurrency(parkingSession.baseCost)}</span>
                 </div>
 
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">CT Sales Tax (6.35%):</span>
+                  <span className="text-gray-800">CT Sales Tax (6.35%):</span>
                   <span>{formatCurrency(parkingSession.taxAmount)}</span>
                 </div>
 
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Processing Fee:</span>
+                  <span className="text-gray-800">Processing Fee:</span>
                   <span>{formatCurrency(parkingSession.processingFee)}</span>
                 </div>
 
@@ -322,7 +322,7 @@ export default function ConfirmationPage() {
                   </div>
                 </div>
 
-                <div className="pt-2 text-xs text-gray-500">
+                <div className="pt-2 text-xs text-gray-700">
                   <p>
                     <strong>Transaction Date:</strong>{' '}
                     {new Date(parkingSession.createdAt).toLocaleString()}

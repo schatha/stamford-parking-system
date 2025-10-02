@@ -119,7 +119,7 @@ export function ZoneSelector({ onZoneSelect }: ZoneSelectorProps) {
                 <h3 className="font-semibold text-gray-900">
                   Zone {zone.zoneNumber}
                 </h3>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-800">
                   {getLocationLabel(zone.locationType)}
                 </p>
               </div>
@@ -133,13 +133,13 @@ export function ZoneSelector({ onZoneSelect }: ZoneSelectorProps) {
           </div>
 
           <div className="space-y-2">
-            <div className="flex items-center text-sm text-gray-600">
+            <div className="flex items-center text-sm text-gray-800">
               <MapPin className="h-4 w-4 mr-2" />
               <span className="truncate">{zone.address}</span>
             </div>
 
             <div className="flex items-center justify-between text-sm">
-              <div className="flex items-center text-gray-600">
+              <div className="flex items-center text-gray-800">
                 <Clock className="h-4 w-4 mr-1" />
                 <span>Max {zone.maxDurationHours}h</span>
               </div>
@@ -166,7 +166,7 @@ export function ZoneSelector({ onZoneSelect }: ZoneSelectorProps) {
             <Search className="h-6 w-6 text-blue-600 mr-2" />
             <div>
               <h2 className="text-lg font-semibold">Find Your Parking Zone</h2>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-800">
                 Enter the zone number from the sign or select from popular zones below
               </p>
             </div>
@@ -246,7 +246,7 @@ export function ZoneSelector({ onZoneSelect }: ZoneSelectorProps) {
             <MapPin className="h-6 w-6 text-blue-600 mr-2" />
             <div>
               <h3 className="text-lg font-semibold">Interactive Zone Map</h3>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-800">
                 Click on zones to select them for parking
               </p>
             </div>
@@ -255,9 +255,9 @@ export function ZoneSelector({ onZoneSelect }: ZoneSelectorProps) {
         <CardContent>
           <div className="bg-gray-100 rounded-lg h-64 flex items-center justify-center border-2 border-dashed border-gray-300">
             <div className="text-center">
-              <MapPin className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-600 font-medium">Interactive Map Coming Soon</p>
-              <p className="text-sm text-gray-500 mt-1">
+              <MapPin className="h-12 w-12 text-gray-600 mx-auto mb-4" />
+              <p className="text-gray-800 font-medium">Interactive Map Coming Soon</p>
+              <p className="text-sm text-gray-700 mt-1">
                 View all parking zones on an interactive map of downtown Stamford
               </p>
             </div>

@@ -80,7 +80,7 @@ export function ActiveSessionCard({
                   {formatLicensePlate(session.vehicle.licensePlate, session.vehicle.state)}
                 </h3>
                 {session.vehicle.nickname && (
-                  <p className="text-sm text-gray-500">{session.vehicle.nickname}</p>
+                  <p className="text-sm text-gray-700">{session.vehicle.nickname}</p>
                 )}
               </div>
             </div>
@@ -98,7 +98,7 @@ export function ActiveSessionCard({
 
           {/* Location and Cost */}
           <div className="flex items-center justify-between text-sm">
-            <div className="flex items-center space-x-1 text-gray-600">
+            <div className="flex items-center space-x-1 text-gray-800">
               <MapPin className="h-4 w-4" />
               <span>{session.zone.zoneName}</span>
             </div>
@@ -112,7 +112,7 @@ export function ActiveSessionCard({
           {session.status === 'ACTIVE' && (
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Time remaining:</p>
+                <p className="text-sm text-gray-800">Time remaining:</p>
                 <CountdownTimer
                   endTime={session.scheduledEndTime}
                   onExpired={handleExpired}
@@ -120,7 +120,7 @@ export function ActiveSessionCard({
                 />
               </div>
               <div className="text-right">
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-gray-700">
                   Until {new Date(session.scheduledEndTime).toLocaleTimeString([], {
                     hour: '2-digit',
                     minute: '2-digit'
@@ -169,7 +169,7 @@ export function ActiveSessionCard({
             {session.status === 'EXPIRED' && (
               <div className="text-center">
                 <p className="text-sm text-red-600 font-medium">Session Expired</p>
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-gray-700">
                   Please start a new parking session
                 </p>
               </div>
@@ -193,7 +193,7 @@ export function ActiveSessionCard({
                   >
                     <div className="text-center">
                       <div>{option.label}</div>
-                      <div className="text-xs text-gray-500">
+                      <div className="text-xs text-gray-700">
                         {formatCurrency(option.cost)}
                       </div>
                     </div>

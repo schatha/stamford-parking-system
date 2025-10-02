@@ -177,7 +177,7 @@ function PaymentFormInner({
               <CreditCard className="h-6 w-6 text-blue-600 mr-2" />
               <div>
                 <h2 className="text-lg font-semibold">Payment Information</h2>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-800">
                   Secure payment with Stripe
                 </p>
               </div>
@@ -263,7 +263,7 @@ function PaymentFormInner({
 
             {/* Payment Method Options */}
             <div className="mt-4">
-              <div className="flex items-center justify-center space-x-4 text-sm text-gray-500">
+              <div className="flex items-center justify-center space-x-4 text-sm text-gray-700">
                 <span>Secure payment with</span>
                 <div className="flex items-center space-x-2">
                   <div className="w-10 h-6 bg-black rounded flex items-center justify-center text-white text-xs font-bold">
@@ -272,7 +272,7 @@ function PaymentFormInner({
                   <div className="w-10 h-6 bg-blue-500 rounded flex items-center justify-center text-white text-xs font-bold">
                     G Pay
                   </div>
-                  <div className="text-xs text-gray-400">and all major cards</div>
+                  <div className="text-xs text-gray-800">and all major cards</div>
                 </div>
               </div>
             </div>
@@ -314,7 +314,7 @@ function PaymentFormInner({
             </Button>
 
             <div className="text-center">
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-gray-700">
                 By completing this purchase, you agree to the{' '}
                 <a href="/terms" className="text-blue-600 hover:underline">
                   Terms of Service
@@ -349,7 +349,7 @@ function PaymentFormInner({
                 </div>
               </div>
             </div>
-            <div className="flex items-center text-xs text-gray-500">
+            <div className="flex items-center text-xs text-gray-700">
               <Lock className="h-3 w-3 mr-1" />
               <span>256-bit SSL encrypted</span>
             </div>

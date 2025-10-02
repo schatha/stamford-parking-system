@@ -258,7 +258,7 @@ export default function AdminUsersPage() {
         <div className="flex items-center justify-center h-64">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <p className="text-gray-600">Loading users...</p>
+            <p className="text-gray-800">Loading users...</p>
           </div>
         </div>
       </AdminLayout>
@@ -272,7 +272,7 @@ export default function AdminUsersPage() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">User Management</h1>
-            <p className="text-gray-600 mt-2">
+            <p className="text-gray-800 mt-2">
               Manage user accounts, roles, and permissions
             </p>
           </div>
@@ -296,7 +296,7 @@ export default function AdminUsersPage() {
                 <Users className="h-8 w-8 text-blue-600" />
               </div>
               <p className="text-2xl font-bold text-gray-900">{totalUsers}</p>
-              <p className="text-sm text-gray-600">Total Users</p>
+              <p className="text-sm text-gray-800">Total Users</p>
             </CardContent>
           </Card>
 
@@ -306,7 +306,7 @@ export default function AdminUsersPage() {
                 <CheckCircle className="h-8 w-8 text-green-600" />
               </div>
               <p className="text-2xl font-bold text-green-900">{activeUsers}</p>
-              <p className="text-sm text-gray-600">Active Users</p>
+              <p className="text-sm text-gray-800">Active Users</p>
             </CardContent>
           </Card>
 
@@ -316,7 +316,7 @@ export default function AdminUsersPage() {
                 <Shield className="h-8 w-8 text-purple-600" />
               </div>
               <p className="text-2xl font-bold text-purple-900">{adminUsers}</p>
-              <p className="text-sm text-gray-600">Administrators</p>
+              <p className="text-sm text-gray-800">Administrators</p>
             </CardContent>
           </Card>
 
@@ -326,7 +326,7 @@ export default function AdminUsersPage() {
                 <DollarSign className="h-8 w-8 text-green-600" />
               </div>
               <p className="text-2xl font-bold text-green-900">{formatCurrency(totalRevenue)}</p>
-              <p className="text-sm text-gray-600">Total Revenue</p>
+              <p className="text-sm text-gray-800">Total Revenue</p>
             </CardContent>
           </Card>
         </div>
@@ -335,7 +335,7 @@ export default function AdminUsersPage() {
         <Card>
           <CardHeader>
             <div className="flex items-center">
-              <Filter className="h-5 w-5 text-gray-600 mr-2" />
+              <Filter className="h-5 w-5 text-gray-800 mr-2" />
               <h3 className="text-lg font-semibold">Filters</h3>
             </div>
           </CardHeader>
@@ -399,9 +399,9 @@ export default function AdminUsersPage() {
           <CardContent>
             {filteredUsers.length === 0 ? (
               <div className="text-center py-12">
-                <UserX className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+                <UserX className="h-16 w-16 text-gray-600 mx-auto mb-4" />
                 <h3 className="text-lg font-medium text-gray-900 mb-2">No users found</h3>
-                <p className="text-gray-600">
+                <p className="text-gray-800">
                   {users.length === 0 ? 'No users registered yet.' : 'No users match your search criteria.'}
                 </p>
               </div>
@@ -410,19 +410,19 @@ export default function AdminUsersPage() {
                 <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-gray-50">
                     <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                         User
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                         Role & Status
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                         Activity
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                         Stats
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                         Actions
                       </th>
                     </tr>
@@ -446,9 +446,9 @@ export default function AdminUsersPage() {
                                   <Mail className="h-4 w-4 text-yellow-500 ml-2" title="Email not verified" />
                                 )}
                               </div>
-                              <div className="text-sm text-gray-500">{user.email}</div>
+                              <div className="text-sm text-gray-700">{user.email}</div>
                               {user.phone && (
-                                <div className="text-xs text-gray-400">{user.phone}</div>
+                                <div className="text-xs text-gray-600">{user.phone}</div>
                               )}
                             </div>
                           </div>
@@ -459,7 +459,7 @@ export default function AdminUsersPage() {
                             {getStatusBadge(user.status)}
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                           <div className="space-y-1">
                             <div className="flex items-center">
                               <Calendar className="h-4 w-4 mr-1" />
@@ -473,7 +473,7 @@ export default function AdminUsersPage() {
                             )}
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                           <div className="grid grid-cols-2 gap-2 text-xs">
                             <div className="flex items-center">
                               <Clock className="h-3 w-3 mr-1" />

@@ -204,7 +204,7 @@ export default function SystemAlertsPage() {
       case 'WARNING': return <AlertTriangle className="h-5 w-5 text-yellow-500" />;
       case 'INFO': return <Info className="h-5 w-5 text-blue-500" />;
       case 'SUCCESS': return <CheckCircle className="h-5 w-5 text-green-500" />;
-      default: return <AlertCircle className="h-5 w-5 text-gray-500" />;
+      default: return <AlertCircle className="h-5 w-5 text-gray-700" />;
     }
   };
 
@@ -258,7 +258,7 @@ export default function SystemAlertsPage() {
         <div className="flex items-center justify-center h-64">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <p className="text-gray-600">Loading system alerts...</p>
+            <p className="text-gray-800">Loading system alerts...</p>
           </div>
         </div>
       </AdminLayout>
@@ -272,7 +272,7 @@ export default function SystemAlertsPage() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">System Alerts</h1>
-            <p className="text-gray-600 mt-2">
+            <p className="text-gray-800 mt-2">
               Monitor and manage system alerts and notifications
             </p>
           </div>
@@ -287,10 +287,10 @@ export default function SystemAlertsPage() {
           <Card>
             <CardContent className="p-6 text-center">
               <div className="flex items-center justify-center mb-2">
-                <AlertCircle className="h-8 w-8 text-gray-600" />
+                <AlertCircle className="h-8 w-8 text-gray-800" />
               </div>
               <p className="text-2xl font-bold text-gray-900">{filteredAlerts.length}</p>
-              <p className="text-sm text-gray-600">Total Alerts</p>
+              <p className="text-sm text-gray-800">Total Alerts</p>
             </CardContent>
           </Card>
 
@@ -300,7 +300,7 @@ export default function SystemAlertsPage() {
                 <AlertTriangle className="h-8 w-8 text-red-600" />
               </div>
               <p className="text-2xl font-bold text-red-900">{activeAlerts}</p>
-              <p className="text-sm text-gray-600">Active Alerts</p>
+              <p className="text-sm text-gray-800">Active Alerts</p>
             </CardContent>
           </Card>
 
@@ -310,7 +310,7 @@ export default function SystemAlertsPage() {
                 <XCircle className="h-8 w-8 text-red-800" />
               </div>
               <p className="text-2xl font-bold text-red-900">{criticalAlerts}</p>
-              <p className="text-sm text-gray-600">Critical</p>
+              <p className="text-sm text-gray-800">Critical</p>
             </CardContent>
           </Card>
 
@@ -322,7 +322,7 @@ export default function SystemAlertsPage() {
               <p className="text-2xl font-bold text-green-900">
                 {filteredAlerts.filter(a => a.status === 'RESOLVED').length}
               </p>
-              <p className="text-sm text-gray-600">Resolved</p>
+              <p className="text-sm text-gray-800">Resolved</p>
             </CardContent>
           </Card>
         </div>
@@ -331,7 +331,7 @@ export default function SystemAlertsPage() {
         <Card>
           <CardHeader>
             <div className="flex items-center">
-              <Filter className="h-5 w-5 text-gray-600 mr-2" />
+              <Filter className="h-5 w-5 text-gray-800 mr-2" />
               <h3 className="text-lg font-semibold">Filters</h3>
             </div>
           </CardHeader>
@@ -408,11 +408,11 @@ export default function SystemAlertsPage() {
         {filteredAlerts.length === 0 ? (
           <Card>
             <CardContent className="text-center p-12">
-              <CheckCircle className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+              <CheckCircle className="h-16 w-16 text-gray-600 mx-auto mb-4" />
               <h3 className="text-lg font-medium text-gray-900 mb-2">
                 {alerts.length === 0 ? 'No system alerts' : 'No alerts match your filters'}
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-800">
                 {alerts.length === 0
                   ? 'All systems are operating normally.'
                   : 'Try adjusting your search or filter criteria.'}
@@ -439,7 +439,7 @@ export default function SystemAlertsPage() {
 
                         <p className="text-gray-700 mb-2">{alert.message}</p>
 
-                        <div className="flex items-center space-x-4 text-sm text-gray-500">
+                        <div className="flex items-center space-x-4 text-sm text-gray-700">
                           <div className="flex items-center">
                             <Clock className="h-4 w-4 mr-1" />
                             <span>{formatDate(alert.createdAt)}</span>

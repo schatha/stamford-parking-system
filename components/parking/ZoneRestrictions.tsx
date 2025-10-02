@@ -162,7 +162,7 @@ export function RestrictionSchedule({ zone }: RestrictionScheduleProps) {
     <Card>
       <CardHeader>
         <h3 className="text-lg font-medium">Parking Restrictions</h3>
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-gray-800">
           Times when parking is not allowed in this zone
         </p>
       </CardHeader>
@@ -181,7 +181,7 @@ export function RestrictionSchedule({ zone }: RestrictionScheduleProps) {
                   <p className="text-sm text-gray-700 mb-2">
                     {restriction.description}
                   </p>
-                  <div className="flex items-center space-x-4 text-xs text-gray-500">
+                  <div className="flex items-center space-x-4 text-xs text-gray-700">
                     <div className="flex items-center space-x-1">
                       <Clock className="h-3 w-3" />
                       <span>{restriction.startTime} - {restriction.endTime}</span>

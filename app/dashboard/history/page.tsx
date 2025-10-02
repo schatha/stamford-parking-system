@@ -122,7 +122,7 @@ export default function HistoryPage() {
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading parking history...</p>
+          <p className="text-gray-800">Loading parking history...</p>
         </div>
       </div>
     );
@@ -143,7 +143,7 @@ export default function HistoryPage() {
               </Link>
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">Parking History</h1>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-800">
                   {filteredSessions.length} session{filteredSessions.length !== 1 ? 's' : ''}
                   {filters.search || filters.status || filters.dateRange ? ' (filtered)' : ''}
                 </p>
@@ -162,7 +162,7 @@ export default function HistoryPage() {
                 <Car className="h-8 w-8 text-blue-600" />
               </div>
               <p className="text-2xl font-bold text-gray-900">{filteredSessions.length}</p>
-              <p className="text-sm text-gray-600">Total Sessions</p>
+              <p className="text-sm text-gray-800">Total Sessions</p>
             </CardContent>
           </Card>
 
@@ -172,7 +172,7 @@ export default function HistoryPage() {
                 <CreditCard className="h-8 w-8 text-green-600" />
               </div>
               <p className="text-2xl font-bold text-gray-900">{formatCurrency(getTotalSpent())}</p>
-              <p className="text-sm text-gray-600">Total Spent</p>
+              <p className="text-sm text-gray-800">Total Spent</p>
             </CardContent>
           </Card>
 
@@ -184,7 +184,7 @@ export default function HistoryPage() {
               <p className="text-2xl font-bold text-gray-900">
                 {filteredSessions.filter(s => s.status === 'ACTIVE').length}
               </p>
-              <p className="text-sm text-gray-600">Active Now</p>
+              <p className="text-sm text-gray-800">Active Now</p>
             </CardContent>
           </Card>
 
@@ -196,7 +196,7 @@ export default function HistoryPage() {
               <p className="text-2xl font-bold text-gray-900">
                 {new Set(filteredSessions.map(s => s.zone.zoneNumber)).size}
               </p>
-              <p className="text-sm text-gray-600">Zones Used</p>
+              <p className="text-sm text-gray-800">Zones Used</p>
             </CardContent>
           </Card>
         </div>
@@ -205,7 +205,7 @@ export default function HistoryPage() {
         <Card className="mb-8">
           <CardHeader>
             <div className="flex items-center">
-              <Filter className="h-5 w-5 text-gray-600 mr-2" />
+              <Filter className="h-5 w-5 text-gray-800 mr-2" />
               <h3 className="text-lg font-semibold">Filters</h3>
             </div>
           </CardHeader>
@@ -268,11 +268,11 @@ export default function HistoryPage() {
         {filteredSessions.length === 0 ? (
           <Card>
             <CardContent className="text-center p-12">
-              <Clock className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+              <Clock className="h-16 w-16 text-gray-600 mx-auto mb-4" />
               <h3 className="text-lg font-medium text-gray-900 mb-2">
                 {sessions.length === 0 ? 'No parking sessions yet' : 'No sessions match your filters'}
               </h3>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-800 mb-6">
                 {sessions.length === 0
                   ? 'Start your first parking session from the dashboard.'
                   : 'Try adjusting your search or filter criteria.'}
@@ -299,9 +299,9 @@ export default function HistoryPage() {
                           {formatLicensePlate(session.vehicle.licensePlate, session.vehicle.state)}
                         </h3>
                         {session.vehicle.nickname && (
-                          <p className="text-sm text-gray-600">{session.vehicle.nickname}</p>
+                          <p className="text-sm text-gray-800">{session.vehicle.nickname}</p>
                         )}
-                        <div className="flex items-center space-x-4 text-sm text-gray-500 mt-1">
+                        <div className="flex items-center space-x-4 text-sm text-gray-700 mt-1">
                           <div className="flex items-center">
                             <MapPin className="h-4 w-4 mr-1" />
                             <span>{session.zone.zoneNumber} - {session.zone.zoneName}</span>

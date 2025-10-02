@@ -27,7 +27,7 @@ export default function ExpiryWarningDemoPage() {
                 <h1 className="text-3xl font-bold text-gray-900">
                   Expiry Warning System Demo
                 </h1>
-                <p className="text-gray-600 mt-2">
+                <p className="!text-black font-medium mt-2">
                   Experience our multi-channel notification system in action
                 </p>
               </div>
@@ -46,7 +46,7 @@ export default function ExpiryWarningDemoPage() {
                 <h2 className="text-2xl font-semibold text-gray-900">
                   Smart Notification System
                 </h2>
-                <p className="text-gray-600">
+                <p className="!text-black font-medium">
                   See how our intelligent warning system helps users avoid parking violations
                 </p>
               </CardHeader>
@@ -56,7 +56,7 @@ export default function ExpiryWarningDemoPage() {
                     <h3 className="text-lg font-semibold text-gray-900 mb-3">
                       What You'll See
                     </h3>
-                    <ul className="space-y-2 text-gray-700">
+                    <ul className="space-y-2 !text-black font-medium">
                       <li className="flex items-start">
                         <span className="flex-shrink-0 w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3"></span>
                         Browser push notifications with action buttons
@@ -84,7 +84,7 @@ export default function ExpiryWarningDemoPage() {
                     <h3 className="text-lg font-semibold text-gray-900 mb-3">
                       Key Features
                     </h3>
-                    <ul className="space-y-2 text-gray-700">
+                    <ul className="space-y-2 !text-black font-medium">
                       <li className="flex items-start">
                         <span className="flex-shrink-0 w-2 h-2 bg-green-500 rounded-full mt-2 mr-3"></span>
                         <strong>15-minute warning threshold</strong> - Automatic alerts before expiry
@@ -150,7 +150,7 @@ export default function ExpiryWarningDemoPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-2">Frontend Components</h4>
-                  <ul className="text-sm text-gray-700 space-y-1">
+                  <ul className="text-sm !text-black font-medium space-y-1">
                     <li>• Real-time countdown timer with WebSocket updates</li>
                     <li>• React state management for notification visibility</li>
                     <li>• Responsive notification UI components</li>
@@ -161,7 +161,7 @@ export default function ExpiryWarningDemoPage() {
 
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-2">Backend Services</h4>
-                  <ul className="text-sm text-gray-700 space-y-1">
+                  <ul className="text-sm !text-black font-medium space-y-1">
                     <li>• Scheduled notification jobs with queue system</li>
                     <li>• Multi-provider notification routing</li>
                     <li>• User preference management</li>
@@ -173,7 +173,7 @@ export default function ExpiryWarningDemoPage() {
 
               <div className="bg-gray-50 border rounded-lg p-4">
                 <h4 className="font-semibold text-gray-900 mb-2">Notification Flow</h4>
-                <div className="text-sm text-gray-700">
+                <div className="text-sm !text-black font-medium">
                   <p>
                     <strong>1. Session Creation:</strong> Background jobs are scheduled based on session end time
                   </p>

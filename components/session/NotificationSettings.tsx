@@ -93,7 +93,7 @@ export function NotificationSettings({ sessionId, onClose }: NotificationSetting
             <Bell className="h-6 w-6 text-blue-600 mr-2" />
             <div>
               <h3 className="text-lg font-semibold">Notification Settings</h3>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-800">
                 Get alerts before your parking session expires
               </p>
             </div>
@@ -111,10 +111,10 @@ export function NotificationSettings({ sessionId, onClose }: NotificationSetting
             {/* Email */}
             <div className="flex items-center justify-between p-3 border rounded-lg">
               <div className="flex items-center">
-                <Mail className="h-5 w-5 text-gray-600 mr-3" />
+                <Mail className="h-5 w-5 text-gray-800 mr-3" />
                 <div>
                   <p className="font-medium text-gray-900">Email</p>
-                  <p className="text-sm text-gray-600">Send alerts to your email address</p>
+                  <p className="text-sm text-gray-800">Send alerts to your email address</p>
                 </div>
               </div>
               <button
@@ -134,10 +134,10 @@ export function NotificationSettings({ sessionId, onClose }: NotificationSetting
             {/* SMS */}
             <div className="flex items-center justify-between p-3 border rounded-lg">
               <div className="flex items-center">
-                <MessageSquare className="h-5 w-5 text-gray-600 mr-3" />
+                <MessageSquare className="h-5 w-5 text-gray-800 mr-3" />
                 <div>
                   <p className="font-medium text-gray-900">SMS Text Messages</p>
-                  <p className="text-sm text-gray-600">Send alerts to your phone number</p>
+                  <p className="text-sm text-gray-800">Send alerts to your phone number</p>
                 </div>
               </div>
               <button
@@ -157,10 +157,10 @@ export function NotificationSettings({ sessionId, onClose }: NotificationSetting
             {/* Push Notifications */}
             <div className="flex items-center justify-between p-3 border rounded-lg">
               <div className="flex items-center">
-                <Smartphone className="h-5 w-5 text-gray-600 mr-3" />
+                <Smartphone className="h-5 w-5 text-gray-800 mr-3" />
                 <div>
                   <p className="font-medium text-gray-900">Push Notifications</p>
-                  <p className="text-sm text-gray-600">Browser and mobile app notifications</p>
+                  <p className="text-sm text-gray-800">Browser and mobile app notifications</p>
                 </div>
               </div>
               <button
@@ -185,7 +185,7 @@ export function NotificationSettings({ sessionId, onClose }: NotificationSetting
             <Clock className="h-5 w-5 mr-2" />
             Warning Times
           </h4>
-          <p className="text-sm text-gray-600 mb-3">
+          <p className="text-sm text-gray-800 mb-3">
             When should we alert you before your session expires?
           </p>
           <div className="grid grid-cols-3 md:grid-cols-5 gap-2">
@@ -234,11 +234,11 @@ export function NotificationSettings({ sessionId, onClose }: NotificationSetting
               </div>
               <div>
                 <h5 className="font-medium text-gray-900">Parking Session Expiring Soon</h5>
-                <p className="text-sm text-gray-600 mt-1">
+                <p className="text-sm text-gray-800 mt-1">
                   Your parking session in Zone ST-101 expires in 15 minutes.
                   <span className="text-blue-600 font-medium cursor-pointer"> Extend now →</span>
                 </p>
-                <p className="text-xs text-gray-500 mt-1">2 minutes ago</p>
+                <p className="text-xs text-gray-700 mt-1">2 minutes ago</p>
               </div>
             </div>
           </div>
@@ -274,7 +274,7 @@ export function NotificationSettings({ sessionId, onClose }: NotificationSetting
         </div>
 
         {/* Additional Info */}
-        <div className="text-xs text-gray-500 text-center">
+        <div className="text-xs text-gray-700 text-center">
           <p>
             Notification preferences are saved per session and will be applied to future parking sessions.
             You can update these settings anytime from your account preferences.

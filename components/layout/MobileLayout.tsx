@@ -89,7 +89,7 @@ export function MobileLayout({ children }: MobileLayoutProps) {
                 Stamford Parking
               </h1>
               {session?.user?.name && (
-                <p className="text-xs text-gray-500 truncate max-w-[120px]">
+                <p className="text-xs text-gray-700 truncate max-w-[120px]">
                   {session.user.name}
                 </p>
               )}
@@ -336,7 +336,7 @@ export function MobileInput({
         </p>
       )}
       {helperText && !error && (
-        <p className="mt-1 text-sm text-gray-500">
+        <p className="mt-1 text-sm text-gray-700">
           {helperText}
         </p>
       )}

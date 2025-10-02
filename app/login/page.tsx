@@ -142,7 +142,7 @@ function LoginForm() {
               type="checkbox"
               className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
             />
-            <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
+            <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
               Remember me
             </label>
           </div>
@@ -173,14 +173,14 @@ function LoginForm() {
               <div className="w-full border-t border-gray-300" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-gray-500">New to Stamford Parking?</span>
+              <span className="px-2 bg-white text-gray-800">New to Stamford Parking?</span>
             </div>
           </div>
 
           <div className="mt-6">
             <Link
               href="/signup"
-              className="w-full flex justify-center py-3 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+              className="w-full flex justify-center py-3 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
             >
               Create new account
             </Link>
@@ -205,11 +205,19 @@ function LoginForm() {
 export default function LoginPage() {
   return (
     <Suspense fallback={
+<<<<<<< HEAD
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center p-4">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
         </div>
       </div>
+=======
+      <AuthCard title="Welcome back" subtitle="Loading...">
+        <div className="flex items-center justify-center py-8">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+        </div>
+      </AuthCard>
+>>>>>>> cf1ff6d (Fix text contrast issues across entire application)
     }>
       <LoginForm />
     </Suspense>

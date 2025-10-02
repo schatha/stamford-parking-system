@@ -119,7 +119,7 @@ export default function SignUpPage() {
           <h2 className="mt-6 text-3xl font-bold text-gray-900">
             Create your account
           </h2>
-          <p className="mt-2 text-sm text-gray-600">
+          <p className="mt-2 text-sm text-gray-800">
             Sign up for the Stamford Parking System
           </p>
         </div>
@@ -200,7 +200,7 @@ export default function SignUpPage() {
             </form>
 
             <div className="mt-6 text-center">
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-800">
                 Already have an account?{' '}
                 <Link href="/auth/signin" className="text-blue-600 hover:text-blue-500">
                   Sign in here

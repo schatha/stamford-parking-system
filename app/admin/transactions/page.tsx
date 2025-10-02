@@ -365,7 +365,7 @@ export default function AdminTransactionsPage() {
         <div className="flex items-center justify-center h-64">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <p className="text-gray-600">Loading transactions...</p>
+            <p className="text-gray-800">Loading transactions...</p>
           </div>
         </div>
       </AdminLayout>
@@ -379,7 +379,7 @@ export default function AdminTransactionsPage() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Transaction History</h1>
-            <p className="text-gray-600 mt-2">
+            <p className="text-gray-800 mt-2">
               Last updated: {lastUpdated.toLocaleString()} • {filteredTransactions.length} of {transactions.length} transactions
             </p>
           </div>
@@ -402,7 +402,7 @@ export default function AdminTransactionsPage() {
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-600">Total Revenue</p>
+                    <p className="text-sm font-medium text-gray-800">Total Revenue</p>
                     <p className="text-2xl font-bold text-green-600">{formatCurrency(revenueStats.totalGross)}</p>
                   </div>
                   <TrendingUp className="h-8 w-8 text-green-600" />
@@ -414,9 +414,9 @@ export default function AdminTransactionsPage() {
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-600">City Revenue</p>
+                    <p className="text-sm font-medium text-gray-800">City Revenue</p>
                     <p className="text-2xl font-bold text-blue-600">{formatCurrency(revenueStats.cityRevenue)}</p>
-                    <p className="text-xs text-gray-500">After processing fees</p>
+                    <p className="text-xs text-gray-700">After processing fees</p>
                   </div>
                   <DollarSign className="h-8 w-8 text-blue-600" />
                 </div>
@@ -427,9 +427,9 @@ export default function AdminTransactionsPage() {
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-600">Processing Fees</p>
+                    <p className="text-sm font-medium text-gray-800">Processing Fees</p>
                     <p className="text-2xl font-bold text-orange-600">{formatCurrency(revenueStats.processingFees)}</p>
-                    <p className="text-xs text-gray-500">Payment processing</p>
+                    <p className="text-xs text-gray-700">Payment processing</p>
                   </div>
                   <CreditCard className="h-8 w-8 text-orange-600" />
                 </div>
@@ -440,9 +440,9 @@ export default function AdminTransactionsPage() {
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-600">Transactions</p>
+                    <p className="text-sm font-medium text-gray-800">Transactions</p>
                     <p className="text-2xl font-bold text-purple-600">{revenueStats.transactionCount}</p>
-                    <p className="text-xs text-gray-500">Avg: {formatCurrency(revenueStats.avgTransaction)}</p>
+                    <p className="text-xs text-gray-700">Avg: {formatCurrency(revenueStats.avgTransaction)}</p>
                   </div>
                   <TrendingUp className="h-8 w-8 text-purple-600" />
                 </div>
@@ -457,7 +457,7 @@ export default function AdminTransactionsPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
               {/* Search */}
               <div className="relative md:col-span-2">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600" />
                 <input
                   type="text"
                   placeholder="Search transactions..."
@@ -523,22 +523,22 @@ export default function AdminTransactionsPage() {
               <table className="w-full">
                 <thead className="bg-gray-50 border-b border-gray-200">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                       Transaction
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                       Vehicle & User
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                       Zone & Duration
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                       Revenue Breakdown
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                       Payment
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                       Status
                     </th>
                   </tr>
@@ -549,7 +549,7 @@ export default function AdminTransactionsPage() {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div>
                           <div className="text-sm font-medium text-gray-900">{transaction.id}</div>
-                          <div className="text-sm text-gray-500">
+                          <div className="text-sm text-gray-700">
                             {formatDate(transaction.transactionDate)}
                           </div>
                         </div>
@@ -559,7 +559,7 @@ export default function AdminTransactionsPage() {
                           <div className="text-sm font-medium text-gray-900">
                             {formatLicensePlate(transaction.licensePlate, transaction.vehicleState)}
                           </div>
-                          <div className="text-sm text-gray-500">{transaction.userEmail}</div>
+                          <div className="text-sm text-gray-700">{transaction.userEmail}</div>
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
@@ -567,7 +567,7 @@ export default function AdminTransactionsPage() {
                           <div className="text-sm font-medium text-gray-900">
                             {transaction.zoneNumber} - {transaction.zoneName}
                           </div>
-                          <div className="text-sm text-gray-500">
+                          <div className="text-sm text-gray-700">
                             {Math.floor(transaction.duration / 60)}h {transaction.duration % 60}m
                             @ {formatCurrency(transaction.ratePerHour)}/hr
                           </div>
@@ -606,8 +606,8 @@ export default function AdminTransactionsPage() {
 
               {filteredTransactions.length === 0 && (
                 <div className="text-center py-12">
-                  <DollarSign className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-600">No transactions found matching your filters</p>
+                  <DollarSign className="h-12 w-12 text-gray-600 mx-auto mb-4" />
+                  <p className="text-gray-800">No transactions found matching your filters</p>
                 </div>
               )}
             </div>

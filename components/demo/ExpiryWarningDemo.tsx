@@ -189,15 +189,15 @@ export function ExpiryWarningDemo({ onClose }: ExpiryWarningDemoProps) {
                         />
                         <div>
                           <h4 className="font-medium text-sm">Stamford Parking</h4>
-                          <p className="text-sm text-gray-700 mt-1">
+                          <p className="text-sm !text-black font-medium mt-1">
                             Your parking session expires in {Math.ceil((mockSession.scheduledEndTime.getTime() - currentTime.getTime()) / (1000 * 60))} minutes
                           </p>
-                          <p className="text-xs text-gray-500 mt-1">Just now</p>
+                          <p className="text-xs !text-black font-medium mt-1">Just now</p>
                         </div>
                       </div>
                       <button
                         onClick={handleDismissNotification}
-                        className="text-gray-400 hover:text-gray-600 ml-2"
+                        className="text-gray-600 hover:!text-black font-medium ml-2"
                       >
                         <X className="h-4 w-4" />
                       </button>
@@ -224,7 +224,7 @@ export function ExpiryWarningDemo({ onClose }: ExpiryWarningDemoProps) {
                   <div className="flex items-center mb-1">
                     <div className="w-4 h-4 bg-blue-500 rounded mr-2"></div>
                     <span className="text-xs font-medium">Stamford Parking</span>
-                    <span className="text-xs text-gray-400 ml-auto">now</span>
+                    <span className="text-xs text-gray-600 ml-auto">now</span>
                   </div>
                   <p className="text-sm">
                     Session expiring in {Math.ceil((mockSession.scheduledEndTime.getTime() - currentTime.getTime()) / (1000 * 60))} min
@@ -252,7 +252,7 @@ export function ExpiryWarningDemo({ onClose }: ExpiryWarningDemoProps) {
                 <div className="bg-white border rounded-lg p-4 max-w-md">
                   <div className="border-b pb-2 mb-3">
                     <h4 className="font-semibold">Parking Session Expiring Soon</h4>
-                    <p className="text-sm text-gray-600">from: noreply@stamfordparking.com</p>
+                    <p className="text-sm !text-black font-medium">from: noreply@stamfordparking.com</p>
                   </div>
                   <div className="space-y-2 text-sm">
                     <p>Hi there,</p>
@@ -286,17 +286,17 @@ export function ExpiryWarningDemo({ onClose }: ExpiryWarningDemoProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
               <div className="flex items-center">
-                <Car className="h-5 w-5 text-gray-600 mr-3" />
+                <Car className="h-5 w-5 !text-black font-medium mr-3" />
                 <div>
                   <p className="font-medium text-gray-900">
                     {formatLicensePlate(mockSession.vehicle.licensePlate, mockSession.vehicle.state)}
                   </p>
-                  <p className="text-sm text-gray-600">{mockSession.vehicle.nickname}</p>
+                  <p className="text-sm !text-black font-medium">{mockSession.vehicle.nickname}</p>
                 </div>
               </div>
 
               <div className="flex items-center">
-                <Clock className="h-5 w-5 text-gray-600 mr-3" />
+                <Clock className="h-5 w-5 !text-black font-medium mr-3" />
                 <div>
                   <p className="font-medium text-gray-900">Time Remaining</p>
                   <CountdownTimer
@@ -310,8 +310,8 @@ export function ExpiryWarningDemo({ onClose }: ExpiryWarningDemoProps) {
             <div className="space-y-4">
               <div>
                 <p className="font-medium text-gray-900">Zone {mockSession.zone.zoneNumber}</p>
-                <p className="text-sm text-gray-600">{mockSession.zone.zoneName}</p>
-                <p className="text-xs text-gray-500">{mockSession.zone.address}</p>
+                <p className="text-sm !text-black font-medium">{mockSession.zone.zoneName}</p>
+                <p className="text-xs !text-black font-medium">{mockSession.zone.address}</p>
               </div>
 
               <div>
@@ -355,7 +355,7 @@ export function ExpiryWarningDemo({ onClose }: ExpiryWarningDemoProps) {
       <Card className="bg-gray-50">
         <CardContent className="p-4">
           <h4 className="font-medium text-gray-900 mb-2">Demo Instructions</h4>
-          <div className="text-sm text-gray-700 space-y-2">
+          <div className="text-sm !text-black font-medium space-y-2">
             <p>
               <strong>1. Automatic Warning:</strong> When a session has 15 minutes or less remaining,
               notifications automatically appear across all enabled channels.
