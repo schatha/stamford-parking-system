@@ -187,7 +187,7 @@ export default function PaymentPage({ params }: PaymentPageProps) {
       <div className="bg-white shadow-sm">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center">
-            <Link href="/parking/start" className="mr-4">
+            <Link href="/dashboard" className="mr-4">
               <Button variant="outline" size="sm">
                 <ArrowLeft className="h-4 w-4 mr-1" />
                 Back
