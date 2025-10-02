@@ -147,7 +147,7 @@ function StartParkingContent() {
         <div className="container mx-auto px-4 py-8">
           <Card>
             <CardContent className="text-center p-8">
-              <Car className="h-12 w-12 text-gray-600 mx-auto mb-4" />
+              <Car className="h-12 w-12 !text-black mx-auto mb-4" />
               <h3 className="text-lg font-semibold text-gray-900 mb-2">No Vehicles Found</h3>
               <p className="text-gray-800 mb-4">
                 You need to add a vehicle before you can start parking.

@@ -94,7 +94,7 @@ export default function ParkingZonesPage() {
       <div className="container mx-auto px-4 py-8">
         <div className="mb-6">
           <div className="relative max-w-md">
-            <Search className="absolute left-3 top-3 h-5 w-5 text-gray-600" />
+            <Search className="absolute left-3 top-3 h-5 w-5 !text-black" />
             <input
               type="text"
               value={searchTerm}
@@ -108,7 +108,7 @@ export default function ParkingZonesPage() {
         {filteredZones.length === 0 ? (
           <Card>
             <CardContent className="text-center p-8">
-              <MapPin className="h-12 w-12 text-gray-600 mx-auto mb-4" />
+              <MapPin className="h-12 w-12 !text-black mx-auto mb-4" />
               <p className="text-gray-800">
                 {searchTerm ? 'No zones found matching your search.' : 'No parking zones available.'}
               </p>

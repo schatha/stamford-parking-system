@@ -164,7 +164,7 @@ export default function PaymentPage({ params }: PaymentPageProps) {
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="text-center">
-          <div className="text-gray-400 mb-4">
+          <div className="!text-black font-medium mb-4">
             <Shield className="h-12 w-12 mx-auto" />
           </div>
           <p className="text-gray-800">Payment not available</p>
