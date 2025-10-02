@@ -176,18 +176,12 @@ export async function POST(
         },
       });
 
-      // Log the extension activity
-      await prisma.sessionActivity.create({
-        data: {
-          sessionId: parkingSession.id,
-          type: 'EXTENDED',
-          description: `Session extended by ${additionalHours} hour(s)`,
-          metadata: {
-            additionalHours,
-            extensionCost: extensionCost.totalCost,
-            newEndTime: newEndTime.toISOString(),
-          },
-        },
+      // Log the extension activity (removed sessionActivity table dependency)
+      console.log('Session extended:', {
+        sessionId: parkingSession.id,
+        additionalHours,
+        extensionCost: extensionCost.totalCost,
+        newEndTime: newEndTime.toISOString(),
       });
 
       return NextResponse.json({

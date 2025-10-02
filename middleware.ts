@@ -69,6 +69,7 @@ export default withAuth(
           pathname.startsWith('/signup') ||
           pathname.startsWith('/api/auth/') ||
           pathname.startsWith('/api/zones') ||
+          pathname.startsWith('/api/health') ||
           pathname.startsWith('/api/payments/webhook') ||
           pathname.startsWith('/terms') ||
           pathname.startsWith('/privacy') ||

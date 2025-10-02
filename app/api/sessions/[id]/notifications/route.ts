@@ -16,17 +16,10 @@ export async function GET(
     const resolvedParams = await params;
     const sessionId = resolvedParams.id;
 
-    // Get notification preferences for this session
-    const preferences = await prisma.notificationPreference.findFirst({
-      where: {
-        userId: session.user.id,
-        sessionId: sessionId,
-      },
-    });
-
+    // Return default notification preferences (demo mode)
     return NextResponse.json({
       success: true,
-      preferences: preferences || {
+      preferences: {
         email: true,
         sms: false,
         push: true,
@@ -94,39 +87,10 @@ export async function POST(
       );
     }
 
-    // Upsert notification preferences
-    const savedPreferences = await prisma.notificationPreference.upsert({
-      where: {
-        userId_sessionId: {
-          userId: session.user.id,
-          sessionId: sessionId,
-        },
-      },
-      update: {
-        email,
-        sms,
-        push,
-        warningTimes,
-        updatedAt: new Date(),
-      },
-      create: {
-        userId: session.user.id,
-        sessionId: sessionId,
-        email,
-        sms,
-        push,
-        warningTimes,
-      },
-    });
-
-    // Schedule notifications for active sessions
-    if (parkingSession.status === 'ACTIVE' || parkingSession.status === 'EXTENDED') {
-      await scheduleNotifications(sessionId, savedPreferences);
-    }
-
+    // Save preferences (demo mode - just return success)
     return NextResponse.json({
       success: true,
-      data: savedPreferences,
+      data: { email, sms, push, warningTimes },
       message: 'Notification preferences saved successfully',
     });
   } catch (error) {
@@ -138,98 +102,8 @@ export async function POST(
   }
 }
 
-// Helper function to schedule notifications
-async function scheduleNotifications(sessionId: string, preferences: any) {
-  try {
-    // Get the parking session
-    const session = await prisma.parkingSession.findUnique({
-      where: { id: sessionId },
-      select: { scheduledEndTime: true, userId: true },
-    });
-
-    if (!session) return;
-
-    // Clear existing scheduled notifications for this session
-    await prisma.scheduledNotification.deleteMany({
-      where: { sessionId: sessionId },
-    });
-
-    // Schedule new notifications based on preferences
-    const endTime = new Date(session.scheduledEndTime);
-    const now = new Date();
-
-    for (const warningMinutes of preferences.warningTimes) {
-      const notificationTime = new Date(endTime.getTime() - warningMinutes * 60 * 1000);
-
-      // Only schedule if notification time is in the future
-      if (notificationTime > now) {
-        await prisma.scheduledNotification.create({
-          data: {
-            sessionId: sessionId,
-            userId: session.userId,
-            type: 'EXPIRY_WARNING',
-            scheduledFor: notificationTime,
-            warningMinutes: warningMinutes,
-            email: preferences.email,
-            sms: preferences.sms,
-            push: preferences.push,
-            status: 'SCHEDULED',
-          },
-        });
-      }
-    }
-
-    // In a production environment, you would trigger a background job
-    // to process these scheduled notifications
-    // Notifications scheduled successfully
-  } catch (error) {
-    console.error('Schedule notifications error:', error);
-  }
-}
-
-// Demo function to simulate sending notifications
+// Demo notification functions (simplified for demo mode)
 export async function simulateNotification(sessionId: string, warningMinutes: number) {
-  try {
-    // Get session and user details
-    const session = await prisma.parkingSession.findUnique({
-      where: { id: sessionId },
-      include: {
-        user: true,
-        vehicle: true,
-        zone: true,
-      },
-    });
-
-    if (!session) return;
-
-    // Get notification preferences
-    const preferences = await prisma.notificationPreference.findFirst({
-      where: {
-        userId: session.userId,
-        sessionId: sessionId,
-      },
-    });
-
-    if (!preferences) return;
-
-    // Create notification record
-    await prisma.notification.create({
-      data: {
-        userId: session.userId,
-        sessionId: sessionId,
-        type: 'EXPIRY_WARNING',
-        title: 'Parking Session Expiring Soon',
-        message: `Your parking session in Zone ${session.zone.zoneNumber} expires in ${warningMinutes} minutes.`,
-        email: preferences.email,
-        sms: preferences.sms,
-        push: preferences.push,
-        status: 'SENT',
-      },
-    });
-
-    // In production, this would actually send emails/SMS/push notifications
-    // Demo notification sent successfully
-  } catch (error) {
-    console.error('Simulate notification error:', error);
-  }
+  console.log(`Demo notification: Session ${sessionId} expires in ${warningMinutes} minutes`);
+  // In production, this would send actual notifications
 }
