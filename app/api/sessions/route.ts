@@ -10,6 +10,7 @@ export async function GET(request: NextRequest) {
     const filters = {
       status: searchParams.get('status') || undefined,
       zoneId: searchParams.get('zoneId') || undefined,
+      vehicleId: searchParams.get('vehicleId') || undefined,
       limit: parseInt(searchParams.get('limit') || '50'),
       page: parseInt(searchParams.get('page') || '1'),
     };

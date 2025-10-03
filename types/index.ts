@@ -160,6 +160,7 @@ export type PaginatedResponse<T> = {
 export type SessionFilters = {
   status?: string;
   zoneId?: string;
+  vehicleId?: string;
   licensePlate?: string;
   dateFrom?: string;
   dateTo?: string;

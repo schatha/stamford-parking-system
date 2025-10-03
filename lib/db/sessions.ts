@@ -18,6 +18,10 @@ export async function getUserSessions(
     where.zoneId = filters.zoneId;
   }
 
+  if (filters?.vehicleId) {
+    where.vehicleId = filters.vehicleId;
+  }
+
   return prisma.parkingSession.findMany({
     where,
     include: {

@@ -71,29 +71,48 @@ function PaymentFormInner({
     setError('');
 
     try {
-      // Create parking session first
-      const sessionResponse = await fetch('/api/sessions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          vehicleId: vehicle.id,
-          zoneId: zone.id,
-          durationHours,
-        }),
-      });
+      // Check for existing pending session for this vehicle
+      let session;
+      const existingSessionResponse = await fetch(`/api/sessions?vehicleId=${vehicle.id}&status=PENDING&limit=1`);
 
-      console.log('Session response status:', sessionResponse.status);
+      if (existingSessionResponse.ok) {
+        const existingData = await existingSessionResponse.json();
+        const existingSessions = existingData.data || [];
 
-      if (!sessionResponse.ok) {
-        const sessionData = await sessionResponse.json();
-        console.error('Session creation failed:', sessionData);
-        throw new Error(sessionData.error || 'Failed to create parking session');
+        if (existingSessions.length > 0) {
+          // Use existing pending session
+          session = existingSessions[0];
+          console.log('Using existing pending session:', session.id);
+        }
       }
 
-      const { data: session } = await sessionResponse.json();
-      console.log('Session created:', session.id);
+      // If no existing session, create a new one
+      if (!session) {
+        const sessionResponse = await fetch('/api/sessions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            vehicleId: vehicle.id,
+            zoneId: zone.id,
+            durationHours,
+          }),
+        });
+
+        console.log('Session response status:', sessionResponse.status);
+
+        if (!sessionResponse.ok) {
+          const sessionData = await sessionResponse.json();
+          console.error('Session creation failed:', sessionData);
+          throw new Error(sessionData.error || 'Failed to create parking session');
+        }
+
+        const sessionData = await sessionResponse.json();
+        session = sessionData.data;
+        console.log('Session created:', session.id);
+      }
+
       setSessionCreated(true);
 
       // In demo mode, skip Stripe payment and directly confirm session
