@@ -229,13 +229,13 @@ export function ExpiryWarningDemo({ onClose }: ExpiryWarningDemoProps) {
                 <div className="bg-gray-900 text-white p-3 rounded-lg max-w-xs">
                   <div className="flex items-center mb-1">
                     <div className="w-4 h-4 bg-blue-500 rounded mr-2"></div>
-                    <span className="text-xs font-medium">Stamford Parking</span>
-                    <span className="text-xs text-gray-600 ml-auto">now</span>
+                    <span className="text-xs font-medium !text-white">Stamford Parking</span>
+                    <span className="text-xs !text-gray-400 ml-auto">now</span>
                   </div>
-                  <p className="text-sm">
+                  <p className="text-sm !text-white">
                     Session expiring in {Math.ceil((mockSession.scheduledEndTime.getTime() - currentTime.getTime()) / (1000 * 60))} min
                   </p>
-                  <p className="text-xs text-gray-300 mt-1">
+                  <p className="text-xs !text-gray-300 mt-1">
                     Zone {mockSession.zone.zoneNumber} • {formatLicensePlate(mockSession.vehicle.licensePlate, mockSession.vehicle.state)}
                   </p>
                 </div>
