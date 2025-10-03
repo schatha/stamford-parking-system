@@ -107,8 +107,12 @@ function PaymentFormInner({
           }),
         });
 
+        console.log('Confirm response status:', confirmResponse.status);
+
         if (!confirmResponse.ok) {
-          throw new Error('Failed to confirm parking session');
+          const confirmData = await confirmResponse.json();
+          console.error('Session confirmation failed:', confirmData);
+          throw new Error(confirmData.error || 'Failed to confirm parking session');
         }
 
         onSuccess(session.id);

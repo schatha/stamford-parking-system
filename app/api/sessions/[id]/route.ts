@@ -57,7 +57,10 @@ export async function POST(
 ) {
   try {
     const session = await getServerSession(authOptions);
+    console.log('POST /api/sessions/[id] - Session user:', session?.user?.id);
+
     if (!session?.user?.id) {
+      console.error('POST /api/sessions/[id] - No authentication');
       return NextResponse.json({ error: 'Authentication required' }, { status: 401 });
     }
 
@@ -65,7 +68,10 @@ export async function POST(
     const sessionId = resolvedParams.id;
     const { paymentIntentId } = await request.json();
 
+    console.log('POST /api/sessions/[id] - Session ID:', sessionId, 'Payment Intent:', paymentIntentId);
+
     if (!paymentIntentId) {
+      console.error('POST /api/sessions/[id] - Missing payment intent ID');
       return NextResponse.json(
         { error: 'Payment intent ID is required' },
         { status: 400 }
@@ -83,11 +89,15 @@ export async function POST(
     });
 
     if (!parkingSession) {
+      console.error('POST /api/sessions/[id] - Session not found:', sessionId);
       return NextResponse.json({ error: 'Session not found' }, { status: 404 });
     }
 
+    console.log('POST /api/sessions/[id] - Found session, user:', parkingSession.userId);
+
     // Verify ownership
     if (parkingSession.userId !== session.user.id) {
+      console.error('POST /api/sessions/[id] - Access denied. Session user:', parkingSession.userId, 'Logged in user:', session.user.id);
       return NextResponse.json({ error: 'Access denied' }, { status: 403 });
     }
 
