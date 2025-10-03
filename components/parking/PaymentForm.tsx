@@ -46,6 +46,7 @@ function PaymentFormInner({
   const [isProcessing, setIsProcessing] = useState(false);
   const [error, setError] = useState('');
   const [cardComplete, setCardComplete] = useState(false);
+  const [sessionCreated, setSessionCreated] = useState(false);
 
   const rate = getRateForLocationType(zone.locationType);
   const costs = calculateParkingCost(rate, durationHours);
@@ -58,6 +59,11 @@ function PaymentFormInner({
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+
+    if (sessionCreated) {
+      console.log('Session already created, ignoring duplicate submit');
+      return;
+    }
 
     console.log('Payment form submitted', { isDemoMode, vehicle: vehicle.id, zone: zone.id, durationHours });
 
@@ -88,6 +94,7 @@ function PaymentFormInner({
 
       const { data: session } = await sessionResponse.json();
       console.log('Session created:', session.id);
+      setSessionCreated(true);
 
       // In demo mode, skip Stripe payment and directly confirm session
       if (isDemoMode) {

@@ -89,12 +89,12 @@ export async function createParkingSession(
     if (activeSession.status === 'ACTIVE' || activeSession.status === 'EXTENDED') {
       throw new Error('This vehicle already has an active parking session. Please end the current session before starting a new one.');
     } else if (activeSession.status === 'PENDING') {
-      // Check if pending session is recent (within last 10 minutes) or old/abandoned
-      const tenMinutesAgo = new Date(Date.now() - 10 * 60 * 1000);
-      if (activeSession.createdAt > tenMinutesAgo) {
+      // Check if pending session is recent (within last 2 minutes) or old/abandoned
+      const twoMinutesAgo = new Date(Date.now() - 2 * 60 * 1000);
+      if (activeSession.createdAt > twoMinutesAgo) {
         throw new Error('This vehicle has a pending payment. Please complete or cancel the current session before starting a new one.');
       }
-      // If pending session is older than 10 minutes, automatically cancel it
+      // If pending session is older than 2 minutes, automatically cancel it
       await prisma.parkingSession.update({
         where: { id: activeSession.id },
         data: { status: 'CANCELLED' },
