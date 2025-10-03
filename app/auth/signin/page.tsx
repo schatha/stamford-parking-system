@@ -54,16 +54,18 @@ export default function SignInPage() {
       const result = await signIn('credentials', {
         email: formData.email,
         password: formData.password,
-        callbackUrl: '/dashboard',
+        redirect: false,
       });
 
       if (result?.error) {
         setErrors({ form: 'Invalid email or password' });
-        setIsLoading(false);
+      } else if (result?.ok) {
+        // Force page reload to get fresh session
+        window.location.href = '/dashboard';
       }
-      // If successful, NextAuth will redirect automatically
     } catch (error) {
       setErrors({ form: 'An error occurred. Please try again.' });
+    } finally {
       setIsLoading(false);
     }
   };
