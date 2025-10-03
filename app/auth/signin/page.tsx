@@ -62,9 +62,9 @@ export default function SignInPage() {
       } else {
         const session = await getSession();
         if (session?.user?.role === 'ADMIN') {
-          router.push('/admin');
+          window.location.href = '/admin';
         } else {
-          router.push('/dashboard');
+          window.location.href = '/dashboard';
         }
       }
     } catch (error) {
