@@ -92,11 +92,15 @@ export async function POST(
     }
 
     // Update session to active status
+    const actualStartTime = new Date();
+    const scheduledEndTime = new Date(actualStartTime.getTime() + parkingSession.durationHours * 60 * 60 * 1000);
+
     const updatedSession = await prisma.parkingSession.update({
       where: { id: sessionId },
       data: {
         status: 'ACTIVE',
-        startTime: new Date(),
+        startTime: actualStartTime,
+        scheduledEndTime: scheduledEndTime,
         stripePaymentIntentId: paymentIntentId,
         updatedAt: new Date(),
       },
