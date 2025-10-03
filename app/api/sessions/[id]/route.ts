@@ -105,6 +105,8 @@ export async function POST(
     const actualStartTime = new Date();
     const scheduledEndTime = new Date(actualStartTime.getTime() + parkingSession.durationHours * 60 * 60 * 1000);
 
+    console.log('POST /api/sessions/[id] - Updating session to ACTIVE');
+
     const updatedSession = await prisma.parkingSession.update({
       where: { id: sessionId },
       data: {
@@ -122,6 +124,8 @@ export async function POST(
       },
     });
 
+    console.log('POST /api/sessions/[id] - Session updated, creating transaction');
+
     // Create transaction record
     await prisma.transaction.create({
       data: {
@@ -133,6 +137,8 @@ export async function POST(
       },
     });
 
+    console.log('POST /api/sessions/[id] - Success!');
+
     return NextResponse.json({
       success: true,
       data: updatedSession,
@@ -140,8 +146,10 @@ export async function POST(
 
   } catch (error) {
     console.error('POST /api/sessions/[id] error:', error);
+    console.error('Error details:', error instanceof Error ? error.message : 'Unknown error');
+    console.error('Error stack:', error instanceof Error ? error.stack : 'No stack');
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: error instanceof Error ? error.message : 'Internal server error' },
       { status: 500 }
     );
   }
