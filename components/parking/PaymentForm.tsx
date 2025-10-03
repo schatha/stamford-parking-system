@@ -59,6 +59,8 @@ function PaymentFormInner({
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
+    console.log('Payment form submitted', { isDemoMode, vehicle: vehicle.id, zone: zone.id, durationHours });
+
     setIsProcessing(true);
     setError('');
 
@@ -76,12 +78,16 @@ function PaymentFormInner({
         }),
       });
 
+      console.log('Session response status:', sessionResponse.status);
+
       if (!sessionResponse.ok) {
         const sessionData = await sessionResponse.json();
+        console.error('Session creation failed:', sessionData);
         throw new Error(sessionData.error || 'Failed to create parking session');
       }
 
       const { data: session } = await sessionResponse.json();
+      console.log('Session created:', session.id);
 
       // In demo mode, skip Stripe payment and directly confirm session
       if (isDemoMode) {
