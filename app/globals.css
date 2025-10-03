@@ -26,6 +26,20 @@ body {
   line-height: 1.6;
 }
 
+/* Set default text color to dark for all elements */
+* {
+  color: inherit;
+}
+
+/* Ensure body and all text defaults to very dark/black */
+body,
+p,
+span,
+div,
+label {
+  color: #111827; /* Tailwind gray-900 - very dark, almost black */
+}
+
 /* Screen reader only class */
 .sr-only {
   position: absolute;
@@ -50,6 +64,14 @@ body {
   :root {
     --background: #ffffff;
     --foreground: #000000;
+  }
+
+  body,
+  p,
+  span,
+  div,
+  label {
+    color: #000000 !important; /* Pure black for high contrast */
   }
 
   .bg-blue-600 { background-color: #000080 !important; }
