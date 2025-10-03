@@ -113,7 +113,6 @@ export async function POST(
         status: 'ACTIVE',
         startTime: actualStartTime,
         scheduledEndTime: scheduledEndTime,
-        stripePaymentIntentId: paymentIntentId,
         updatedAt: new Date(),
       },
       include: {
