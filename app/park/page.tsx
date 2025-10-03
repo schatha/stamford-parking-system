@@ -296,7 +296,7 @@ function ParkPageContent() {
                       <p className="text-sm text-gray-800 font-medium">
                         {formData.zone.zoneName}
                       </p>
-                      <p className="text-xs text-gray-700">
+                      <p className="text-xs text-gray-900">
                         {formData.zone.address}
                       </p>
                     </div>
@@ -310,7 +310,7 @@ function ParkPageContent() {
                         {formatLicensePlate(formData.vehicle.licensePlate, formData.vehicle.state)}
                       </p>
                       {formData.vehicle.nickname && (
-                        <p className="text-xs text-gray-700">
+                        <p className="text-xs text-gray-900">
                           {formData.vehicle.nickname}
                         </p>
                       )}

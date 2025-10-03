@@ -275,7 +275,7 @@ function PaymentFormInner({
             )}
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-900 mb-2">
                 Card Information
               </label>
               <div className="border border-gray-300 rounded-lg p-3 bg-white">
@@ -295,7 +295,7 @@ function PaymentFormInner({
 
             {/* Payment Method Options */}
             <div className="mt-4">
-              <div className="flex items-center justify-center space-x-4 text-sm text-gray-700">
+              <div className="flex items-center justify-center space-x-4 text-sm text-gray-900">
                 <span>Secure payment with</span>
                 <div className="flex items-center space-x-2">
                   <div className="w-10 h-6 bg-black rounded flex items-center justify-center text-white text-xs font-bold">
@@ -350,7 +350,7 @@ function PaymentFormInner({
             </Button>
 
             <div className="text-center">
-              <p className="text-xs text-gray-700">
+              <p className="text-xs text-gray-900">
                 By completing this purchase, you agree to the{' '}
                 <a href="/terms" className="text-blue-600 hover:underline">
                   Terms of Service
@@ -371,7 +371,7 @@ function PaymentFormInner({
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2">
-                <span className="text-sm font-medium text-gray-700">Accepted:</span>
+                <span className="text-sm font-medium text-gray-900">Accepted:</span>
                 <div className="flex space-x-1">
                   <div className="w-8 h-5 bg-blue-600 rounded text-white text-xs flex items-center justify-center font-bold">
                     VISA
@@ -385,7 +385,7 @@ function PaymentFormInner({
                 </div>
               </div>
             </div>
-            <div className="flex items-center text-xs text-gray-700">
+            <div className="flex items-center text-xs text-gray-900">
               <Lock className="h-3 w-3 mr-1" />
               <span>256-bit SSL encrypted</span>
             </div>

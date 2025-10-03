@@ -30,7 +30,7 @@ export function CostCalculator({
             {formatCurrency(costs.totalCost)}
           </span>
         </div>
-        <p className="text-xs text-gray-700">
+        <p className="text-xs text-gray-900">
           {durationHours === 0.5 ? '30 minutes' :
            durationHours === 1 ? '1 hour' :
            `${durationHours} hours`} at {formatCurrency(rate)}/hr
@@ -50,9 +50,9 @@ export function CostCalculator({
         {/* Base Cost */}
         <div className="flex items-center justify-between text-sm">
           <div className="flex items-center">
-            <span className="text-gray-800">Parking</span>
+            <span className="text-gray-900 font-medium">Parking</span>
             <div className="group relative ml-1">
-              <Info className="h-3 w-3 text-gray-600 cursor-help" />
+              <Info className="h-3 w-3 text-gray-900 cursor-help" />
               <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10">
                 {durationHours === 0.5 ? '30 minutes' :
                  durationHours === 1 ? '1 hour' :
@@ -60,35 +60,35 @@ export function CostCalculator({
               </div>
             </div>
           </div>
-          <span className="font-medium">{formatCurrency(costs.baseCost)}</span>
+          <span className="font-semibold text-gray-900">{formatCurrency(costs.baseCost)}</span>
         </div>
 
         {/* Tax */}
         <div className="flex items-center justify-between text-sm">
           <div className="flex items-center">
-            <span className="text-gray-800">CT Sales Tax (6.35%)</span>
+            <span className="text-gray-900 font-medium">CT Sales Tax (6.35%)</span>
             <div className="group relative ml-1">
-              <Info className="h-3 w-3 text-gray-600 cursor-help" />
+              <Info className="h-3 w-3 text-gray-900 cursor-help" />
               <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10">
                 Connecticut state sales tax applied to parking fees
               </div>
             </div>
           </div>
-          <span className="font-medium">{formatCurrency(costs.taxAmount)}</span>
+          <span className="font-semibold text-gray-900">{formatCurrency(costs.taxAmount)}</span>
         </div>
 
         {/* Processing Fee */}
         <div className="flex items-center justify-between text-sm">
           <div className="flex items-center">
-            <span className="text-gray-800">Processing Fee</span>
+            <span className="text-gray-900 font-medium">Processing Fee</span>
             <div className="group relative ml-1">
-              <Info className="h-3 w-3 text-gray-600 cursor-help" />
+              <Info className="h-3 w-3 text-gray-900 cursor-help" />
               <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10">
                 Credit card processing fee (2.9% + $0.30)
               </div>
             </div>
           </div>
-          <span className="font-medium">{formatCurrency(costs.processingFee)}</span>
+          <span className="font-semibold text-gray-900">{formatCurrency(costs.processingFee)}</span>
         </div>
 
         {/* Divider */}
@@ -106,7 +106,7 @@ export function CostCalculator({
       <div className="pt-3 border-t border-gray-100">
         <div className="flex items-start space-x-2">
           <DollarSign className="h-4 w-4 text-blue-600 mt-0.5" />
-          <div className="text-xs text-gray-800">
+          <div className="text-xs text-gray-900">
             <p className="font-medium">
               {zone.locationType === 'STREET' || zone.locationType === 'METER'
                 ? 'On-street parking'
@@ -122,7 +122,7 @@ export function CostCalculator({
       {/* Revenue Split Information */}
       {showDetails && (
         <div className="pt-3 border-t border-gray-100">
-          <div className="text-xs text-gray-700">
+          <div className="text-xs text-gray-900">
             <p className="font-medium mb-1">Revenue Distribution:</p>
             <div className="space-y-1">
               <div className="flex justify-between">

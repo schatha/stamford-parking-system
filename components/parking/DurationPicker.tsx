@@ -157,11 +157,11 @@ export function DurationPicker({
                       {formatDuration(hours)}
                     </h3>
                     <p className={`text-sm font-medium ${
-                      isSelected ? 'text-blue-700' : 'text-gray-800'
+                      isSelected ? 'text-blue-700' : 'text-gray-900'
                     }`}>
                       {formatCurrency(cost.totalCost)}
                     </p>
-                    <p className="text-xs text-gray-700 mt-1">
+                    <p className="text-xs text-gray-900 mt-1">
                       Until {getEndTime(hours)}
                     </p>
                     {isSelected && (
@@ -187,8 +187,8 @@ export function DurationPicker({
                 <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-2">
                   <span className="text-xl font-bold text-gray-800">+</span>
                 </div>
-                <h3 className="font-semibold text-gray-700">Custom</h3>
-                <p className="text-sm text-gray-700">Enter hours</p>
+                <h3 className="font-semibold text-gray-900">Custom</h3>
+                <p className="text-sm text-gray-900">Enter hours</p>
               </CardContent>
             </Card>
           </div>
@@ -224,7 +224,7 @@ export function DurationPicker({
                   Cancel
                 </Button>
               </div>
-              <p className="text-xs text-gray-700 mt-2">
+              <p className="text-xs text-gray-900 mt-2">
                 Maximum {zone.maxDurationHours} hours for this zone
               </p>
             </div>
