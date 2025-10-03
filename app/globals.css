@@ -34,10 +34,16 @@ body {
 /* Ensure body and all text defaults to very dark/black */
 body,
 p,
-span,
-div,
+span:not(button span):not(button *),
+div:not(button div):not(button *),
 label {
   color: #111827; /* Tailwind gray-900 - very dark, almost black */
+}
+
+/* Ensure button text uses the button's defined colors */
+button,
+button * {
+  color: inherit;
 }
 
 /* Screen reader only class */
