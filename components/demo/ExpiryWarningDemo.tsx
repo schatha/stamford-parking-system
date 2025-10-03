@@ -216,34 +216,6 @@ export function ExpiryWarningDemo({ onClose }: ExpiryWarningDemoProps) {
         </Card>
       )}
 
-      {/* Mobile Push Notification (Simulated) */}
-      {showNotification && (
-        <Card className="border-l-4 border-l-orange-500">
-          <CardContent className="p-4">
-            <div className="flex items-start">
-              <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center mr-3">
-                <AlertTriangle className="h-5 w-5 text-white" />
-              </div>
-              <div className="flex-1">
-                <h3 className="font-semibold text-gray-900 mb-2">Mobile Push Notification</h3>
-                <div className="bg-gray-900 p-3 rounded-lg max-w-xs">
-                  <div className="flex items-center mb-1" style={{ color: '#ffffff' }}>
-                    <div className="w-4 h-4 bg-blue-500 rounded mr-2"></div>
-                    <span className="text-xs font-medium" style={{ color: '#ffffff !important' }}>Stamford Parking</span>
-                    <span className="text-xs ml-auto" style={{ color: '#9ca3af !important' }}>now</span>
-                  </div>
-                  <p className="text-sm" style={{ color: '#ffffff !important' }}>
-                    Session expiring in {Math.ceil((mockSession.scheduledEndTime.getTime() - currentTime.getTime()) / (1000 * 60))} min
-                  </p>
-                  <p className="text-xs mt-1" style={{ color: '#d1d5db !important' }}>
-                    Zone {mockSession.zone.zoneNumber} • {formatLicensePlate(mockSession.vehicle.licensePlate, mockSession.vehicle.state)}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      )}
 
       {/* Email Notification (Simulated) */}
       {showNotification && (
