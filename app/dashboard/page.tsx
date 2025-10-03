@@ -275,7 +275,7 @@ export default function DashboardPage() {
                           </p>
                         </div>
                         <div className="text-right">
-                          <p className="font-medium">
+                          <p className="font-semibold text-gray-900">
                             {formatCurrency(session.totalCost)}
                           </p>
                           <span className={`inline-block px-2 py-1 rounded text-xs font-medium ${
