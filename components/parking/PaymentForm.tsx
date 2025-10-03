@@ -310,53 +310,62 @@ function PaymentFormInner({
               </div>
             )}
 
-            <div>
-              <label className="block text-sm font-medium text-gray-900 mb-2">
-                Card Information
-              </label>
-              <div className="border border-gray-300 rounded-lg p-3 bg-white">
-                <CardElement
-                  options={cardElementOptions}
-                  onChange={(event) => {
-                    setCardComplete(event.complete);
-                    if (event.error) {
-                      setError(event.error.message);
-                    } else {
-                      setError('');
-                    }
-                  }}
-                />
-              </div>
-            </div>
-
-            {/* Payment Method Options */}
-            <div className="mt-4">
-              <div className="flex items-center justify-center space-x-4 text-sm text-gray-900">
-                <span>Secure payment with</span>
-                <div className="flex items-center space-x-2">
-                  <div className="w-10 h-6 bg-black rounded flex items-center justify-center text-white text-xs font-bold">
-                    Apple Pay
-                  </div>
-                  <div className="w-10 h-6 bg-blue-500 rounded flex items-center justify-center text-white text-xs font-bold">
-                    G Pay
-                  </div>
-                  <div className="text-xs text-gray-800">and all major cards</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Test Mode Notice */}
+            {/* Demo Mode Notice */}
             <div className="flex items-start space-x-2 p-3 bg-blue-50 rounded-lg border border-blue-200">
               <CheckCircle className="h-5 w-5 text-blue-600 mt-0.5" />
               <div className="text-sm text-blue-800">
-                <p className="font-medium">{isDemoMode ? 'Demo Mode' : 'Test Mode'}</p>
-                <p>
-                  {isDemoMode
-                    ? 'Click "Pay & Start Parking" to create a demo session. No payment processing required.'
-                    : 'Use card number 4242 4242 4242 4242 with any future expiry date and CVC for testing.'}
-                </p>
+                <p className="font-medium">Demo Mode Active</p>
+                <p>This is a demonstration. No real payment will be processed.</p>
               </div>
             </div>
+
+            {!isDemoMode && (
+              <>
+                <div>
+                  <label className="block text-sm font-medium text-gray-900 mb-2">
+                    Card Information
+                  </label>
+                  <div className="border border-gray-300 rounded-lg p-3 bg-white">
+                    <CardElement
+                      options={cardElementOptions}
+                      onChange={(event) => {
+                        setCardComplete(event.complete);
+                        if (event.error) {
+                          setError(event.error.message);
+                        } else {
+                          setError('');
+                        }
+                      }}
+                    />
+                  </div>
+                </div>
+
+                {/* Payment Method Options */}
+                <div className="mt-4">
+                  <div className="flex items-center justify-center space-x-4 text-sm text-gray-900">
+                    <span>Secure payment with</span>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-10 h-6 bg-black rounded flex items-center justify-center text-white text-xs font-bold">
+                        Apple Pay
+                      </div>
+                      <div className="w-10 h-6 bg-blue-500 rounded flex items-center justify-center text-white text-xs font-bold">
+                        G Pay
+                      </div>
+                      <div className="text-xs text-gray-800">and all major cards</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Test Mode Notice */}
+                <div className="flex items-start space-x-2 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                  <CheckCircle className="h-5 w-5 text-blue-600 mt-0.5" />
+                  <div className="text-sm text-blue-800">
+                    <p className="font-medium">Test Mode</p>
+                    <p>Use card number 4242 4242 4242 4242 with any future expiry date and CVC for testing.</p>
+                  </div>
+                </div>
+              </>
+            )}
 
             {/* Security Notice */}
             <div className="flex items-start space-x-2 p-3 bg-green-50 rounded-lg border border-green-200">
@@ -376,25 +385,29 @@ function PaymentFormInner({
               disabled={isDemoMode ? isProcessing : (!stripe || !cardComplete || isProcessing)}
             >
               {isProcessing ? (
-                'Processing Payment...'
+                isDemoMode ? 'Processing Demo Payment...' : 'Processing Payment...'
               ) : (
                 <>
                   <CreditCard className="h-5 w-5 mr-2" />
-                  Pay {formatCurrency(costs.totalCost)} & Start Parking{isDemoMode ? ' (Demo)' : ''}
+                  {isDemoMode ? `Pay ${formatCurrency(costs.totalCost)} (Demo)` : `Pay ${formatCurrency(costs.totalCost)} & Start Parking`}
                 </>
               )}
             </Button>
 
             <div className="text-center">
               <p className="text-xs text-gray-900">
-                By completing this purchase, you agree to the{' '}
-                <a href="/terms" className="text-blue-600 hover:underline">
-                  Terms of Service
-                </a>{' '}
-                and{' '}
-                <a href="/privacy" className="text-blue-600 hover:underline">
-                  Privacy Policy
-                </a>
+                {isDemoMode ? 'Demo mode - No real charges will be made' : (
+                  <>
+                    By completing this purchase, you agree to the{' '}
+                    <a href="/terms" className="text-blue-600 hover:underline">
+                      Terms of Service
+                    </a>{' '}
+                    and{' '}
+                    <a href="/privacy" className="text-blue-600 hover:underline">
+                      Privacy Policy
+                    </a>
+                  </>
+                )}
               </p>
             </div>
           </form>
