@@ -43,6 +43,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       ? `${ariaLabel || children?.toString() || 'Button'} ${loadingText}`
       : ariaLabel;
 
+    const textColor = variant === 'outline' ? '#111827' : '#ffffff';
+
     return (
       <button
         ref={ref}
@@ -51,6 +53,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         aria-label={enhancedAriaLabel}
         aria-busy={isLoading}
         aria-describedby={srOnlyText ? `${props.id}-description` : undefined}
+        style={{ color: textColor }}
         {...props}
       >
         {isLoading && (
@@ -60,6 +63,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               fill="none"
               viewBox="0 0 24 24"
               aria-hidden="true"
+              style={{ color: textColor }}
             >
               <circle
                 className="opacity-25"
@@ -78,7 +82,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             <span className="sr-only">{loadingText}</span>
           </>
         )}
-        {children}
+        <span style={{ color: textColor }}>{children}</span>
         {srOnlyText && (
           <span id={`${props.id}-description`} className="sr-only">
             {srOnlyText}
