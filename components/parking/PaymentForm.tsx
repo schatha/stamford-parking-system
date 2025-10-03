@@ -16,6 +16,9 @@ import { calculateParkingCost, getRateForLocationType } from '@/lib/utils/calcul
 import { formatCurrency, formatLicensePlate } from '@/lib/utils/formatting';
 import { CostCalculator } from './CostCalculator';
 
+// Check if we're in demo mode (no Stripe keys configured)
+const isDemoMode = !process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
+
 // Demo mode compatible - only load Stripe if key is available
 const stripePromise = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
   ? loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
@@ -56,17 +59,6 @@ function PaymentFormInner({
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (!stripe || !elements) {
-      setError('Stripe has not loaded yet. Please try again.');
-      return;
-    }
-
-    const cardElement = elements.getElement(CardElement);
-    if (!cardElement) {
-      setError('Card element not found.');
-      return;
-    }
-
     setIsProcessing(true);
     setError('');
 
@@ -90,6 +82,46 @@ function PaymentFormInner({
       }
 
       const { data: session } = await sessionResponse.json();
+
+      // In demo mode, skip Stripe payment and directly confirm session
+      if (isDemoMode) {
+        // Simulate payment processing delay
+        await new Promise(resolve => setTimeout(resolve, 1500));
+
+        console.log('Demo mode: Skipping Stripe payment, directly confirming session');
+
+        // Directly confirm the session in demo mode
+        const confirmResponse = await fetch(`/api/sessions/${session.id}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            paymentIntentId: 'demo_' + Date.now(),
+          }),
+        });
+
+        if (!confirmResponse.ok) {
+          throw new Error('Failed to confirm parking session');
+        }
+
+        onSuccess(session.id);
+        return;
+      }
+
+      // Normal Stripe flow when not in demo mode
+      if (!stripe || !elements) {
+        setError('Stripe has not loaded yet. Please try again.');
+        setIsProcessing(false);
+        return;
+      }
+
+      const cardElement = elements.getElement(CardElement);
+      if (!cardElement) {
+        setError('Card element not found.');
+        setIsProcessing(false);
+        return;
+      }
 
       // Create payment intent for the session
       const paymentResponse = await fetch('/api/payments/create-intent', {
@@ -281,8 +313,12 @@ function PaymentFormInner({
             <div className="flex items-start space-x-2 p-3 bg-blue-50 rounded-lg border border-blue-200">
               <CheckCircle className="h-5 w-5 text-blue-600 mt-0.5" />
               <div className="text-sm text-blue-800">
-                <p className="font-medium">Test Mode</p>
-                <p>Use card number <strong>4242 4242 4242 4242</strong> with any future expiry date and CVC for testing.</p>
+                <p className="font-medium">{isDemoMode ? 'Demo Mode' : 'Test Mode'}</p>
+                <p>
+                  {isDemoMode
+                    ? 'Click "Pay & Start Parking" to create a demo session. No payment processing required.'
+                    : 'Use card number 4242 4242 4242 4242 with any future expiry date and CVC for testing.'}
+                </p>
               </div>
             </div>
 
@@ -301,14 +337,14 @@ function PaymentFormInner({
               className="w-full"
               size="lg"
               isLoading={isProcessing}
-              disabled={!stripe || !cardComplete || isProcessing}
+              disabled={isDemoMode ? isProcessing : (!stripe || !cardComplete || isProcessing)}
             >
               {isProcessing ? (
                 'Processing Payment...'
               ) : (
                 <>
                   <CreditCard className="h-5 w-5 mr-2" />
-                  Pay {formatCurrency(costs.totalCost)} & Start Parking
+                  Pay {formatCurrency(costs.totalCost)} & Start Parking{isDemoMode ? ' (Demo)' : ''}
                 </>
               )}
             </Button>

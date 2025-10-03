@@ -79,7 +79,7 @@ export default function DemoPaymentForm({ onSuccess, onError, amount }: DemoPaym
           maxLength={19}
           required
         />
-        <p className="text-sm text-black mt-1 font-bold">Use: 4242 4242 4242 4242 for testing</p>
+        <p className="text-sm text-gray-900 mt-1 font-bold">Use: 4242 4242 4242 4242 for testing</p>
       </div>
 
       {/* Expiry and CVC */}
@@ -148,7 +148,7 @@ export default function DemoPaymentForm({ onSuccess, onError, amount }: DemoPaym
       </Button>
 
       <div className="text-center">
-        <p className="text-sm text-black font-bold">
+        <p className="text-sm text-gray-900 font-bold">
           Demo mode - No real charges will be made
         </p>
       </div>
