@@ -226,16 +226,16 @@ export function ExpiryWarningDemo({ onClose }: ExpiryWarningDemoProps) {
               </div>
               <div className="flex-1">
                 <h3 className="font-semibold text-gray-900 mb-2">Mobile Push Notification</h3>
-                <div className="bg-gray-900 p-3 rounded-lg max-w-xs" style={{ color: '#ffffff' }}>
-                  <div className="flex items-center mb-1">
+                <div className="bg-gray-900 p-3 rounded-lg max-w-xs">
+                  <div className="flex items-center mb-1" style={{ color: '#ffffff' }}>
                     <div className="w-4 h-4 bg-blue-500 rounded mr-2"></div>
-                    <span className="text-xs font-medium" style={{ color: '#ffffff' }}>Stamford Parking</span>
-                    <span className="text-xs ml-auto" style={{ color: '#9ca3af' }}>now</span>
+                    <span className="text-xs font-medium" style={{ color: '#ffffff !important' }}>Stamford Parking</span>
+                    <span className="text-xs ml-auto" style={{ color: '#9ca3af !important' }}>now</span>
                   </div>
-                  <p className="text-sm" style={{ color: '#ffffff' }}>
+                  <p className="text-sm" style={{ color: '#ffffff !important' }}>
                     Session expiring in {Math.ceil((mockSession.scheduledEndTime.getTime() - currentTime.getTime()) / (1000 * 60))} min
                   </p>
-                  <p className="text-xs mt-1" style={{ color: '#d1d5db' }}>
+                  <p className="text-xs mt-1" style={{ color: '#d1d5db !important' }}>
                     Zone {mockSession.zone.zoneNumber} • {formatLicensePlate(mockSession.vehicle.licensePlate, mockSession.vehicle.state)}
                   </p>
                 </div>
